@@ -4,6 +4,9 @@ All notable changes to MathHarnessAudit will be documented here.
 
 ## Unreleased
 
+- Embedded all 41 public JSON Schemas inside the wheel, added deterministic
+  `list-schemas` and refuse-merge `export-schemas` CLI commands, and removed the
+  Windows deep-path-sensitive `data_files` installation layout.
 - Froze the canonical episode Schema as v1.0, retained explicit v0.1 reading,
   and added a lossless, refuse-overwrite `migrate-episode-v1` CLI path with
   compatibility tests for every public v0.1 fixture.

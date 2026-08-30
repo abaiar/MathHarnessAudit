@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:compute-authorization:0.4",
+  "title": "MathHarnessAudit qualification continuation compute authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "authorization_id",
+    "status",
+    "scope",
+    "authorized_by",
+    "authorized_at",
+    "total_budget",
+    "monetary_accounting",
+    "stop_policy",
+    "systems",
+    "continuation",
+    "secrets_recorded",
+    "notes"
+  ],
+  "properties": {
+    "format": {
+      "const": "mathaudit-compute-authorization-v0.4"
+    },
+    "authorization_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "authorized",
+        "revoked"
+      ]
+    },
+    "scope": {
+      "const": "qualification_q"
+    },
+    "authorized_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "authorized_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "total_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "episode_cap",
+        "token_cap",
+        "currency",
+        "monetary_cap",
+        "summed_wall_time_cap_s"
+      ],
+      "properties": {
+        "episode_cap": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 150
+        },
+        "token_cap": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "currency": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Z]{3}$"
+        },
+        "monetary_cap": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "summed_wall_time_cap_s": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        }
+      }
+    },
+    "monetary_accounting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "free_quota_confirmed",
+        "input_cny_per_million_tokens",
+        "output_cny_per_million_tokens",
+        "evidence_source"
+      ],
+      "properties": {
+        "mode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "free_quota",
+            "token_tariff",
+            null
+          ]
+        },
+        "free_quota_confirmed": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "input_cny_per_million_tokens": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "output_cny_per_million_tokens": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "evidence_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "stop_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "quota_or_transport_failure_rate",
+        "stop_on_task_dependent_missingness",
+        "stop_on_trace_loss",
+        "continue_after_episode_failure",
+        "stop_on_quota_or_transport_failure_rate"
+      ],
+      "properties": {
+        "quota_or_transport_failure_rate": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 0.05
+        },
+        "stop_on_task_dependent_missingness": {
+          "type": "boolean"
+        },
+        "stop_on_trace_loss": {
+          "type": "boolean"
+        },
+        "continue_after_episode_failure": {
+          "const": true
+        },
+        "stop_on_quota_or_transport_failure_rate": {
+          "const": false
+        }
+      }
+    },
+    "systems": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "system_id",
+          "provider",
+          "model",
+          "model_revision",
+          "endpoint_class",
+          "endpoint_url",
+          "endpoint_available",
+          "parameters",
+          "concurrency",
+          "episode_timeout_s",
+          "max_output_tokens",
+          "retry_policy",
+          "retry_control",
+          "episode_cap",
+          "token_cap",
+          "currency",
+          "monetary_cap",
+          "summed_wall_time_cap_s"
+        ],
+        "properties": {
+          "system_id": {
+            "enum": [
+              "mathrouter",
+              "icma",
+              "mathgoal"
+            ]
+          },
+          "provider": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "model": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "model_revision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "endpoint_class": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "endpoint_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "endpoint_available": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "parameters": {
+            "type": "object"
+          },
+          "concurrency": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "episode_timeout_s": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "max_output_tokens": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "retry_policy": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "retry_control": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "max_retries",
+              "eligible_failure_class",
+              "forbid_after_any_response",
+              "forbid_on_parse_failure",
+              "forbid_on_tool_failure"
+            ],
+            "properties": {
+              "max_retries": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "eligible_failure_class": {
+                "const": "pre_response_transport_failure_only"
+              },
+              "forbid_after_any_response": {
+                "const": true
+              },
+              "forbid_on_parse_failure": {
+                "const": true
+              },
+              "forbid_on_tool_failure": {
+                "const": true
+              }
+            }
+          },
+          "episode_cap": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "token_cap": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "currency": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[A-Z]{3}$"
+          },
+          "monetary_cap": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "exclusiveMinimum": 0
+          },
+          "summed_wall_time_cap_s": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "continuation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_authorization_id",
+        "source_plan_sha256",
+        "source_state_sha256",
+        "source_closeout_sha256",
+        "completed_prefix_episode_count",
+        "restart_sequence",
+        "final_target_episode_count",
+        "deferred_replacement_count",
+        "deferred_replacement_sequence"
+      ],
+      "properties": {
+        "source_authorization_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_plan_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "source_state_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "source_closeout_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "completed_prefix_episode_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 149
+        },
+        "restart_sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 149
+        },
+        "final_target_episode_count": {
+          "const": 150
+        },
+        "deferred_replacement_count": {
+          "const": 1
+        },
+        "deferred_replacement_sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 149
+        }
+      }
+    },
+    "secrets_recorded": {
+      "const": false
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:deviation-event:0.1",
+  "title": "MathHarnessAudit append-only deviation event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "event_id",
+    "recorded_at",
+    "run_id",
+    "category",
+    "severity",
+    "description",
+    "action",
+    "outcomes_inspected_before_action",
+    "requires_rerun",
+    "author"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-deviation-event-v0.1"},
+    "event_id": {"type": "string", "minLength": 1},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "run_id": {"type": "string", "minLength": 1},
+    "category": {"enum": ["transport", "quota", "parser", "scorer", "environment", "protocol", "data", "system", "other"]},
+    "severity": {"enum": ["informational", "minor", "major", "stop"]},
+    "affected_problem_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "description": {"type": "string", "minLength": 1},
+    "action": {"type": "string", "minLength": 1},
+    "outcomes_inspected_before_action": {"type": "boolean"},
+    "requires_rerun": {"type": "boolean"},
+    "author": {"type": "string", "minLength": 1},
+    "linked_artifact_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+  }
+}

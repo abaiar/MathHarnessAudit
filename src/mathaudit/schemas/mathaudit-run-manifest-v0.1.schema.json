@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:run-manifest:0.1",
+  "title": "MathHarnessAudit reference-run manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "run_id",
+    "study_phase",
+    "status",
+    "system",
+    "sample_manifest",
+    "runtime",
+    "budget",
+    "environment",
+    "counts",
+    "outcome_blind",
+    "secrets_recorded",
+    "artifacts"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-run-manifest-v0.1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "study_phase": {"enum": ["qualification", "confirmatory", "sensitivity"]},
+    "status": {"enum": ["planned", "running", "completed", "stopped", "failed"]},
+    "system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system_id", "name", "version", "source_fingerprint", "adapter_name", "adapter_version", "adapter_fidelity"],
+      "properties": {
+        "system_id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "source_fingerprint": {"$ref": "#/$defs/hash"},
+        "adapter_name": {"type": "string", "minLength": 1},
+        "adapter_version": {"type": "string", "minLength": 1},
+        "adapter_fidelity": {"enum": ["A", "B", "C"]}
+      }
+    },
+    "sample_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "sha256", "selected_count", "strata"],
+      "properties": {
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hash"},
+        "selected_count": {"type": "integer", "minimum": 1},
+        "strata": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "model", "model_revision", "endpoint_class", "endpoint_url", "parameters", "episode_timeout_s", "concurrency", "max_output_tokens", "retry_policy", "retry_control"],
+      "properties": {
+        "provider": {"type": "string", "minLength": 1},
+        "model": {"type": "string", "minLength": 1},
+        "model_revision": {"type": ["string", "null"]},
+        "endpoint_class": {"type": "string", "minLength": 1},
+        "endpoint_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "parameters": {"type": "object"},
+        "episode_timeout_s": {"type": "number", "exclusiveMinimum": 0},
+        "concurrency": {"type": "integer", "minimum": 1},
+        "max_output_tokens": {"type": "integer", "minimum": 1},
+        "retry_policy": {"type": "string", "minLength": 1},
+        "retry_control": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["max_retries", "eligible_failure_class", "forbid_after_any_response", "forbid_on_parse_failure", "forbid_on_tool_failure"],
+          "properties": {
+            "max_retries": {"type": "integer", "minimum": 0, "maximum": 1},
+            "eligible_failure_class": {"const": "pre_response_transport_failure_only"},
+            "forbid_after_any_response": {"const": true},
+            "forbid_on_parse_failure": {"const": true},
+            "forbid_on_tool_failure": {"const": true}
+          }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["episode_cap", "token_cap", "currency", "monetary_cap", "summed_wall_time_cap_s", "monetary_accounting"],
+      "properties": {
+        "episode_cap": {"type": "integer", "minimum": 1},
+        "token_cap": {"type": ["integer", "null"], "minimum": 1},
+        "currency": {"type": ["string", "null"], "pattern": "^[A-Z]{3}$"},
+        "monetary_cap": {"type": ["number", "null"], "minimum": 0},
+        "summed_wall_time_cap_s": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "monetary_accounting": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode", "free_quota_confirmed", "input_cny_per_million_tokens", "output_cny_per_million_tokens", "evidence_source"],
+          "properties": {
+            "mode": {"enum": ["free_quota", "token_tariff"]},
+            "free_quota_confirmed": {"type": "boolean"},
+            "input_cny_per_million_tokens": {"type": ["number", "null"], "minimum": 0},
+            "output_cny_per_million_tokens": {"type": ["number", "null"], "minimum": 0},
+            "evidence_source": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["os", "python", "dependency_lock_sha256", "container_image"],
+      "properties": {
+        "os": {"type": "string", "minLength": 1},
+        "python": {"type": "string", "minLength": 1},
+        "dependency_lock_sha256": {"$ref": "#/$defs/nullable_hash"},
+        "container_image": {"type": ["string", "null"]}
+      }
+    },
+    "started_at": {"type": ["string", "null"], "format": "date-time"},
+    "ended_at": {"type": ["string", "null"], "format": "date-time"},
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attempted", "completed", "failed", "timed_out", "quota_or_transport_failed", "excluded"],
+      "properties": {
+        "attempted": {"type": "integer", "minimum": 0},
+        "completed": {"type": "integer", "minimum": 0},
+        "failed": {"type": "integer", "minimum": 0},
+        "timed_out": {"type": "integer", "minimum": 0},
+        "quota_or_transport_failed": {"type": "integer", "minimum": 0},
+        "excluded": {"type": "integer", "minimum": 0}
+      }
+    },
+    "outcome_blind": {"type": "boolean"},
+    "secrets_recorded": {"const": false},
+    "deviation_log": {
+      "type": ["object", "null"],
+      "required": ["relative_path", "sha256"],
+      "properties": {
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hash"}
+      },
+      "additionalProperties": false
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "relative_path", "sha256", "records", "private"],
+        "properties": {
+          "role": {"type": "string", "minLength": 1},
+          "relative_path": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/hash"},
+          "records": {"type": ["integer", "null"], "minimum": 0},
+          "private": {"type": "boolean"}
+        }
+      }
+    },
+    "notes": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "nullable_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+  }
+}

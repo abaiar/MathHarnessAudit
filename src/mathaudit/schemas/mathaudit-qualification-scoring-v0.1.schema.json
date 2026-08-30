@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-scoring:0.1",
+  "title": "MathHarnessAudit deterministic qualification scoring manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "source_plan_sha256",
+    "composite_sha256",
+    "composite_manifest_raw_sha256",
+    "scorer",
+    "episode_count",
+    "system_episode_counts",
+    "label_counts",
+    "scored_artifacts",
+    "correctness_labels_computed",
+    "contains_prompt_or_response_text",
+    "scoring_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-scoring-v0.1"},
+    "source_plan_sha256": {"$ref": "#/$defs/hash"},
+    "composite_sha256": {"$ref": "#/$defs/hash"},
+    "composite_manifest_raw_sha256": {"$ref": "#/$defs/hash"},
+    "scorer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1}
+      }
+    },
+    "episode_count": {"const": 150},
+    "system_episode_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mathrouter", "icma", "mathgoal"],
+      "properties": {
+        "mathrouter": {"const": 50},
+        "icma": {"const": 50},
+        "mathgoal": {"const": 50}
+      }
+    },
+    "label_counts": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "scored_artifacts": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["system_id", "relative_path", "sha256", "episodes"],
+        "properties": {
+          "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+          "relative_path": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/hash"},
+          "episodes": {"const": 50}
+        }
+      }
+    },
+    "correctness_labels_computed": {"const": true},
+    "contains_prompt_or_response_text": {"const": false},
+    "scoring_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

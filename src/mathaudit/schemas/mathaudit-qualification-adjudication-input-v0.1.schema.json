@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-adjudication-input:0.1",
+  "title": "MathHarnessAudit exact-150 qualification adjudication input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "source_plan_sha256",
+    "scoring_sha256",
+    "scoring_manifest_raw_sha256",
+    "episode_count",
+    "system_episode_counts",
+    "episode_content_sha256",
+    "scored_episodes",
+    "manifest_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-adjudication-input-v0.1"},
+    "source_plan_sha256": {"$ref": "#/$defs/hash"},
+    "scoring_sha256": {"$ref": "#/$defs/hash"},
+    "scoring_manifest_raw_sha256": {"$ref": "#/$defs/hash"},
+    "episode_count": {"const": 150},
+    "system_episode_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mathrouter", "icma", "mathgoal"],
+      "properties": {
+        "mathrouter": {"const": 50},
+        "icma": {"const": 50},
+        "mathgoal": {"const": 50}
+      }
+    },
+    "episode_content_sha256": {"$ref": "#/$defs/hash"},
+    "scored_episodes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "sha256", "episodes", "private"],
+      "properties": {
+        "relative_path": {"const": "scored-episodes.jsonl"},
+        "sha256": {"$ref": "#/$defs/hash"},
+        "episodes": {"const": 150},
+        "private": {"const": true}
+      }
+    },
+    "manifest_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

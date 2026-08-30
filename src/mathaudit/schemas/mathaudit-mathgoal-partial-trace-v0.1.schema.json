@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:mathgoal-partial-trace:0.1",
+  "title": "Private incremental MathGoal trace checkpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "problem_id",
+    "status",
+    "trace_count",
+    "traces",
+    "contains_gold",
+    "contains_prompt_or_response_text",
+    "private",
+    "checkpoint_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-mathgoal-partial-trace-v0.1"},
+    "problem_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["in_progress", "completed", "error"]},
+    "trace_count": {"type": "integer", "minimum": 0},
+    "traces": {"type": "array", "items": {"type": "object"}},
+    "contains_gold": {"const": false},
+    "contains_prompt_or_response_text": {"const": true},
+    "private": {"const": true},
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "message"],
+      "properties": {
+        "type": {"type": "string", "minLength": 1},
+        "message": {"type": "string"}
+      }
+    },
+    "checkpoint_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

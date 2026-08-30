@@ -63,6 +63,7 @@ from .qualification_scoring import (
 from .report import write_report
 from .runprep import prepare_matched_run_inputs, verify_input_bundle
 from .sampling import public_sample_manifest, select_sample, verify_sample_manifest_hash
+from .schema_resources import export_schemas, schema_names
 from .scoring import score_episode
 from .validation import validate_episode
 
@@ -72,6 +73,24 @@ app = typer.Typer(
     help="Outcome-linked evidence auditing for mathematical reasoning agents.",
 )
 console = Console()
+
+
+@app.command("list-schemas")
+def list_schemas_command() -> None:
+    """List JSON Schemas embedded in the installed package."""
+
+    for name in schema_names():
+        console.print(name)
+
+
+@app.command("export-schemas")
+def export_schemas_command(
+    output_dir: Path = typer.Option(..., "--output-dir"),
+) -> None:
+    """Export the installed JSON Schemas to a new or empty directory."""
+
+    written = export_schemas(output_dir)
+    console.print(f"Exported {len(written)} JSON Schemas to {output_dir}.")
 
 
 @app.command("ingest")

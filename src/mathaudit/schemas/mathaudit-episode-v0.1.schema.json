@@ -1,0 +1,325 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:episode:0.1",
+  "title": "MathHarnessAudit canonical episode",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "episode_id",
+    "problem",
+    "system",
+    "run",
+    "adapter",
+    "sources",
+    "source_observations",
+    "evidence",
+    "decisions",
+    "provenance_edges",
+    "labels",
+    "final_output",
+    "audit_only"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "episode_id": {"$ref": "#/$defs/nonempty_string"},
+    "problem": {"$ref": "#/$defs/problem"},
+    "system": {"$ref": "#/$defs/system"},
+    "run": {"$ref": "#/$defs/run"},
+    "adapter": {"$ref": "#/$defs/adapter"},
+    "sources": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/source"}
+    },
+    "source_observations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/source_observation"}
+    },
+    "evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidence"}
+    },
+    "decisions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/decision"}
+    },
+    "provenance_edges": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/provenance_edge"}
+    },
+    "labels": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/outcome_label"}
+    },
+    "final_output": {"$ref": "#/$defs/final_output"},
+    "audit_only": {"$ref": "#/$defs/audit_only"},
+    "metadata": {"type": "object"}
+  },
+  "$defs": {
+    "nonempty_string": {"type": "string", "minLength": 1},
+    "nullable_string": {"type": ["string", "null"]},
+    "timestamp": {"type": ["string", "null"], "format": "date-time"},
+    "id_array": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/nonempty_string"},
+      "uniqueItems": true
+    },
+    "hash": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "value"],
+      "properties": {
+        "algorithm": {"enum": ["sha256"]},
+        "value": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"}
+      }
+    },
+    "problem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem_id", "dataset_id", "split", "stratum", "input_hash"],
+      "properties": {
+        "problem_id": {"$ref": "#/$defs/nonempty_string"},
+        "dataset_id": {"$ref": "#/$defs/nonempty_string"},
+        "dataset_version": {"$ref": "#/$defs/nullable_string"},
+        "split": {"$ref": "#/$defs/nonempty_string"},
+        "stratum": {"$ref": "#/$defs/nonempty_string"},
+        "domain": {"$ref": "#/$defs/nullable_string"},
+        "difficulty": {"$ref": "#/$defs/nullable_string"},
+        "answer_type": {"$ref": "#/$defs/nullable_string"},
+        "input_hash": {"$ref": "#/$defs/hash"},
+        "statement": {"$ref": "#/$defs/nullable_string"},
+        "solver_visible_metadata": {"type": "object"}
+      }
+    },
+    "system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system_id", "name", "version", "config_hash"],
+      "properties": {
+        "system_id": {"$ref": "#/$defs/nonempty_string"},
+        "name": {"$ref": "#/$defs/nonempty_string"},
+        "version": {"$ref": "#/$defs/nonempty_string"},
+        "harness_family": {"$ref": "#/$defs/nullable_string"},
+        "repository": {"$ref": "#/$defs/nullable_string"},
+        "commit": {"$ref": "#/$defs/nullable_string"},
+        "config_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "seed", "started_at", "ended_at", "budget", "environment_hash"],
+      "properties": {
+        "run_id": {"$ref": "#/$defs/nonempty_string"},
+        "seed": {"type": ["integer", "null"]},
+        "started_at": {"$ref": "#/$defs/timestamp"},
+        "ended_at": {"$ref": "#/$defs/timestamp"},
+        "budget": {"type": "object"},
+        "environment_hash": {"$ref": "#/$defs/hash"},
+        "provider_request_ids": {"$ref": "#/$defs/id_array"}
+      }
+    },
+    "adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "fidelity", "source_format"],
+      "properties": {
+        "name": {"$ref": "#/$defs/nonempty_string"},
+        "version": {"$ref": "#/$defs/nonempty_string"},
+        "fidelity": {"enum": ["A", "B", "C"]},
+        "source_format": {"$ref": "#/$defs/nonempty_string"},
+        "warnings": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "source_type", "role", "provenance_group"],
+      "properties": {
+        "source_id": {"$ref": "#/$defs/nonempty_string"},
+        "source_type": {
+          "enum": ["llm", "python", "sympy", "formal", "human", "deterministic", "composite", "other"]
+        },
+        "role": {"$ref": "#/$defs/nonempty_string"},
+        "producer": {"$ref": "#/$defs/nullable_string"},
+        "model": {"$ref": "#/$defs/nullable_string"},
+        "tool": {"$ref": "#/$defs/nullable_string"},
+        "provenance_group": {"$ref": "#/$defs/nonempty_string"},
+        "metadata": {"type": "object"}
+      }
+    },
+    "source_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observation_id",
+        "source_id",
+        "stage",
+        "opportunity",
+        "invocation",
+        "outcome",
+        "cost"
+      ],
+      "properties": {
+        "observation_id": {"$ref": "#/$defs/nonempty_string"},
+        "source_id": {"$ref": "#/$defs/nonempty_string"},
+        "stage": {"$ref": "#/$defs/nonempty_string"},
+        "sequence": {"type": "integer", "minimum": 0},
+        "opportunity": {"enum": ["eligible", "ineligible", "unknown"]},
+        "invocation": {"enum": ["called", "not_called", "not_observable"]},
+        "outcome": {"enum": ["produced", "no_vote", "failed", "timeout", "cancelled", "not_observable"]},
+        "started_at": {"$ref": "#/$defs/timestamp"},
+        "ended_at": {"$ref": "#/$defs/timestamp"},
+        "cost": {"$ref": "#/$defs/cost"},
+        "metadata": {"type": "object"}
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visibility", "text", "content_hash", "normalized_answer", "structured"],
+      "properties": {
+        "visibility": {"enum": ["public", "private", "redacted", "hash_only"]},
+        "text": {"$ref": "#/$defs/nullable_string"},
+        "content_hash": {"$ref": "#/$defs/hash"},
+        "normalized_answer": {"$ref": "#/$defs/nullable_string"},
+        "structured": {"type": ["object", "array", "string", "number", "boolean", "null"]}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "observation_id", "kind", "stage", "sequence", "content"],
+      "properties": {
+        "evidence_id": {"$ref": "#/$defs/nonempty_string"},
+        "observation_id": {"$ref": "#/$defs/nonempty_string"},
+        "kind": {
+          "enum": ["candidate_answer", "reasoning_claim", "tool_result", "verifier_verdict", "critique", "recovered_answer", "final_answer", "other"]
+        },
+        "stage": {"$ref": "#/$defs/nonempty_string"},
+        "sequence": {"type": "integer", "minimum": 0},
+        "created_at": {"$ref": "#/$defs/timestamp"},
+        "content": {"$ref": "#/$defs/content"},
+        "metadata": {"type": "object"}
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "decision_type",
+        "stage",
+        "sequence",
+        "status",
+        "input_evidence_ids",
+        "candidate_evidence_ids",
+        "selected_evidence_ids",
+        "output_evidence_ids",
+        "policy",
+        "cost"
+      ],
+      "properties": {
+        "decision_id": {"$ref": "#/$defs/nonempty_string"},
+        "decision_type": {"enum": ["validation", "arbitration", "selection", "repair", "recovery", "finalization", "other"]},
+        "stage": {"$ref": "#/$defs/nonempty_string"},
+        "sequence": {"type": "integer", "minimum": 0},
+        "status": {"enum": ["completed", "skipped", "failed", "timeout", "not_observable"]},
+        "input_evidence_ids": {"$ref": "#/$defs/id_array"},
+        "candidate_evidence_ids": {"$ref": "#/$defs/id_array"},
+        "selected_evidence_ids": {"$ref": "#/$defs/id_array"},
+        "output_evidence_ids": {"$ref": "#/$defs/id_array"},
+        "policy": {"$ref": "#/$defs/nonempty_string"},
+        "created_at": {"$ref": "#/$defs/timestamp"},
+        "cost": {"$ref": "#/$defs/cost"},
+        "metadata": {"type": "object"}
+      }
+    },
+    "provenance_edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from_id", "to_id", "relation", "observability"],
+      "properties": {
+        "from_id": {"$ref": "#/$defs/nonempty_string"},
+        "to_id": {"$ref": "#/$defs/nonempty_string"},
+        "relation": {"enum": ["derived_from", "verifies", "critiques", "supports", "contradicts", "aggregates", "produces"]},
+        "observability": {"enum": ["observed", "adapter_inferred", "declared"]},
+        "metadata": {"type": "object"}
+      }
+    },
+    "outcome_label": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label_id",
+        "target_type",
+        "target_id",
+        "value",
+        "scorer_type",
+        "scorer_name",
+        "scorer_version",
+        "decision_path",
+        "adjudication_status",
+        "created_at"
+      ],
+      "properties": {
+        "label_id": {"$ref": "#/$defs/nonempty_string"},
+        "target_type": {"enum": ["episode", "evidence"]},
+        "target_id": {"$ref": "#/$defs/nonempty_string"},
+        "value": {"enum": ["correct", "incorrect", "abstain", "unscorable"]},
+        "scorer_type": {"enum": ["exact", "numeric", "symbolic", "executable", "formal", "llm", "human", "adjudicated"]},
+        "scorer_name": {"$ref": "#/$defs/nonempty_string"},
+        "scorer_version": {"$ref": "#/$defs/nonempty_string"},
+        "rule_id": {"$ref": "#/$defs/nullable_string"},
+        "decision_path": {"type": "array", "items": {"type": "string"}},
+        "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "adjudication_status": {"enum": ["not_needed", "pending", "resolved", "unresolved"]},
+        "annotator_id": {"$ref": "#/$defs/nullable_string"},
+        "created_at": {"type": "string", "format": "date-time"},
+        "metadata": {"type": "object"}
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["calls", "prompt_tokens", "completion_tokens", "total_tokens", "tool_executions", "latency_s", "monetary"],
+      "properties": {
+        "calls": {"type": ["integer", "null"], "minimum": 0},
+        "prompt_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "completion_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "total_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "tool_executions": {"type": ["integer", "null"], "minimum": 0},
+        "latency_s": {"type": ["number", "null"], "minimum": 0},
+        "monetary": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["amount", "currency"],
+          "properties": {
+            "amount": {"type": "number", "minimum": 0},
+            "currency": {"type": "string", "pattern": "^[A-Z]{3}$"}
+          }
+        }
+      }
+    },
+    "final_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence_id"],
+      "properties": {
+        "status": {"enum": ["produced", "empty", "failed", "timeout", "cancelled"]},
+        "evidence_id": {"$ref": "#/$defs/nullable_string"}
+      }
+    },
+    "audit_only": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gold", "gold_hash", "rubric_id"],
+      "properties": {
+        "gold": {"$ref": "#/$defs/nullable_string"},
+        "gold_hash": {"anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]},
+        "rubric_id": {"$ref": "#/$defs/nullable_string"},
+        "metadata": {"type": "object"}
+      }
+    }
+  }
+}

@@ -61,8 +61,8 @@ Documentation = "https://github.com/abaiar/MathHarnessAudit/tree/main/docs"
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[tool.setuptools.data-files]
-"share/math-harness-audit/schemas" = ["schemas/*.json"]
+[tool.setuptools.package-data]
+mathaudit = ["schemas/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

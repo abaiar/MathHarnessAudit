@@ -14,7 +14,8 @@ The supported public surface consists of:
 - Pydantic objects in `mathaudit.models`;
 - the `Adapter`, `ProblemContext` and `RunContext` protocol;
 - JSON/JSONL formats with explicit `format` or `schema_version` fields;
-- JSON Schemas shipped under `share/math-harness-audit/schemas`;
+- JSON Schemas embedded in the installed `mathaudit` package and exportable with
+  `mathaudit export-schemas --output-dir <empty-directory>`;
 - report/publication manifests and their declared artifact hashes.
 
 Functions beginning with `_`, undocumented module constants, HTML/CSS structure

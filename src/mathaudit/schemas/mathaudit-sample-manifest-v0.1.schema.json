@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:sample-manifest:0.1",
+  "title": "MathHarnessAudit outcome-blind public sample manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "dataset_id",
+    "dataset_version",
+    "stratum",
+    "source_file_sha256",
+    "selection_seed",
+    "selection_config",
+    "diagnostics",
+    "selected",
+    "privacy",
+    "manifest_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-sample-manifest-v0.1"},
+    "dataset_id": {"type": "string", "minLength": 1},
+    "dataset_version": {"type": ["string", "null"]},
+    "stratum": {"type": "string", "minLength": 1},
+    "source_file_sha256": {"$ref": "#/$defs/hash"},
+    "selection_seed": {"type": "integer"},
+    "selection_config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "statement_field",
+        "id_field",
+        "difficulty_field",
+        "difficulty_gt",
+        "difficulty_le",
+        "balance_field",
+        "balance_depth",
+        "balance_mode",
+        "duplicate_problem_policy"
+      ],
+      "properties": {
+        "count": {"type": "integer", "minimum": 1},
+        "statement_field": {"type": "string", "minLength": 1},
+        "id_field": {"type": ["string", "null"]},
+        "difficulty_field": {"type": ["string", "null"]},
+        "difficulty_gt": {"type": ["number", "null"]},
+        "difficulty_le": {"type": ["number", "null"]},
+        "balance_field": {"type": ["string", "null"]},
+        "balance_depth": {"type": ["integer", "null"], "minimum": 1},
+        "balance_mode": {"enum": ["equal", "proportional"]},
+        "duplicate_problem_policy": {"const": "exclude_all_records_in_duplicate_problem_groups"}
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_records",
+        "non_null_source_ids",
+        "unique_non_null_source_ids",
+        "unique_problem_hashes",
+        "duplicate_problem_groups_excluded",
+        "records_excluded_for_duplicate_problem",
+        "records_missing_required_difficulty",
+        "eligible_records",
+        "eligible_by_balance_group",
+        "selected_by_balance_group"
+      ],
+      "properties": {
+        "input_records": {"type": "integer", "minimum": 0},
+        "non_null_source_ids": {"type": "integer", "minimum": 0},
+        "unique_non_null_source_ids": {"type": "integer", "minimum": 0},
+        "unique_problem_hashes": {"type": "integer", "minimum": 0},
+        "duplicate_problem_groups_excluded": {"type": "integer", "minimum": 0},
+        "records_excluded_for_duplicate_problem": {"type": "integer", "minimum": 0},
+        "records_missing_required_difficulty": {"type": "integer", "minimum": 0},
+        "eligible_records": {"type": "integer", "minimum": 0},
+        "eligible_by_balance_group": {"$ref": "#/$defs/group_counts"},
+        "selected_by_balance_group": {"$ref": "#/$defs/group_counts"}
+      }
+    },
+    "selected": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "problem_id",
+          "source_record_id",
+          "problem_sha256",
+          "record_sha256",
+          "stratum",
+          "difficulty",
+          "balance_group"
+        ],
+        "properties": {
+          "problem_id": {"type": "string", "minLength": 1},
+          "source_record_id": {"type": ["string", "null"]},
+          "problem_sha256": {"$ref": "#/$defs/hash"},
+          "record_sha256": {"$ref": "#/$defs/hash"},
+          "stratum": {"type": "string", "minLength": 1},
+          "difficulty": {"type": ["number", "null"]},
+          "balance_group": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contains_problem_text",
+        "contains_answers_or_solutions",
+        "official_dataset_download_required"
+      ],
+      "properties": {
+        "contains_problem_text": {"const": false},
+        "contains_answers_or_solutions": {"const": false},
+        "official_dataset_download_required": {"const": true}
+      }
+    },
+    "manifest_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "group_counts": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    }
+  }
+}

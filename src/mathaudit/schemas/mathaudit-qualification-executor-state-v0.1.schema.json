@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-executor-state:0.1",
+  "title": "MathHarnessAudit qualification executor state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "authorization_id",
+    "plan_sha256",
+    "status",
+    "started_at",
+    "updated_at",
+    "current_episode",
+    "episodes",
+    "contains_prompt_or_response_text",
+    "state_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-executor-state-v0.1"},
+    "authorization_id": {"type": "string", "minLength": 1},
+    "plan_sha256": {"$ref": "#/$defs/hash"},
+    "status": {
+      "enum": ["running", "completed", "stopped_wall_cap", "stopped_failure"]
+    },
+    "started_at": {"type": "string", "minLength": 1},
+    "updated_at": {"type": "string", "minLength": 1},
+    "ended_at": {"type": "string", "minLength": 1},
+    "current_episode": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/current_episode"}
+      ]
+    },
+    "episodes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/episode"}
+    },
+    "contains_prompt_or_response_text": {"const": false},
+    "state_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "current_episode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "episode_id", "system_id", "idx", "started_at"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 0, "maximum": 149},
+        "episode_id": {"type": "string", "minLength": 1},
+        "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+        "idx": {"type": "integer", "minimum": 0},
+        "started_at": {"type": "string", "minLength": 1}
+      }
+    },
+    "attempt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempt",
+        "return_code",
+        "timed_out",
+        "wall_time_s",
+        "request_count",
+        "request_statuses",
+        "valid_full_trace"
+      ],
+      "properties": {
+        "attempt": {"type": "integer", "minimum": 0, "maximum": 1},
+        "return_code": {"type": "integer"},
+        "timed_out": {"type": "boolean"},
+        "wall_time_s": {"type": "number", "minimum": 0},
+        "request_count": {"type": "integer", "minimum": 0},
+        "request_statuses": {
+          "type": "array",
+          "items": {
+            "enum": ["reserved", "completed", "transport_failed", "provider_error"]
+          }
+        },
+        "valid_full_trace": {"type": "boolean"}
+      }
+    },
+    "episode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "episode_id",
+        "system_id",
+        "idx",
+        "status",
+        "wall_time_s",
+        "attempts",
+        "output_relative_path",
+        "ended_at"
+      ],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 0, "maximum": 149},
+        "episode_id": {"type": "string", "minLength": 1},
+        "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+        "idx": {"type": "integer", "minimum": 0},
+        "status": {
+          "enum": [
+            "completed",
+            "timeout_trace_loss",
+            "transport_failure",
+            "quota_failure",
+            "runner_or_provider_failure",
+            "pre_request_failure"
+          ]
+        },
+        "wall_time_s": {"type": "number", "minimum": 0},
+        "attempts": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {"$ref": "#/$defs/attempt"}
+        },
+        "output_relative_path": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "string", "minLength": 1}
+          ]
+        },
+        "ended_at": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

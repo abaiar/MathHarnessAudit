@@ -101,6 +101,9 @@ the deterministic proposed label.
 Machine-readable contracts are in
 [`schemas/`](schemas/), including episode, public-sample, run-manifest,
 deviation-event, publication-configuration, and source-fingerprint schemas.
+Installed wheels embed the same contracts. Use `mathaudit list-schemas` to inspect
+them or `mathaudit export-schemas --output-dir <empty-directory>` to obtain ordinary
+JSON files without locating interpreter-specific data directories.
 
 Reusable documentation includes the
 [`adapter tutorial`](docs/writing_an_adapter.md),

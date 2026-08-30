@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-composite:0.1",
+  "title": "MathHarnessAudit outcome-blind qualification composite",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "source_plan_sha256",
+    "continuation_plan_sha256",
+    "prefix",
+    "continuation",
+    "episode_count",
+    "system_episode_counts",
+    "canonical_artifacts",
+    "sequence_index",
+    "outcome_blind",
+    "correctness_aggregates_computed",
+    "contains_prompt_or_response_text",
+    "composite_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-composite-v0.1"},
+    "source_plan_sha256": {"$ref": "#/$defs/hash"},
+    "continuation_plan_sha256": {"$ref": "#/$defs/hash"},
+    "prefix": {"$ref": "#/$defs/source"},
+    "continuation": {"$ref": "#/$defs/source"},
+    "episode_count": {"const": 150},
+    "system_episode_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mathrouter", "icma", "mathgoal"],
+      "properties": {
+        "mathrouter": {"const": 50},
+        "icma": {"const": 50},
+        "mathgoal": {"const": 50}
+      }
+    },
+    "canonical_artifacts": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/canonical_artifact"}
+    },
+    "sequence_index": {"$ref": "#/$defs/index_artifact"},
+    "outcome_blind": {"const": true},
+    "correctness_aggregates_computed": {"const": false},
+    "contains_prompt_or_response_text": {"const": false},
+    "composite_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorization_id",
+        "closeout_sha256",
+        "completed_sequence_start",
+        "completed_sequence_end",
+        "episode_count"
+      ],
+      "properties": {
+        "authorization_id": {"type": "string", "minLength": 1},
+        "closeout_sha256": {"$ref": "#/$defs/hash"},
+        "completed_sequence_start": {"type": "integer", "minimum": 0, "maximum": 149},
+        "completed_sequence_end": {"type": "integer", "minimum": 0, "maximum": 149},
+        "episode_count": {"type": "integer", "minimum": 1, "maximum": 149}
+      }
+    },
+    "canonical_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system_id", "relative_path", "sha256", "records", "private"],
+      "properties": {
+        "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hash"},
+        "records": {"const": 50},
+        "private": {"const": true}
+      }
+    },
+    "index_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "sha256", "records"],
+      "properties": {
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hash"},
+        "records": {"const": 150}
+      }
+    }
+  }
+}

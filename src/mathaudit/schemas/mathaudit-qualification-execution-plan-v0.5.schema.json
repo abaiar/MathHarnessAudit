@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-execution-plan:0.5",
+  "title": "MathHarnessAudit exact-slot replacement execution plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "authorization_id",
+    "authorization_status",
+    "runnable",
+    "schedule_seed",
+    "input_bundle_sha256",
+    "task_count",
+    "episode_count",
+    "replacement",
+    "systems",
+    "entries",
+    "notes",
+    "plan_sha256"
+  ],
+  "properties": {
+    "format": {
+      "const": "mathaudit-qualification-execution-plan-v0.5"
+    },
+    "authorization_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authorization_status": {
+      "enum": [
+        "pending",
+        "authorized",
+        "revoked"
+      ]
+    },
+    "runnable": {
+      "type": "boolean"
+    },
+    "schedule_seed": {
+      "type": "integer"
+    },
+    "input_bundle_sha256": {
+      "$ref": "#/$defs/hash"
+    },
+    "task_count": {
+      "const": 50
+    },
+    "episode_count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 149
+    },
+    "systems": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "system_id",
+          "episode_count",
+          "episode_cap",
+          "episode_timeout_s",
+          "summed_wall_time_cap_s",
+          "maximum_timeout_envelope_s",
+          "wall_cap_can_stop_before_episode_cap"
+        ],
+        "properties": {
+          "system_id": {
+            "enum": [
+              "mathrouter",
+              "icma",
+              "mathgoal"
+            ]
+          },
+          "episode_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 50
+          },
+          "episode_cap": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 50
+          },
+          "episode_timeout_s": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "summed_wall_time_cap_s": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maximum_timeout_envelope_s": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "wall_cap_can_stop_before_episode_cap": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 149,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "task_position",
+          "within_task_position",
+          "idx",
+          "problem_id",
+          "problem_sha256",
+          "stratum",
+          "system_id",
+          "episode_timeout_s",
+          "output_relative_path"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 149
+          },
+          "task_position": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 49
+          },
+          "within_task_position": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "idx": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "problem_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "problem_sha256": {
+            "$ref": "#/$defs/hash"
+          },
+          "stratum": {
+            "type": "string",
+            "minLength": 1
+          },
+          "system_id": {
+            "enum": [
+              "mathrouter",
+              "icma",
+              "mathgoal"
+            ]
+          },
+          "episode_timeout_s": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "output_relative_path": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "plan_sha256": {
+      "$ref": "#/$defs/hash"
+    },
+    "replacement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_schedule_plan_sha256",
+        "source_inventory_sha256",
+        "source_q11_state_sha256",
+        "source_q11_closeout_sha256",
+        "complete_slot_count_before_replacement",
+        "replacement_sequences",
+        "final_target_episode_count",
+        "prior_attempted_episode_count",
+        "cumulative_attempted_episode_cap",
+        "prior_reserved_token_upper",
+        "cumulative_token_cap",
+        "prior_summed_wall_time_s",
+        "cumulative_wall_time_cap_s",
+        "cumulative_monetary_cap_cny"
+      ],
+      "properties": {
+        "source_schedule_plan_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "source_inventory_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "source_q11_state_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "source_q11_closeout_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "complete_slot_count_before_replacement": {
+          "const": 142
+        },
+        "replacement_sequences": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 150,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 149
+          }
+        },
+        "final_target_episode_count": {
+          "const": 150
+        },
+        "prior_attempted_episode_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cumulative_attempted_episode_cap": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "prior_reserved_token_upper": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cumulative_token_cap": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "prior_summed_wall_time_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cumulative_wall_time_cap_s": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cumulative_monetary_cap_cny": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

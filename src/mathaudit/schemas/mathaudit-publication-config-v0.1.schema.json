@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:publication-config:0.1",
+  "title": "MathHarnessAudit preregistered publication configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "minimum_complete_cases",
+    "bootstrap_replicates",
+    "seed",
+    "panels"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-publication-config-v0.1"},
+    "minimum_complete_cases": {"type": "integer", "minimum": 1},
+    "bootstrap_replicates": {"type": "integer", "minimum": 0},
+    "seed": {"type": "integer"},
+    "panels": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "panel_id",
+          "system_id",
+          "stratum",
+          "source_ids",
+          "cofailure_source_ids",
+          "pair"
+        ],
+        "properties": {
+          "panel_id": {"type": "string", "minLength": 1},
+          "system_id": {"type": "string", "minLength": 1},
+          "stratum": {"type": "string", "minLength": 1},
+          "source_ids": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "cofailure_source_ids": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "pair": {"$ref": "#/$defs/direction"},
+          "transition_direction": {
+            "oneOf": [{"$ref": "#/$defs/direction"}, {"type": "null"}]
+          },
+          "utilization_direction": {
+            "oneOf": [{"$ref": "#/$defs/direction"}, {"type": "null"}]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "direction": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}
