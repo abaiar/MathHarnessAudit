@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Semantic checks for qualification-run authorization records."""
 
 from __future__ import annotations

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Shared helpers for built-in adapters."""
 
 from __future__ import annotations

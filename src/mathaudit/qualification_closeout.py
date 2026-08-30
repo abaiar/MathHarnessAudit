@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Outcome-blind closeout of qualification execution artifacts."""
 
 from __future__ import annotations

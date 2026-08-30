@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Canonical JSON and JSONL input/output helpers."""
 
 from __future__ import annotations

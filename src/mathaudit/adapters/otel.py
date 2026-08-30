@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Conservative bridge from OTLP JSON GenAI spans to canonical episodes.
 
 OpenTelemetry standardizes execution spans, not mathematical evidence semantics.

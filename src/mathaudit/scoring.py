@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Conservative deterministic-first mathematical answer scoring."""
 
 from __future__ import annotations

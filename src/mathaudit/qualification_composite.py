@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Outcome-blind assembly of a stopped prefix and its authorized continuation."""
 
 from __future__ import annotations

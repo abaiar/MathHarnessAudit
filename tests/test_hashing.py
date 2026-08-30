@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 from mathaudit.hashing import canonical_json, sha256_json, sha256_text
 
 

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Deterministic scoring gate for a complete qualification composite."""
 
 from __future__ import annotations

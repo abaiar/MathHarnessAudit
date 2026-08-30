@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Compile frozen private samples into gold-separated matched-run inputs."""
 
 from __future__ import annotations

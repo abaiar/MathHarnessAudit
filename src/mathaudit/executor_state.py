@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Versioned qualification executor-state migration helpers."""
 
 from __future__ import annotations

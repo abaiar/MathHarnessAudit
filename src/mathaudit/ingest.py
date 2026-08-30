@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Trace ingestion orchestration shared by the CLI and tests."""
 
 from __future__ import annotations

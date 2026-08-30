@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Outcome-blind linear resource forecasts from qualification health telemetry."""
 
 from __future__ import annotations

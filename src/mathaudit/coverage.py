@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Adapter fidelity and observability summaries."""
 
 from __future__ import annotations

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Command-line interface for MathHarnessAudit."""
 
 from __future__ import annotations

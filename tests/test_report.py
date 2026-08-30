@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 import json
 
 from mathaudit.report import build_audit_bundle, render_html, write_report

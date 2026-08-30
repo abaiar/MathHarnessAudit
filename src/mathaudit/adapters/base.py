@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Adapter interface and shared context."""
 
 from __future__ import annotations

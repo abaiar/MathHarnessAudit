@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Deterministic, preregistered publication tables, SVG figures, and manifests."""
 
 from __future__ import annotations

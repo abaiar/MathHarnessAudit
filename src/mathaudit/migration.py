@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Explicit migrations for stable public canonical contracts."""
 
 from __future__ import annotations

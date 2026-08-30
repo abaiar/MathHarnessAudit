@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """One-command, provider-free MathHarnessAudit fixture demonstration."""
 
 from __future__ import annotations

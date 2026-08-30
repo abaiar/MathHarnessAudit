@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Built-in trace adapters."""
 
 from .base import Adapter, ProblemContext, RunContext

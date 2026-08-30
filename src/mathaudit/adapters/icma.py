@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Adapter for legacy ICMA staged JSON traces."""
 
 from __future__ import annotations

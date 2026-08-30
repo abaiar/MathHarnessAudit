@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 from mathaudit.models import (
     EdgeObservability,
     EdgeRelation,

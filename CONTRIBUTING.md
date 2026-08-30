@@ -8,7 +8,11 @@ documentation improvements. Before opening a change:
 2. add a regression test for every semantic change;
 3. preserve missingness, provenance and append-only scoring history;
 4. bump adapter/scorer/format versions when output semantics change;
-5. run `uv run --all-extras pytest` and `uv run --extra dev ruff check src tests`.
+5. begin every new public Python file with `# SPDX-License-Identifier: MIT`;
+6. run `uv run --all-extras pytest` and `uv run --extra dev ruff check src tests`.
+
+Non-Python files remain covered by the root `LICENSE` and package metadata. Do
+not insert license comments into formats, such as JSON, that do not permit them.
 
 Adapter contributions must follow `docs/writing_an_adapter.md` and declare source
 license, trace version and fidelity. Research-result changes require a linked

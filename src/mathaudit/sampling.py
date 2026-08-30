@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Outcome-blind deterministic sampling and identifier-only public manifests."""
 
 from __future__ import annotations

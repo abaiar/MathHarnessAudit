@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Stable hashing helpers used by adapters and manifests."""
 
 from __future__ import annotations

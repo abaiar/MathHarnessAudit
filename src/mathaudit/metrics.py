@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Outcome-linked evidence dependence and transition metrics."""
 
 from __future__ import annotations

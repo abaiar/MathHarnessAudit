@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Semantic validation for canonical episodes."""
 
 from __future__ import annotations

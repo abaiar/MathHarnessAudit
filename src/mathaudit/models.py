@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Canonical outcome-linked evidence models.
 
 The Pydantic models enforce JSON-level structure. Cross-reference and graph

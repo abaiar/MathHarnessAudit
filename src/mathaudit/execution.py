@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Deterministic, provider-free compilation of qualification execution order."""
 
 from __future__ import annotations

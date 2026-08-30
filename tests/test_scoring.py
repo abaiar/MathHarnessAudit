@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 from mathaudit.models import LabelValue, ScorerType
 from mathaudit.scoring import compare_answers, extract_answer, safe_symbolic_expression
 

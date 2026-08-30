@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Fail-closed, prompt-free budget accounting for qualification requests."""
 
 from __future__ import annotations

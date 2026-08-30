@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Cross-platform source-tree fingerprints for reference systems."""
 
 from __future__ import annotations

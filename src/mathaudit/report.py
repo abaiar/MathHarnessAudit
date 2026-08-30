@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Machine-readable audit bundles and dependency-free static HTML reports."""
 
 from __future__ import annotations

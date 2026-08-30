@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Optional Parquet export of normalized canonical tables."""
 
 from __future__ import annotations

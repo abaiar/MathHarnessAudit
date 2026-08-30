@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Adapter for MathRouterAgent's Hermes-based staged traces."""
 
 from __future__ import annotations

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Pass-through adapter for already canonical records."""
 
 from __future__ import annotations

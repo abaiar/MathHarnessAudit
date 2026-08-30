@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Blinded, double-rater mathematical outcome adjudication.
 
 The workflow deliberately separates public rater material from the private

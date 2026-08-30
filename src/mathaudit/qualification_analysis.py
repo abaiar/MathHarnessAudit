@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Preregistered analysis of a deterministically scored qualification composite."""
 
 from __future__ import annotations

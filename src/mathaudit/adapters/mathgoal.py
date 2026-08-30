@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Adapters for full MathGoal artifacts and compact regression outputs."""
 
 from __future__ import annotations

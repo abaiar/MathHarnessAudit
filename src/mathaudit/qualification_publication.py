@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Publication tables and SVGs derived only from frozen qualification analyses."""
 
 from __future__ import annotations

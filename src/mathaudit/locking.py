@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 """Small cross-process file lock used by qualification accounting artifacts."""
 
 from __future__ import annotations
