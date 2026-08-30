@@ -1,5 +1,7 @@
 # MathHarnessAudit / AdaMathRouter
 
+[![CI](https://github.com/abaiar/MathHarnessAudit/actions/workflows/ci.yml/badge.svg)](https://github.com/abaiar/MathHarnessAudit/actions/workflows/ci.yml)
+
 This repository is being organized around two deliberately separate research
 outputs:
 

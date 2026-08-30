@@ -52,6 +52,12 @@ dev = [
 [project.scripts]
 mathaudit = "mathaudit.cli:app"
 
+[project.urls]
+Homepage = "https://github.com/abaiar/MathHarnessAudit"
+Repository = "https://github.com/abaiar/MathHarnessAudit"
+Issues = "https://github.com/abaiar/MathHarnessAudit/issues"
+Documentation = "https://github.com/abaiar/MathHarnessAudit/tree/main/docs"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
