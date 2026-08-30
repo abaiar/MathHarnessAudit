@@ -1,0 +1,18 @@
+{
+  "format": "mathaudit-publication-config-v0.1",
+  "minimum_complete_cases": 30,
+  "bootstrap_replicates": 20,
+  "seed": 9,
+  "panels": [
+    {
+      "panel_id": "icma-fixture-easy",
+      "system_id": "icma-fixture",
+      "stratum": "easy",
+      "source_ids": ["reasoner", "python_executor", "validator"],
+      "cofailure_source_ids": ["reasoner", "python_executor", "validator"],
+      "pair": ["reasoner", "python_executor"],
+      "transition_direction": ["reasoner", "python_executor"],
+      "utilization_direction": ["reasoner", "python_executor"]
+    }
+  ]
+}

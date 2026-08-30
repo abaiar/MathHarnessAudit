@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:reference-audit-scale-decision:0.1",
+  "title": "MathHarnessAudit Paper 1 reference-audit scale decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "decision_id",
+    "status",
+    "paper_scope",
+    "selected_route",
+    "source_plan_sha256",
+    "required_complete_episode_count",
+    "required_system_episode_counts",
+    "outcome_blind_at_decision",
+    "larger_confirmatory_run_assumed",
+    "system_ranking_claim_authorized",
+    "architecture_causal_claim_authorized",
+    "future_run_requires_new_design_and_authorization",
+    "authorized_by",
+    "authorized_at",
+    "decision_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-reference-audit-scale-decision-v0.1"},
+    "decision_id": {"const": "paper1-reference-audit-scale-20260823"},
+    "status": {"const": "approved"},
+    "paper_scope": {"const": "SoftwareX Paper 1"},
+    "selected_route": {"const": "final_descriptive_reference_audit"},
+    "source_plan_sha256": {"$ref": "#/$defs/hash"},
+    "required_complete_episode_count": {"const": 150},
+    "required_system_episode_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mathrouter", "icma", "mathgoal"],
+      "properties": {
+        "mathrouter": {"const": 50},
+        "icma": {"const": 50},
+        "mathgoal": {"const": 50}
+      }
+    },
+    "outcome_blind_at_decision": {"const": true},
+    "larger_confirmatory_run_assumed": {"const": false},
+    "system_ranking_claim_authorized": {"const": false},
+    "architecture_causal_claim_authorized": {"const": false},
+    "future_run_requires_new_design_and_authorization": {"const": true},
+    "authorized_by": {"const": "赵健硕"},
+    "authorized_at": {"const": "2026-08-23"},
+    "decision_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

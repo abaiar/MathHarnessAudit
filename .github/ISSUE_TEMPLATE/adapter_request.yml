@@ -1,0 +1,37 @@
+name: Adapter request
+description: Propose support for a new mathematical-agent trace format.
+title: "[adapter] "
+labels: ["adapter"]
+body:
+  - type: input
+    id: system
+    attributes:
+      label: System and trace version
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Public source or documentation link
+    validations:
+      required: true
+  - type: dropdown
+    id: fidelity
+    attributes:
+      label: Highest evidence fidelity supported
+      options: ["A — full", "B — staged", "C — final-only", "Unknown"]
+    validations:
+      required: true
+  - type: textarea
+    id: semantics
+    attributes:
+      label: Observable evidence, decisions, provenance and missingness
+      description: Do not paste credentials, private traces, benchmark text or chain-of-thought.
+    validations:
+      required: true
+  - type: textarea
+    id: license
+    attributes:
+      label: License and redistribution boundary
+    validations:
+      required: true

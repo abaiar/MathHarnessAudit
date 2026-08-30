@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-analysis:0.1",
+  "title": "MathHarnessAudit preregistered qualification analysis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "source_plan_sha256",
+    "scoring_sha256",
+    "label_variant",
+    "config_raw_sha256",
+    "episode_count",
+    "panels",
+    "analysis_config",
+    "system_ranking_computed",
+    "interpretation_limits",
+    "analysis_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-analysis-v0.1"},
+    "source_plan_sha256": {"$ref": "#/$defs/hash"},
+    "scoring_sha256": {"$ref": "#/$defs/hash"},
+    "label_variant": {"enum": ["deterministic", "adjudicated"]},
+    "config_raw_sha256": {"$ref": "#/$defs/hash"},
+    "episode_count": {"const": 150},
+    "panels": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "panel_id",
+          "system_id",
+          "stratum",
+          "episode_count",
+          "source_inventory",
+          "availability",
+          "cost",
+          "exact_pairwise",
+          "source_type_pairwise",
+          "cofailure",
+          "transitions",
+          "utilization",
+          "text_repetition",
+          "effective_support",
+          "final_outcomes"
+        ],
+        "properties": {
+          "panel_id": {"type": "string", "minLength": 1},
+          "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+          "stratum": {"enum": ["standard", "hard_gt_5"]},
+          "episode_count": {"const": 25},
+          "source_inventory": {"type": "array", "items": {"type": "string"}},
+          "availability": {"type": "array", "items": {"type": "object"}},
+          "cost": {"type": "array", "items": {"type": "object"}},
+          "exact_pairwise": {"type": "array"},
+          "source_type_pairwise": {"type": "array"},
+          "cofailure": {"type": "array"},
+          "transitions": {"type": "array"},
+          "utilization": {"type": "array"},
+          "text_repetition": {"type": "array"},
+          "effective_support": {"type": "array"},
+          "final_outcomes": {"type": "object"}
+        }
+      }
+    },
+    "analysis_config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_complete_cases",
+        "bootstrap_replicates",
+        "seed",
+        "unit_of_inference_for_type_pairs"
+      ],
+      "properties": {
+        "minimum_complete_cases": {"type": "integer", "minimum": 1},
+        "bootstrap_replicates": {"type": "integer", "minimum": 0},
+        "seed": {"type": "integer"},
+        "unit_of_inference_for_type_pairs": {"const": "episode"}
+      }
+    },
+    "system_ranking_computed": {"const": false},
+    "interpretation_limits": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "analysis_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

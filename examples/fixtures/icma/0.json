@@ -1,0 +1,41 @@
+{
+  "idx": 0,
+  "status": "success",
+  "final_response": "Final answer: 2",
+  "trace": [
+    {
+      "step": "classification",
+      "category": "arithmetic",
+      "question_mode": "calculation",
+      "confidence": 1.0
+    },
+    {
+      "step": "reasoning",
+      "attempts": 1,
+      "answer": "2",
+      "steps_count": 1
+    },
+    {
+      "step": "python_verification",
+      "attempts": 1,
+      "success": true,
+      "answer": "2"
+    },
+    {
+      "step": "validation",
+      "status": "verified",
+      "validated_answer": "2"
+    },
+    {
+      "step": "semantic_arbitration",
+      "status": "skipped",
+      "decision": "agree",
+      "answer_locked": true
+    },
+    {
+      "step": "coordination",
+      "response_length": 15,
+      "fallback_source": ""
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "format": "mathaudit-v1-compatibility-v1.0",
+  "stable_contract": {
+    "kind": "canonical_episode",
+    "legacy_schema": "mathaudit-episode-v0.1.schema.json",
+    "stable_schema": "mathaudit-episode-v1.0.schema.json",
+    "migration": "mathaudit migrate-episode-v1 INPUT --output OUTPUT",
+    "serialized_changes": ["schema_version: 0.1 -> 1.0"],
+    "lossless_except_version_field": true
+  },
+  "retained_historical_formats": [
+    {
+      "format": "mathaudit-compute-authorization-v0.1",
+      "fixture": "examples/fixtures/compute_authorization_pending.json",
+      "strategy": "accepted_unchanged"
+    },
+    {
+      "format": "mathaudit-publication-config-v0.1",
+      "fixture": "examples/fixtures/publication_config.json",
+      "strategy": "accepted_unchanged"
+    },
+    {
+      "format": "mathaudit-run-manifest-v0.1",
+      "fixture": "examples/fixtures/run_manifest.json",
+      "strategy": "accepted_unchanged"
+    },
+    {
+      "format": "mathaudit-sample-manifest-v0.1",
+      "fixture": "examples/fixtures/sample_manifest.json",
+      "strategy": "accepted_unchanged"
+    }
+  ],
+  "qualification_policy": "Versioned qualification formats remain immutable historical records; package v1 readers retain them instead of relabelling frozen research provenance."
+}

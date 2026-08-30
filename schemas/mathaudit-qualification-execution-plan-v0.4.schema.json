@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-execution-plan:0.4",
+  "title": "MathHarnessAudit qualification continuation execution plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "authorization_id",
+    "authorization_status",
+    "runnable",
+    "schedule_seed",
+    "input_bundle_sha256",
+    "task_count",
+    "episode_count",
+    "continuation",
+    "systems",
+    "entries",
+    "notes",
+    "plan_sha256"
+  ],
+  "properties": {
+    "format": {
+      "const": "mathaudit-qualification-execution-plan-v0.4"
+    },
+    "authorization_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authorization_status": {
+      "enum": [
+        "pending",
+        "authorized",
+        "revoked"
+      ]
+    },
+    "runnable": {
+      "type": "boolean"
+    },
+    "schedule_seed": {
+      "type": "integer"
+    },
+    "input_bundle_sha256": {
+      "$ref": "#/$defs/hash"
+    },
+    "task_count": {
+      "const": 50
+    },
+    "episode_count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 149
+    },
+    "continuation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_authorization_id",
+        "source_plan_sha256",
+        "source_state_sha256",
+        "source_closeout_sha256",
+        "completed_prefix_episode_count",
+        "restart_sequence",
+        "final_target_episode_count",
+        "deferred_replacement_count",
+        "deferred_replacement_sequence"
+      ],
+      "properties": {
+        "source_authorization_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_plan_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "source_state_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "source_closeout_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "completed_prefix_episode_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 149
+        },
+        "restart_sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 149
+        },
+        "final_target_episode_count": {
+          "const": 150
+        },
+        "deferred_replacement_count": {
+          "const": 1
+        },
+        "deferred_replacement_sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 149
+        }
+      }
+    },
+    "systems": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "system_id",
+          "episode_count",
+          "episode_cap",
+          "episode_timeout_s",
+          "summed_wall_time_cap_s",
+          "maximum_timeout_envelope_s",
+          "wall_cap_can_stop_before_episode_cap"
+        ],
+        "properties": {
+          "system_id": {
+            "enum": [
+              "mathrouter",
+              "icma",
+              "mathgoal"
+            ]
+          },
+          "episode_count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "episode_cap": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "episode_timeout_s": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "summed_wall_time_cap_s": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "maximum_timeout_envelope_s": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "wall_cap_can_stop_before_episode_cap": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 149,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "task_position",
+          "within_task_position",
+          "idx",
+          "problem_id",
+          "problem_sha256",
+          "stratum",
+          "system_id",
+          "episode_timeout_s",
+          "output_relative_path"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 149
+          },
+          "task_position": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 49
+          },
+          "within_task_position": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "idx": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "problem_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "problem_sha256": {
+            "$ref": "#/$defs/hash"
+          },
+          "stratum": {
+            "type": "string",
+            "minLength": 1
+          },
+          "system_id": {
+            "enum": [
+              "mathrouter",
+              "icma",
+              "mathgoal"
+            ]
+          },
+          "episode_timeout_s": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "output_relative_path": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "plan_sha256": {
+      "$ref": "#/$defs/hash"
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

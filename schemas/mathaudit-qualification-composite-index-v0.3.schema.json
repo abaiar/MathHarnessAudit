@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-composite-index:0.3",
+  "title": "MathHarnessAudit exact-150 replacement composite sequence index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "records", "index_sha256"],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-composite-index-v0.3"},
+    "records": {
+      "type": "array",
+      "minItems": 150,
+      "maxItems": 150,
+      "items": {"$ref": "#/$defs/record"}
+    },
+    "index_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "task_position",
+        "problem_id",
+        "system_id",
+        "episode_id",
+        "source_role",
+        "source_authorization_id",
+        "canonical_relative_path",
+        "canonical_line_number"
+      ],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 0, "maximum": 149},
+        "task_position": {"type": "integer", "minimum": 0, "maximum": 49},
+        "problem_id": {"type": "string", "minLength": 1},
+        "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+        "episode_id": {"type": "string", "minLength": 1},
+        "source_role": {"enum": ["base", "replacement"]},
+        "source_authorization_id": {"type": "string", "minLength": 1},
+        "canonical_relative_path": {"type": "string", "minLength": 1},
+        "canonical_line_number": {"type": "integer", "minimum": 1, "maximum": 50}
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+include LICENSE
+include README.md
+include CHANGELOG.md
+include CONTRIBUTING.md
+include CODE_OF_CONDUCT.md
+recursive-include docs *.md
+recursive-include schemas *.json
+recursive-include examples *.py *.json *.jsonl *.md
+recursive-include tests *.py
+# These tests exercise private qualification runners under research/, which is
+# deliberately absent from the public source distribution and public repository.
+exclude tests/test_budget_gateway.py
+exclude tests/test_phase6_calibration_coordination.py
+exclude tests/test_qualification_runners.py
+prune research

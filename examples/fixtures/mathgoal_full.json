@@ -1,0 +1,63 @@
+{
+  "problem_id": "2",
+  "answer": "4",
+  "explanation": "Two plus two is four.",
+  "reasoning_summary": "Direct arithmetic.",
+  "confidence": 0.99,
+  "classification": {
+    "domain": "arithmetic",
+    "difficulty": "easy"
+  },
+  "plan": {
+    "strategy": "compute directly"
+  },
+  "candidates": [
+    {
+      "id": "c1",
+      "agent_role": "rigorous",
+      "answer": "4",
+      "reasoning": "2 + 2 = 4",
+      "confidence": 0.99,
+      "tool_report": {
+        "ok": true,
+        "stdout": "4",
+        "stderr": "",
+        "elapsed_seconds": 0.01,
+        "extracted_answer": "4",
+        "independent_work": false,
+        "evidence_score": 1.0,
+        "tool_conflict": false
+      }
+    },
+    {
+      "id": "c2",
+      "agent_role": "alternative",
+      "answer": "5",
+      "reasoning": "incorrect alternative",
+      "confidence": 0.1
+    }
+  ],
+  "verifications": [
+    {
+      "candidate_id": "c1",
+      "is_correct": true,
+      "score": 1.0,
+      "issues": [],
+      "fix_hint": "",
+      "normalized_answer": "4"
+    },
+    {
+      "candidate_id": "c2",
+      "is_correct": false,
+      "score": 0.0,
+      "issues": ["arithmetic error"],
+      "fix_hint": "recompute",
+      "normalized_answer": "5"
+    }
+  ],
+  "logs": [],
+  "metadata": {
+    "strategy": "full",
+    "answer_clusters": []
+  }
+}

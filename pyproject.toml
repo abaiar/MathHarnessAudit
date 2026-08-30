@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "math-harness-audit"
+version = "0.1.0.dev0"
+description = "Outcome-linked evidence auditing for mathematical reasoning agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "MathHarnessAudit contributors"}]
+keywords = [
+  "mathematical reasoning",
+  "LLM agents",
+  "evidence auditing",
+  "provenance",
+  "reproducible research",
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = [
+  "click>=8.3.3",
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "pydantic>=2.7,<3",
+  "rich>=13",
+  "scipy>=1.10",
+  "sympy>=1.12",
+  "typer>=0.12",
+]
+
+[project.optional-dependencies]
+parquet = ["pyarrow>=23.0.1"]
+schema = ["jsonschema>=4.23"]
+dev = [
+  "build>=1.2",
+  "jsonschema>=4.23",
+  "pytest>=9.0.3",
+  "pytest-cov>=5",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+mathaudit = "mathaudit.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.data-files]
+"share/math-harness-audit/schemas" = ["schemas/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/mathaudit/cli.py" = ["B008"]

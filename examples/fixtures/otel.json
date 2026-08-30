@@ -1,0 +1,36 @@
+{
+  "resourceSpans": [
+    {
+      "scopeSpans": [
+        {
+          "spans": [
+            {
+              "traceId": "trace-1",
+              "spanId": "span-reason",
+              "name": "chat fixture-model",
+              "attributes": [
+                {"key": "gen_ai.operation.name", "value": {"stringValue": "chat"}},
+                {"key": "gen_ai.request.model", "value": {"stringValue": "fixture-model"}},
+                {"key": "mathaudit.evidence.text", "value": {"stringValue": "4"}}
+              ],
+              "status": {"code": "STATUS_CODE_OK"}
+            },
+            {
+              "traceId": "trace-1",
+              "spanId": "span-final",
+              "parentSpanId": "span-reason",
+              "name": "invoke_agent fixture-agent",
+              "attributes": [
+                {"key": "gen_ai.operation.name", "value": {"stringValue": "invoke_agent"}},
+                {"key": "gen_ai.agent.name", "value": {"stringValue": "fixture-agent"}},
+                {"key": "mathaudit.evidence.text", "value": {"stringValue": "Final answer: 4"}},
+                {"key": "mathaudit.final", "value": {"boolValue": true}}
+              ],
+              "status": {"code": "STATUS_CODE_OK"}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-closeout:0.1",
+  "title": "MathHarnessAudit qualification closeout manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "authorization_id",
+    "plan_sha256",
+    "outcome_blind",
+    "health_report",
+    "final_run_manifests",
+    "contains_prompt_or_response_text",
+    "closeout_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-closeout-v0.1"},
+    "authorization_id": {"type": "string", "minLength": 1},
+    "plan_sha256": {"$ref": "#/$defs/hash"},
+    "outcome_blind": {"const": true},
+    "health_report": {"$ref": "#/$defs/artifact"},
+    "final_run_manifests": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["system_id", "relative_path", "sha256"],
+        "properties": {
+          "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+          "relative_path": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/hash"}
+        }
+      }
+    },
+    "contains_prompt_or_response_text": {"const": false},
+    "closeout_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "sha256"],
+      "properties": {
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

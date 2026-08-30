@@ -1,0 +1,75 @@
+{
+  "format": "mathaudit-run-manifest-v0.1",
+  "run_id": "fixture-qualification-001",
+  "study_phase": "qualification",
+  "status": "planned",
+  "system": {
+    "system_id": "fixture-system",
+    "name": "Synthetic fixture system",
+    "version": "0",
+    "source_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+    "adapter_name": "canonical",
+    "adapter_version": "0.1.0",
+    "adapter_fidelity": "A"
+  },
+  "sample_manifest": {
+    "relative_path": "examples/fixtures/sample.manifest.json",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "selected_count": 1,
+    "strata": ["fixture"]
+  },
+  "runtime": {
+    "provider": "fixture",
+    "model": "deterministic",
+    "model_revision": null,
+    "endpoint_class": "synthetic-no-network",
+    "endpoint_url": "https://example.invalid/v1/chat/completions",
+    "parameters": {},
+    "episode_timeout_s": 10,
+    "concurrency": 1,
+    "max_output_tokens": 1,
+    "retry_policy": "no retry",
+    "retry_control": {
+      "max_retries": 0,
+      "eligible_failure_class": "pre_response_transport_failure_only",
+      "forbid_after_any_response": true,
+      "forbid_on_parse_failure": true,
+      "forbid_on_tool_failure": true
+    }
+  },
+  "budget": {
+    "episode_cap": 1,
+    "token_cap": null,
+    "currency": null,
+    "monetary_cap": null,
+    "summed_wall_time_cap_s": 10,
+    "monetary_accounting": {
+      "mode": "free_quota",
+      "free_quota_confirmed": true,
+      "input_cny_per_million_tokens": null,
+      "output_cny_per_million_tokens": null,
+      "evidence_source": "synthetic fixture"
+    }
+  },
+  "environment": {
+    "os": "fixture",
+    "python": "3.12",
+    "dependency_lock_sha256": null,
+    "container_image": null
+  },
+  "started_at": null,
+  "ended_at": null,
+  "counts": {
+    "attempted": 0,
+    "completed": 0,
+    "failed": 0,
+    "timed_out": 0,
+    "quota_or_transport_failed": 0,
+    "excluded": 0
+  },
+  "outcome_blind": true,
+  "secrets_recorded": false,
+  "deviation_log": null,
+  "artifacts": [],
+  "notes": ["Synthetic schema fixture; not an empirical run."]
+}

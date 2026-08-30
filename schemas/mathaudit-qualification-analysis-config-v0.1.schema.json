@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-analysis-config:0.1",
+  "title": "MathHarnessAudit preregistered qualification analysis configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "source_plan_sha256",
+    "minimum_complete_cases",
+    "bootstrap_replicates",
+    "seed",
+    "expected_panel_episode_count",
+    "panels"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-analysis-config-v0.1"},
+    "source_plan_sha256": {"$ref": "#/$defs/hash"},
+    "minimum_complete_cases": {"type": "integer", "minimum": 1},
+    "bootstrap_replicates": {"type": "integer", "minimum": 0},
+    "seed": {"type": "integer"},
+    "expected_panel_episode_count": {"const": 25},
+    "panels": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {"$ref": "#/$defs/panel"}
+    }
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "pair": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "cofailure_set": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["set_id", "source_ids"],
+      "properties": {
+        "set_id": {"type": "string", "minLength": 1},
+        "source_ids": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "panel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "panel_id",
+        "system_id",
+        "stratum",
+        "exact_pairs",
+        "source_type_pairs",
+        "cofailure_source_sets",
+        "transition_directions",
+        "utilization_directions",
+        "text_repetition_pairs"
+      ],
+      "properties": {
+        "panel_id": {"type": "string", "minLength": 1},
+        "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+        "stratum": {"enum": ["standard", "hard_gt_5"]},
+        "exact_pairs": {"type": "array", "items": {"$ref": "#/$defs/pair"}},
+        "source_type_pairs": {"type": "array", "items": {"$ref": "#/$defs/pair"}},
+        "cofailure_source_sets": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/cofailure_set"}
+        },
+        "transition_directions": {"type": "array", "items": {"$ref": "#/$defs/pair"}},
+        "utilization_directions": {"type": "array", "items": {"$ref": "#/$defs/pair"}},
+        "text_repetition_pairs": {"type": "array", "items": {"$ref": "#/$defs/pair"}}
+      }
+    }
+  }
+}

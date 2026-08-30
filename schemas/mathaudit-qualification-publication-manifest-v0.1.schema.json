@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-publication-manifest:0.1",
+  "title": "MathHarnessAudit qualification publication artifact manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "tool_version",
+    "source_plan_sha256",
+    "analysis_config_raw_sha256",
+    "label_variants",
+    "analysis_inputs",
+    "command",
+    "artifacts",
+    "system_ranking_computed",
+    "manifest_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-publication-manifest-v0.1"},
+    "tool_version": {"type": "string", "minLength": 1},
+    "source_plan_sha256": {"$ref": "#/$defs/hash"},
+    "analysis_config_raw_sha256": {"$ref": "#/$defs/hash"},
+    "label_variants": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "contains": {"const": "deterministic"},
+      "items": {"enum": ["deterministic", "adjudicated"]}
+    },
+    "analysis_inputs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/input"}
+    },
+    "command": {"type": "string", "minLength": 1},
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["relative_path", "sha256"],
+        "properties": {
+          "relative_path": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/hash"}
+        }
+      }
+    },
+    "system_ranking_computed": {"const": false},
+    "manifest_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label_variant", "analysis_sha256", "raw_sha256"],
+      "properties": {
+        "label_variant": {"enum": ["deterministic", "adjudicated"]},
+        "analysis_sha256": {"$ref": "#/$defs/hash"},
+        "raw_sha256": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

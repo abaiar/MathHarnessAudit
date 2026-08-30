@@ -1,0 +1,37 @@
+{
+  "idx": 1,
+  "status": "success",
+  "final_response": "最终答案：3",
+  "trace": [
+    {
+      "step": "reasoning",
+      "attempts": 1,
+      "answer": "3",
+      "steps_count": 1
+    },
+    {
+      "step": "python_verification",
+      "attempts": 1,
+      "success": true,
+      "answer": "3"
+    },
+    {
+      "step": "survival_pass_a_assess",
+      "source": "hermes_loop",
+      "usable": true,
+      "flags_bad": false,
+      "answer": "3"
+    },
+    {
+      "step": "survival_final_selection",
+      "winner": "A",
+      "reason": "single_candidate"
+    },
+    {
+      "step": "survival_budget",
+      "final_source": "single_candidate",
+      "snapshot": {},
+      "spend_log": []
+    }
+  ]
+}

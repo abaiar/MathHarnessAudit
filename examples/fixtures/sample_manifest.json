@@ -1,0 +1,49 @@
+{
+  "format": "mathaudit-sample-manifest-v0.1",
+  "dataset_id": "fixture",
+  "dataset_version": "fixture-v1",
+  "stratum": "qualification",
+  "source_file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "selection_seed": 20260823,
+  "selection_config": {
+    "count": 1,
+    "statement_field": "problem",
+    "id_field": "id",
+    "difficulty_field": "level",
+    "difficulty_gt": null,
+    "difficulty_le": 5.0,
+    "balance_field": "level",
+    "balance_depth": null,
+    "balance_mode": "equal",
+    "duplicate_problem_policy": "exclude_all_records_in_duplicate_problem_groups"
+  },
+  "diagnostics": {
+    "input_records": 1,
+    "non_null_source_ids": 1,
+    "unique_non_null_source_ids": 1,
+    "unique_problem_hashes": 1,
+    "duplicate_problem_groups_excluded": 0,
+    "records_excluded_for_duplicate_problem": 0,
+    "records_missing_required_difficulty": 0,
+    "eligible_records": 1,
+    "eligible_by_balance_group": {"1": 1},
+    "selected_by_balance_group": {"1": 1}
+  },
+  "selected": [
+    {
+      "problem_id": "fixture#1",
+      "source_record_id": "1",
+      "problem_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "record_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "stratum": "qualification",
+      "difficulty": 1.0,
+      "balance_group": "1"
+    }
+  ],
+  "privacy": {
+    "contains_problem_text": false,
+    "contains_answers_or_solutions": false,
+    "official_dataset_download_required": true
+  },
+  "manifest_sha256": "8f435cb4943576acceef16133f96463705e514aa665be691dfb4cd469387832a"
+}

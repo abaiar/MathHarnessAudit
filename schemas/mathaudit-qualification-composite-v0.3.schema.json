@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-composite:0.3",
+  "title": "MathHarnessAudit exact-150 replacement composite",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "source_plan_sha256",
+    "base_lineage",
+    "replacement",
+    "episode_count",
+    "system_episode_counts",
+    "canonical_artifacts",
+    "sequence_index",
+    "outcome_blind",
+    "correctness_aggregates_computed",
+    "contains_prompt_or_response_text",
+    "composite_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-composite-v0.3"},
+    "source_plan_sha256": {"$ref": "#/$defs/hash"},
+    "base_lineage": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/base_source"}
+    },
+    "replacement": {"$ref": "#/$defs/replacement"},
+    "episode_count": {"const": 150},
+    "system_episode_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mathrouter", "icma", "mathgoal"],
+      "properties": {
+        "mathrouter": {"const": 50},
+        "icma": {"const": 50},
+        "mathgoal": {"const": 50}
+      }
+    },
+    "canonical_artifacts": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/canonical_artifact"}
+    },
+    "sequence_index": {"$ref": "#/$defs/index_artifact"},
+    "outcome_blind": {"const": true},
+    "correctness_aggregates_computed": {"const": false},
+    "contains_prompt_or_response_text": {"const": false},
+    "composite_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "base_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "position",
+        "authorization_id",
+        "plan_sha256",
+        "state_sha256",
+        "closeout_sha256",
+        "executor_terminal_status",
+        "complete_episode_count"
+      ],
+      "properties": {
+        "position": {"type": "integer", "minimum": 0},
+        "authorization_id": {"type": "string", "minLength": 1},
+        "plan_sha256": {"$ref": "#/$defs/hash"},
+        "state_sha256": {"$ref": "#/$defs/hash"},
+        "closeout_sha256": {"$ref": "#/$defs/hash"},
+        "executor_terminal_status": {"enum": ["stopped_failure", "completed"]},
+        "complete_episode_count": {"type": "integer", "minimum": 0, "maximum": 150}
+      }
+    },
+    "replacement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorization_id",
+        "plan_sha256",
+        "state_sha256",
+        "closeout_sha256",
+        "inventory_sha256",
+        "sequences",
+        "episode_count"
+      ],
+      "properties": {
+        "authorization_id": {"type": "string", "minLength": 1},
+        "plan_sha256": {"$ref": "#/$defs/hash"},
+        "state_sha256": {"$ref": "#/$defs/hash"},
+        "closeout_sha256": {"$ref": "#/$defs/hash"},
+        "inventory_sha256": {"$ref": "#/$defs/hash"},
+        "sequences": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 0, "maximum": 149}
+        },
+        "episode_count": {"type": "integer", "minimum": 1, "maximum": 150}
+      }
+    },
+    "canonical_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system_id", "relative_path", "sha256", "records", "private"],
+      "properties": {
+        "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hash"},
+        "records": {"const": 50},
+        "private": {"const": true}
+      }
+    },
+    "index_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "sha256", "records"],
+      "properties": {
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hash"},
+        "records": {"const": 150}
+      }
+    }
+  }
+}

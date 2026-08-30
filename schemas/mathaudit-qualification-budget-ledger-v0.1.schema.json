@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-budget-ledger:0.1",
+  "title": "MathHarnessAudit qualification budget ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "authorization_id",
+    "currency",
+    "accounting_mode",
+    "input_token_overhead_reserve",
+    "totals",
+    "systems",
+    "requests",
+    "episodes",
+    "contains_prompt_or_response_text",
+    "ledger_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-budget-ledger-v0.1"},
+    "authorization_id": {"type": "string", "minLength": 1},
+    "currency": {"const": "CNY"},
+    "accounting_mode": {"enum": ["free_quota", "token_tariff"]},
+    "input_token_overhead_reserve": {"type": "integer", "minimum": 0},
+    "totals": {"$ref": "#/$defs/totals"},
+    "systems": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mathrouter", "icma", "mathgoal"],
+      "properties": {
+        "mathrouter": {"$ref": "#/$defs/totals"},
+        "icma": {"$ref": "#/$defs/totals"},
+        "mathgoal": {"$ref": "#/$defs/totals"}
+      }
+    },
+    "requests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "request_id",
+          "system_id",
+          "requested_at",
+          "model",
+          "max_tokens",
+          "request_body_bytes",
+          "reserved_input_token_upper",
+          "reserved_output_token_upper",
+          "reserved_token_upper",
+          "reserved_monetary_cny",
+          "status"
+        ],
+        "properties": {
+          "request_id": {"type": "string", "minLength": 1},
+          "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+          "requested_at": {"type": "string", "minLength": 1},
+          "model": {"type": "string", "minLength": 1},
+          "max_tokens": {"type": "integer", "minimum": 1},
+          "request_body_bytes": {"type": "integer", "minimum": 1},
+          "reserved_input_token_upper": {"type": "integer", "minimum": 1},
+          "reserved_output_token_upper": {"type": "integer", "minimum": 1},
+          "reserved_token_upper": {"type": "integer", "minimum": 2},
+          "reserved_monetary_cny": {"$ref": "#/$defs/money"},
+          "status": {"enum": ["reserved", "completed", "transport_failed", "provider_error"]},
+          "http_status": {"type": "integer", "minimum": 100, "maximum": 599},
+          "provider_request_id": {"type": "string", "minLength": 1, "maxLength": 256},
+          "observed_input_tokens": {"type": "integer", "minimum": 0},
+          "observed_output_tokens": {"type": "integer", "minimum": 0},
+          "observed_total_tokens": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "episodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["episode_id", "system_id", "wall_time_s", "status"],
+        "properties": {
+          "episode_id": {"type": "string", "minLength": 1},
+          "system_id": {"enum": ["mathrouter", "icma", "mathgoal"]},
+          "wall_time_s": {"type": "number", "minimum": 0},
+          "status": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "contains_prompt_or_response_text": {"const": false},
+    "ledger_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "request_count",
+        "observed_usage_request_count",
+        "observed_input_tokens",
+        "observed_output_tokens",
+        "observed_total_tokens",
+        "reserved_input_token_upper",
+        "reserved_output_token_upper",
+        "reserved_token_upper",
+        "reserved_monetary_cny",
+        "summed_episode_wall_time_s"
+      ],
+      "properties": {
+        "request_count": {"type": "integer", "minimum": 0},
+        "observed_usage_request_count": {"type": "integer", "minimum": 0},
+        "observed_input_tokens": {"type": "integer", "minimum": 0},
+        "observed_output_tokens": {"type": "integer", "minimum": 0},
+        "observed_total_tokens": {"type": "integer", "minimum": 0},
+        "reserved_input_token_upper": {"type": "integer", "minimum": 0},
+        "reserved_output_token_upper": {"type": "integer", "minimum": 0},
+        "reserved_token_upper": {"type": "integer", "minimum": 0},
+        "reserved_monetary_cny": {"$ref": "#/$defs/money"},
+        "summed_episode_wall_time_s": {"type": "number", "minimum": 0}
+      }
+    },
+    "money": {"type": "string", "pattern": "^[0-9]+\\.[0-9]{9}$"},
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

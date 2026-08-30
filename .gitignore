@@ -1,0 +1,48 @@
+.env
+.env.*
+!.env.example
+
+# Local reference systems and publisher material (not part of this package)
+/hermes-agent-main/
+/MathGoal-0.1.0/
+/ICMAnew-main/
+/ecrc-procs/
+/elsarticle/
+/math_goal.pdf
+
+# Large or private research inputs
+/Omni-Math.jsonl
+/tmp/
+/.trae/
+/data/raw/
+/data/private/
+/artifacts/private/
+
+# Local research records and generated validation outputs are not release code
+/research/
+/output/
+/outputs/
+/data/
+tests/test_phase6_calibration_coordination.py
+tests/test_qualification_runners.py
+tests/test_budget_gateway.py
+/*.pdf
+/*.jsonl
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Generated audit outputs
+/artifacts/runs/
+/reports/generated/

@@ -1,0 +1,112 @@
+{
+  "format": "mathaudit-compute-authorization-v0.1",
+  "authorization_id": "qualification-q-20260823",
+  "status": "pending",
+  "scope": "qualification_q",
+  "authorized_by": null,
+  "authorized_at": null,
+  "total_budget": {
+    "episode_cap": 150,
+    "token_cap": null,
+    "currency": null,
+    "monetary_cap": null,
+    "summed_wall_time_cap_s": null
+  },
+  "monetary_accounting": {
+    "mode": null,
+    "free_quota_confirmed": null,
+    "input_cny_per_million_tokens": null,
+    "output_cny_per_million_tokens": null,
+    "evidence_source": null
+  },
+  "stop_policy": {
+    "quota_or_transport_failure_rate": 0.05,
+    "stop_on_task_dependent_missingness": true,
+    "stop_on_trace_loss": true
+  },
+  "systems": [
+    {
+      "system_id": "mathrouter",
+      "provider": null,
+      "model": null,
+      "model_revision": null,
+      "endpoint_class": null,
+      "endpoint_url": null,
+      "endpoint_available": null,
+      "parameters": {},
+      "concurrency": null,
+      "episode_timeout_s": 1200,
+      "max_output_tokens": null,
+      "retry_policy": null,
+      "retry_control": {
+        "max_retries": 1,
+        "eligible_failure_class": "pre_response_transport_failure_only",
+        "forbid_after_any_response": true,
+        "forbid_on_parse_failure": true,
+        "forbid_on_tool_failure": true
+      },
+      "episode_cap": 50,
+      "token_cap": null,
+      "currency": null,
+      "monetary_cap": null,
+      "summed_wall_time_cap_s": null
+    },
+    {
+      "system_id": "icma",
+      "provider": null,
+      "model": null,
+      "model_revision": null,
+      "endpoint_class": null,
+      "endpoint_url": null,
+      "endpoint_available": null,
+      "parameters": {},
+      "concurrency": null,
+      "episode_timeout_s": 1200,
+      "max_output_tokens": null,
+      "retry_policy": null,
+      "retry_control": {
+        "max_retries": 1,
+        "eligible_failure_class": "pre_response_transport_failure_only",
+        "forbid_after_any_response": true,
+        "forbid_on_parse_failure": true,
+        "forbid_on_tool_failure": true
+      },
+      "episode_cap": 50,
+      "token_cap": null,
+      "currency": null,
+      "monetary_cap": null,
+      "summed_wall_time_cap_s": null
+    },
+    {
+      "system_id": "mathgoal",
+      "provider": null,
+      "model": null,
+      "model_revision": null,
+      "endpoint_class": null,
+      "endpoint_url": null,
+      "endpoint_available": null,
+      "parameters": {},
+      "concurrency": null,
+      "episode_timeout_s": 1800,
+      "max_output_tokens": null,
+      "retry_policy": null,
+      "retry_control": {
+        "max_retries": 1,
+        "eligible_failure_class": "pre_response_transport_failure_only",
+        "forbid_after_any_response": true,
+        "forbid_on_parse_failure": true,
+        "forbid_on_tool_failure": true
+      },
+      "episode_cap": 50,
+      "token_cap": null,
+      "currency": null,
+      "monetary_cap": null,
+      "summed_wall_time_cap_s": null
+    }
+  ],
+  "secrets_recorded": false,
+  "notes": [
+    "Template only. A pending record does not authorize model contact.",
+    "Do not store API keys, bearer tokens, passwords, or credential-bearing URLs."
+  ]
+}

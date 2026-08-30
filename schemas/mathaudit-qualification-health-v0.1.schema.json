@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:math-harness-audit:schema:qualification-health:0.1",
+  "title": "MathHarnessAudit outcome-blind qualification health report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "authorization_id",
+    "plan_sha256",
+    "state_sha256",
+    "ledger_sha256",
+    "executor_terminal_status",
+    "outcome_blind",
+    "correctness_aggregates_computed",
+    "forbidden_qualification_statistics",
+    "totals",
+    "systems",
+    "artifacts",
+    "health_sha256"
+  ],
+  "properties": {
+    "format": {"const": "mathaudit-qualification-health-v0.1"},
+    "authorization_id": {"type": "string", "minLength": 1},
+    "plan_sha256": {"$ref": "#/$defs/hash"},
+    "state_sha256": {"$ref": "#/$defs/hash"},
+    "ledger_sha256": {"$ref": "#/$defs/hash"},
+    "executor_terminal_status": {
+      "enum": ["completed", "stopped_failure", "stopped_wall_cap"]
+    },
+    "outcome_blind": {"const": true},
+    "correctness_aggregates_computed": {"const": false},
+    "forbidden_qualification_statistics": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "totals": {"$ref": "#/$defs/totals"},
+    "systems": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mathrouter", "icma", "mathgoal"],
+      "properties": {
+        "mathrouter": {"$ref": "#/$defs/system"},
+        "icma": {"$ref": "#/$defs/system"},
+        "mathgoal": {"$ref": "#/$defs/system"}
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/artifact"}
+    },
+    "health_sha256": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "money": {"type": "string", "pattern": "^[0-9]+\\.[0-9]{9}$"},
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registered_episodes",
+        "attempted_episodes",
+        "complete_full_trace_episodes",
+        "request_count",
+        "observed_usage_request_count",
+        "observed_input_tokens",
+        "observed_output_tokens",
+        "observed_total_tokens",
+        "observed_usage_fraction",
+        "reserved_token_upper",
+        "reserved_monetary_cny",
+        "summed_episode_wall_time_s"
+      ],
+      "properties": {
+        "registered_episodes": {"type": "integer", "minimum": 1},
+        "attempted_episodes": {"type": "integer", "minimum": 0},
+        "complete_full_trace_episodes": {"type": "integer", "minimum": 0},
+        "request_count": {"type": "integer", "minimum": 0},
+        "observed_usage_request_count": {"type": "integer", "minimum": 0},
+        "observed_input_tokens": {"type": "integer", "minimum": 0},
+        "observed_output_tokens": {"type": "integer", "minimum": 0},
+        "observed_total_tokens": {"type": "integer", "minimum": 0},
+        "observed_usage_fraction": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "reserved_token_upper": {"type": "integer", "minimum": 0},
+        "reserved_monetary_cny": {"$ref": "#/$defs/money"},
+        "summed_episode_wall_time_s": {"type": "number", "minimum": 0}
+      }
+    },
+    "system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registered_episodes",
+        "attempted_episodes",
+        "complete_full_trace_episodes",
+        "episode_statuses",
+        "adapter_fidelity",
+        "semantic_issue_count",
+        "request_count",
+        "request_statuses",
+        "observed_usage_request_count",
+        "observed_input_tokens",
+        "observed_output_tokens",
+        "observed_total_tokens",
+        "observed_usage_fraction",
+        "reserved_token_upper",
+        "reserved_monetary_cny",
+        "summed_episode_wall_time_s"
+      ],
+      "properties": {
+        "registered_episodes": {"const": 50},
+        "attempted_episodes": {"type": "integer", "minimum": 0, "maximum": 50},
+        "complete_full_trace_episodes": {"type": "integer", "minimum": 0, "maximum": 50},
+        "episode_statuses": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "adapter_fidelity": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "semantic_issue_count": {"type": "integer", "minimum": 0},
+        "request_count": {"type": "integer", "minimum": 0},
+        "request_statuses": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "observed_usage_request_count": {"type": "integer", "minimum": 0},
+        "observed_input_tokens": {"type": "integer", "minimum": 0},
+        "observed_output_tokens": {"type": "integer", "minimum": 0},
+        "observed_total_tokens": {"type": "integer", "minimum": 0},
+        "observed_usage_fraction": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "reserved_token_upper": {"type": "integer", "minimum": 0},
+        "reserved_monetary_cny": {"$ref": "#/$defs/money"},
+        "summed_episode_wall_time_s": {"type": "number", "minimum": 0}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "relative_path", "sha256", "records", "private"],
+      "properties": {
+        "role": {"type": "string", "minLength": 1},
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hash"},
+        "records": {"type": "integer", "minimum": 0},
+        "private": {"type": "boolean"}
+      }
+    }
+  }
+}
