@@ -9,7 +9,7 @@ description = "Outcome-linked evidence auditing for mathematical reasoning agent
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "Licence.txt"]
 authors = [{name = "MathHarnessAudit contributors"}]
 keywords = [
   "mathematical reasoning",
