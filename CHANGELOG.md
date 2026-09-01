@@ -2,7 +2,7 @@
 
 All notable changes to MathHarnessAudit will be documented here.
 
-## Unreleased
+## 0.1.0 - 2026-09-01
 
 - Embedded all 41 public JSON Schemas inside the wheel, added deterministic
   `list-schemas` and refuse-merge `export-schemas` CLI commands, and removed the

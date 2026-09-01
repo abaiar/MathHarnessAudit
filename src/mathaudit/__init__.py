@@ -6,4 +6,4 @@ from .models import Episode
 from .validation import ValidationIssue, validate_episode
 
 __all__ = ["Episode", "ValidationIssue", "validate_episode"]
-__version__ = "0.1.0.dev0"
+__version__ = "0.1.0"
