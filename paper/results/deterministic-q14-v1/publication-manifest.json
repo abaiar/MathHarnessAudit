@@ -53,45 +53,45 @@
     },
     {
       "relative_path": "tables/availability.csv",
-      "sha256": "f79e0cfb2f7b0888b1b599cb5a95c3247e27bd9b18ab0ace39c207ee1a43fd6d"
+      "sha256": "94b0ba183494b77ff1406797a81ae28611789c502d6bbcbacd1eaecedd527ac6"
     },
     {
       "relative_path": "tables/cofailure.csv",
-      "sha256": "3aa6ee46bd79036c29446cc28064005d7cbea9a8503119fbf677781b0aa16e4f"
+      "sha256": "ff6a79f8136d89a2c558c552d7a5f2eccb3595ba4e08132fd4cb389fd85b9aa4"
     },
     {
       "relative_path": "tables/cost.csv",
-      "sha256": "67a54099eb04e057e3e7611aee3c77ddc41408e8b949fb6f78af58064f9775dc"
+      "sha256": "00714821e83dc3419ef6b3ce50360b0836fb4893d439e37216d86a1917f42f6e"
     },
     {
       "relative_path": "tables/effective_support.csv",
-      "sha256": "76ea14aff2a44acfea2ead9d26c9f4d82c013fb835dc3777e7fb11ef6496f600"
+      "sha256": "ba64c8bcc52663dafd886db4495d419cb24f6bff07461c0da68da5258cec542b"
     },
     {
       "relative_path": "tables/exact_pairwise.csv",
-      "sha256": "e8f944ed4ff838e33e8e884053d4800ee799609b7c264a66e39aa915bff752de"
+      "sha256": "caad1b5b5c8b803ff832897df3f354c9355a041f0bd1a328be963cca2af8e282"
     },
     {
       "relative_path": "tables/final_outcomes.csv",
-      "sha256": "5f56b0552d49ac99c1d89a32290b3055d2934a9a6127f565d8642e9e524108db"
+      "sha256": "deff68badeac895126afb995c2c280815bbe282b6c7a75b921effefc3c76a347"
     },
     {
       "relative_path": "tables/source_type_pairwise.csv",
-      "sha256": "26b7d7ab368560318f16d360e3ea7f1ab3508208b582eed8dc70d177781af7da"
+      "sha256": "d56e5fa38bef35a054a22b50920f9c45656dc395bc2a5eb2053b859f2edcb9d3"
     },
     {
       "relative_path": "tables/text_repetition.csv",
-      "sha256": "ddafe1182c48391a1566c9d439b3420675b58350d5d7970cdc92cac61a4ac31a"
+      "sha256": "1b5d0fce5e888e5be961a917dec879355e1c1d92658df3d063799add98805cfc"
     },
     {
       "relative_path": "tables/transitions.csv",
-      "sha256": "7c0441c37bcc10b45b3d76ade49185b24bfb7f34f56802fcf4a2f952984002ee"
+      "sha256": "60ec8331974521467daaa454a99280def3fd9ebb234c23ae7ccfc1325a28cd87"
     },
     {
       "relative_path": "tables/utilization.csv",
-      "sha256": "db52405853d50af646c6e8942778390ee2df15f7bc63c1ca6c6e15c90bf8dbf0"
+      "sha256": "c7ac8915a44ff66298bbaf176be1b2eb987470d55c95d370f1a99a7bbb53600c"
     }
   ],
   "system_ranking_computed": false,
-  "manifest_sha256": "11d2da2fc70f6de2ae58bc41b415ee1532873eb58831693273396ea52da82da1"
+  "manifest_sha256": "a01da71bff4a8ada890803922a7eec98916761ecfaf6fbdfc611a651ce23499e"
 }

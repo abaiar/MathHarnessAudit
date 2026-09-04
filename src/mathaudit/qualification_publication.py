@@ -391,7 +391,9 @@ def _write_csv(path: Path, rows: Sequence[Dict[str, Any]]) -> None:
     fields = identity + sorted({key for row in rows for key in row}.difference(identity))
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="raise")
+        writer = csv.DictWriter(
+            handle, fieldnames=fields, extrasaction="raise", lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(rows)
 
