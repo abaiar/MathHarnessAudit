@@ -150,7 +150,10 @@ def ingest_command(
             limit=limit,
         )
     except (ValueError, KeyError) as exc:
-        console.print(f"[red]Ingestion failed:[/red] {exc}")
+        # Keep diagnostics as one plain line so callers and CI can reliably
+        # match the actionable failure text even when Rich's terminal width
+        # wrapping would otherwise split the message.
+        typer.echo(f"Ingestion failed: {exc}")
         raise typer.Exit(code=2) from exc
     write_episodes(output_path, episodes)
     console.print(json.dumps(adapter_coverage(episodes), ensure_ascii=False, indent=2))
