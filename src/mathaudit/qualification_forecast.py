@@ -67,17 +67,13 @@ def compile_qualification_forecast(
             usage_count = int(source["observed_usage_request_count"])
             observed_tokens = int(source["observed_total_tokens"])
             projected_requests = _scale(request_count, episodes, task_count)
-            projected_reserved = _scale(
-                int(source["reserved_token_upper"]), episodes, task_count
-            )
+            projected_reserved = _scale(int(source["reserved_token_upper"]), episodes, task_count)
             projected_wall = _scale(
                 float(source["summed_episode_wall_time_s"]), episodes, task_count
             )
             if usage_count > 0:
                 mean_tokens_per_measured_request = observed_tokens / usage_count
-                projected_observed_adjusted = (
-                    mean_tokens_per_measured_request * projected_requests
-                )
+                projected_observed_adjusted = mean_tokens_per_measured_request * projected_requests
             else:
                 projected_observed_adjusted = None
                 observed_complete = False
@@ -119,9 +115,7 @@ def compile_qualification_forecast(
         "basis": {
             "registered_qualification_tasks": 50,
             "attempted_episodes": health["totals"]["attempted_episodes"],
-            "complete_full_trace_episodes": health["totals"][
-                "complete_full_trace_episodes"
-            ],
+            "complete_full_trace_episodes": health["totals"]["complete_full_trace_episodes"],
             "linear_extrapolation": True,
         },
         "scenarios": scenario_rows,

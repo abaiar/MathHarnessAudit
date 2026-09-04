@@ -29,7 +29,9 @@ def _best_label(labels: Iterable[OutcomeLabel]) -> Optional[OutcomeLabel]:
     labels = list(labels)
     if not labels:
         return None
-    return max(labels, key=lambda item: (_LABEL_PRIORITY.get(item.scorer_type.value, 0), item.created_at))
+    return max(
+        labels, key=lambda item: (_LABEL_PRIORITY.get(item.scorer_type.value, 0), item.created_at)
+    )
 
 
 def _evidence_source_map(episode: Episode) -> Dict[str, str]:
@@ -67,7 +69,9 @@ def final_label(episode: Episode) -> Optional[LabelValue]:
     if final_id is None:
         return None
     label = _best_label(
-        item for item in episode.labels if item.target_type == "evidence" and item.target_id == final_id
+        item
+        for item in episode.labels
+        if item.target_type == "evidence" and item.target_id == final_id
     )
     return None if label is None else label.value
 
@@ -83,10 +87,7 @@ def availability_profile(episodes: Iterable[Episode], source_id: str) -> Dict[st
     opportunities = Counter(item.opportunity.value for item in observations)
     invocations = Counter(item.invocation.value for item in observations)
     outcomes = Counter(item.outcome.value for item in observations)
-    labels = [
-        resolved_source_labels(episode).get(source_id)
-        for episode in episodes
-    ]
+    labels = [resolved_source_labels(episode).get(source_id) for episode in episodes]
     correct = sum(value == LabelValue.correct for value in labels)
     incorrect = sum(value == LabelValue.incorrect for value in labels)
     binary = correct + incorrect
@@ -130,27 +131,29 @@ def availability_profile(episodes: Iterable[Episode], source_id: str) -> Dict[st
             "produced": produced_episodes,
         },
         "opportunity_rate": eligible_episodes / registered if registered else None,
-        "call_rate_given_eligible": called_episodes / eligible_episodes if eligible_episodes else None,
-        "production_rate_given_called": produced_episodes / called_episodes if called_episodes else None,
+        "call_rate_given_eligible": called_episodes / eligible_episodes
+        if eligible_episodes
+        else None,
+        "production_rate_given_called": produced_episodes / called_episodes
+        if called_episodes
+        else None,
         "scorable_rate_given_produced": binary / produced_episodes if produced_episodes else None,
         "conditional_correctness": (correct / binary) if binary else None,
         "operational_support_rate": (correct / registered) if registered else None,
         "intervals_exact_95": {
             "opportunity_rate": list(clopper_pearson(eligible_episodes, registered)),
             "call_rate_given_eligible": list(clopper_pearson(called_episodes, eligible_episodes)),
-            "production_rate_given_called": list(clopper_pearson(produced_episodes, called_episodes)),
+            "production_rate_given_called": list(
+                clopper_pearson(produced_episodes, called_episodes)
+            ),
             "scorable_rate_given_produced": list(clopper_pearson(binary, produced_episodes)),
             "conditional_correctness": list(clopper_pearson(correct, binary)),
             "operational_support_rate": list(clopper_pearson(correct, registered)),
         },
         "episode_proportions_exact_95": {
-            "eligible_over_registered": list(
-                clopper_pearson(eligible_episodes, registered)
-            ),
+            "eligible_over_registered": list(clopper_pearson(eligible_episodes, registered)),
             "called_over_registered": list(clopper_pearson(called_episodes, registered)),
-            "produced_over_registered": list(
-                clopper_pearson(produced_episodes, registered)
-            ),
+            "produced_over_registered": list(clopper_pearson(produced_episodes, registered)),
             "scorable_over_registered": list(clopper_pearson(binary, registered)),
         },
     }
@@ -211,9 +214,7 @@ def cost_profile(episodes: Iterable[Episode], source_id: str) -> Dict[str, Any]:
     )
     values: Dict[str, List[float]] = {field: [] for field in fields}
     for episode in episodes:
-        observations = [
-            item for item in episode.source_observations if item.source_id == source_id
-        ]
+        observations = [item for item in episode.source_observations if item.source_id == source_id]
         for field in fields:
             measured = [getattr(item.cost, field) for item in observations]
             measured = [float(value) for value in measured if value is not None]
@@ -255,7 +256,9 @@ def _mutual_information(cells: Tuple[int, int, int, int]) -> Optional[float]:
     return value
 
 
-def _bootstrap_phi(rows: Sequence[Tuple[bool, bool]], *, replicates: int, seed: int) -> Tuple[Optional[float], Optional[float]]:
+def _bootstrap_phi(
+    rows: Sequence[Tuple[bool, bool]], *, replicates: int, seed: int
+) -> Tuple[Optional[float], Optional[float]]:
     if len(rows) < 2 or replicates <= 0:
         return None, None
     rng = np.random.default_rng(seed)
@@ -293,7 +296,10 @@ def pairwise_dependence(
         labels = resolved_source_labels(episode)
         a = labels.get(source_a)
         b = labels.get(source_b)
-        if a in {LabelValue.correct, LabelValue.incorrect} and b in {LabelValue.correct, LabelValue.incorrect}:
+        if a in {LabelValue.correct, LabelValue.incorrect} and b in {
+            LabelValue.correct,
+            LabelValue.incorrect,
+        }:
             rows.append((a == LabelValue.incorrect, b == LabelValue.incorrect))
     both_correct = sum(not a and not b for a, b in rows)
     a_correct_b_wrong = sum(not a and b for a, b in rows)
@@ -334,9 +340,7 @@ def _type_pair_cells(
 ) -> Tuple[int, int, int, int]:
     labels = resolved_source_labels(episode)
     source_types = {source.source_id: source.source_type for source in episode.sources}
-    provenance_groups = {
-        source.source_id: source.provenance_group for source in episode.sources
-    }
+    provenance_groups = {source.source_id: source.provenance_group for source in episode.sources}
     a_ids = sorted(
         source_id
         for source_id, value in labels.items()
@@ -361,9 +365,7 @@ def _type_pair_cells(
         pairs = [
             (source_a, source_b)
             for source_a, source_b in pairs
-            if (
-                provenance_groups.get(source_a) == provenance_groups.get(source_b)
-            )
+            if (provenance_groups.get(source_a) == provenance_groups.get(source_b))
             == (provenance_relation == "same")
         ]
     cells = [0, 0, 0, 0]
@@ -479,9 +481,7 @@ def source_type_dependence(
         "phi_episode_balanced": _phi(balanced) if balanced is not None else None,
         "phi_cluster_bootstrap_95": [low, high],
         "phi_pair_weighted_sensitivity": _phi(pooled),
-        "joint_error_probability_episode_balanced": (
-            balanced[3] if balanced is not None else None
-        ),
+        "joint_error_probability_episode_balanced": (balanced[3] if balanced is not None else None),
         "unit_of_inference": "episode",
         "pair_weighting_is_primary": False,
     }
@@ -560,20 +560,28 @@ def text_repetition_profile(
                 clopper_pearson(counts["exact_text_repeat"], text_denominator)
             ),
             "exact_normalized_answer_repeat_rate": list(
-                clopper_pearson(
-                    counts["exact_normalized_answer_repeat"], answer_denominator
-                )
+                clopper_pearson(counts["exact_normalized_answer_repeat"], answer_denominator)
             ),
         },
         "semantic_equivalence_inferred": False,
     }
 
 
-def clopper_pearson(successes: int, trials: int, alpha: float = 0.05) -> Tuple[Optional[float], Optional[float]]:
+def clopper_pearson(
+    successes: int, trials: int, alpha: float = 0.05
+) -> Tuple[Optional[float], Optional[float]]:
     if trials <= 0:
         return None, None
-    low = 0.0 if successes == 0 else float(beta_distribution.ppf(alpha / 2, successes, trials - successes + 1))
-    high = 1.0 if successes == trials else float(beta_distribution.ppf(1 - alpha / 2, successes + 1, trials - successes))
+    low = (
+        0.0
+        if successes == 0
+        else float(beta_distribution.ppf(alpha / 2, successes, trials - successes + 1))
+    )
+    high = (
+        1.0
+        if successes == trials
+        else float(beta_distribution.ppf(1 - alpha / 2, successes + 1, trials - successes))
+    )
     return low, high
 
 
@@ -599,7 +607,9 @@ def cofailure(episodes: Iterable[Episode], source_ids: Sequence[str]) -> Dict[st
         "complete_case_beta": (complete_all_wrong / complete) if complete else None,
         "complete_case_beta_exact_95": [low, high],
         "operational_no_correct_support": operational_no_correct,
-        "operational_no_correct_support_rate": (operational_no_correct / len(episodes)) if episodes else None,
+        "operational_no_correct_support_rate": (operational_no_correct / len(episodes))
+        if episodes
+        else None,
     }
 
 
@@ -638,7 +648,10 @@ def transition_metrics(episodes: Iterable[Episode], upstream: str, checker: str)
         a = labels.get(upstream)
         b = labels.get(checker)
         final = final_label(episode)
-        if a not in {LabelValue.correct, LabelValue.incorrect} or b not in {LabelValue.correct, LabelValue.incorrect}:
+        if a not in {LabelValue.correct, LabelValue.incorrect} or b not in {
+            LabelValue.correct,
+            LabelValue.incorrect,
+        }:
             continue
         if a == LabelValue.incorrect:
             counts["upstream_wrong_checker_scorable"] += 1
@@ -660,10 +673,18 @@ def transition_metrics(episodes: Iterable[Episode], upstream: str, checker: str)
         "upstream": upstream,
         "checker": checker,
         "counts": dict(counts),
-        "repair_opportunity_rate": counts["repair_opportunity"] / repair_denominator if repair_denominator else None,
-        "repair_realization_rate": counts["repair_realized"] / repair_opportunity if repair_opportunity else None,
-        "harm_opportunity_rate": counts["harm_opportunity"] / harm_denominator if harm_denominator else None,
-        "harm_realization_rate": counts["harm_realized"] / harm_opportunity if harm_opportunity else None,
+        "repair_opportunity_rate": counts["repair_opportunity"] / repair_denominator
+        if repair_denominator
+        else None,
+        "repair_realization_rate": counts["repair_realized"] / repair_opportunity
+        if repair_opportunity
+        else None,
+        "harm_opportunity_rate": counts["harm_opportunity"] / harm_denominator
+        if harm_denominator
+        else None,
+        "harm_realization_rate": counts["harm_realized"] / harm_opportunity
+        if harm_opportunity
+        else None,
         "intervals_exact_95": {
             "repair_opportunity_rate": list(
                 clopper_pearson(counts["repair_opportunity"], repair_denominator)
@@ -735,9 +756,7 @@ def conflict_adoption(episodes: Iterable[Episode], upstream: str, checker: str) 
             counts["selection_not_observable"] += 1
 
         checker_evidence = [
-            item
-            for item in episode.evidence
-            if source_map.get(item.evidence_id) == checker
+            item for item in episode.evidence if source_map.get(item.evidence_id) == checker
         ]
         if episode.final_output.evidence_id and checker_evidence:
             checker_latest = max(checker_evidence, key=lambda item: item.sequence)
@@ -767,9 +786,7 @@ def conflict_adoption(episodes: Iterable[Episode], upstream: str, checker: str) 
                 clopper_pearson(counts["checker_selected"], direct_denominator)
             ),
             "proxy_final_exact_match_rate": list(
-                clopper_pearson(
-                    counts["proxy_final_exactly_matches_checker"], proxy_denominator
-                )
+                clopper_pearson(counts["proxy_final_exactly_matches_checker"], proxy_denominator)
             ),
         },
         "proxy_is_direct_utilization": False,

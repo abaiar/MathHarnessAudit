@@ -60,8 +60,7 @@ def load_qualification_scoring(
     _verify_hash(manifest, "scoring_sha256", "qualification scoring")
     if (
         manifest.get("episode_count") != 150
-        or manifest.get("system_episode_counts")
-        != {"mathrouter": 50, "icma": 50, "mathgoal": 50}
+        or manifest.get("system_episode_counts") != {"mathrouter": 50, "icma": 50, "mathgoal": 50}
         or manifest.get("correctness_labels_computed") is not True
     ):
         raise ValueError("qualification scoring is incomplete")
@@ -101,16 +100,12 @@ def _ordered_episodes(episodes_by_system: Dict[str, List[Episode]]) -> List[Epis
     return [episode for system_id in SYSTEM_IDS for episode in episodes_by_system[system_id]]
 
 
-def prepare_qualification_adjudication(
-    *, scoring_dir: Path, output_dir: Path
-) -> Dict[str, Any]:
+def prepare_qualification_adjudication(*, scoring_dir: Path, output_dir: Path) -> Dict[str, Any]:
     """Create one exact-150, hash-linked input for the blinded rater workflow."""
 
     if output_dir.exists() and any(output_dir.iterdir()):
         raise FileExistsError("qualification adjudication input must be absent or empty")
-    scoring, by_system = load_qualification_scoring(
-        scoring_dir, allowed_formats=(SCORING_FORMAT,)
-    )
+    scoring, by_system = load_qualification_scoring(scoring_dir, allowed_formats=(SCORING_FORMAT,))
     episodes = _ordered_episodes(by_system)
     output_dir.mkdir(parents=True, exist_ok=True)
     episodes_path = output_dir / "scored-episodes.jsonl"
@@ -119,9 +114,7 @@ def prepare_qualification_adjudication(
         "format": ADJUDICATION_INPUT_FORMAT,
         "source_plan_sha256": scoring["source_plan_sha256"],
         "scoring_sha256": scoring["scoring_sha256"],
-        "scoring_manifest_raw_sha256": _file_sha256(
-            scoring_dir / "scoring-manifest.json"
-        ),
+        "scoring_manifest_raw_sha256": _file_sha256(scoring_dir / "scoring-manifest.json"),
         "episode_count": 150,
         "system_episode_counts": {system_id: 50 for system_id in SYSTEM_IDS},
         "episode_content_sha256": adjudication_episode_content_sha256(episodes),
@@ -158,9 +151,7 @@ def freeze_qualification_adjudication(
 
     if output_dir.exists() and any(output_dir.iterdir()):
         raise FileExistsError("adjudicated scoring output must be absent or empty")
-    scoring, by_system = load_qualification_scoring(
-        scoring_dir, allowed_formats=(SCORING_FORMAT,)
-    )
+    scoring, by_system = load_qualification_scoring(scoring_dir, allowed_formats=(SCORING_FORMAT,))
     deterministic = _ordered_episodes(by_system)
 
     input_manifest_path = adjudication_input_dir / "manifest.json"
@@ -179,11 +170,10 @@ def freeze_qualification_adjudication(
     if not input_path.is_file() or _file_sha256(input_path) != input_row.get("sha256"):
         raise ValueError("qualification adjudication input artifact mismatch")
     input_episodes = list(read_episodes(input_path))
-    if (
-        [item.model_dump(mode="json") for item in input_episodes]
-        != [item.model_dump(mode="json") for item in deterministic]
-        or input_manifest.get("episode_content_sha256")
-        != adjudication_episode_content_sha256(input_episodes)
+    if [item.model_dump(mode="json") for item in input_episodes] != [
+        item.model_dump(mode="json") for item in deterministic
+    ] or input_manifest.get("episode_content_sha256") != adjudication_episode_content_sha256(
+        input_episodes
     ):
         raise ValueError("qualification adjudication input content drift")
 
@@ -192,10 +182,9 @@ def freeze_qualification_adjudication(
     if adjudication_manifest.get("format") != "mathaudit-adjudication-v0.1":
         raise ValueError("unsupported adjudication manifest")
     _verify_hash(adjudication_manifest, "manifest_sha256", "adjudication manifest")
-    if (
-        (adjudication_manifest.get("input_hashes") or {}).get("episodes")
-        != input_manifest["episode_content_sha256"]
-    ):
+    if (adjudication_manifest.get("input_hashes") or {}).get("episodes") != input_manifest[
+        "episode_content_sha256"
+    ]:
         raise ValueError("adjudication was not applied to the frozen input episodes")
     if (
         adjudication_manifest.get("guide_version") != guide_version
@@ -211,9 +200,7 @@ def freeze_qualification_adjudication(
     if len(matches) != 1:
         raise ValueError("adjudicated episodes artifact registration mismatch")
     adjudicated_path = adjudication_dir / "episodes.jsonl"
-    if not adjudicated_path.is_file() or _file_sha256(adjudicated_path) != matches[0].get(
-        "sha256"
-    ):
+    if not adjudicated_path.is_file() or _file_sha256(adjudicated_path) != matches[0].get("sha256"):
         raise ValueError("adjudicated episodes artifact hash mismatch")
     adjudicated = list(read_episodes(adjudicated_path))
     if len(adjudicated) != 150:
@@ -240,9 +227,7 @@ def freeze_qualification_adjudication(
     artifacts = []
     label_counts: Counter[str] = Counter()
     for system_id in SYSTEM_IDS:
-        episodes = [
-            adjudicated_by_id[episode.episode_id] for episode in by_system[system_id]
-        ]
+        episodes = [adjudicated_by_id[episode.episode_id] for episode in by_system[system_id]]
         for episode in episodes:
             for label in episode.labels:
                 label_counts[label.value.value] += 1
@@ -284,9 +269,7 @@ def freeze_qualification_adjudication(
     return manifest
 
 
-def score_qualification_composite(
-    *, composite_dir: Path, output_dir: Path
-) -> Dict[str, Any]:
+def score_qualification_composite(*, composite_dir: Path, output_dir: Path) -> Dict[str, Any]:
     """Score only a self-hashed, exact-150 outcome-blind composite."""
 
     if output_dir.exists() and any(output_dir.iterdir()):
@@ -300,11 +283,11 @@ def score_qualification_composite(
     }:
         raise ValueError("unsupported qualification composite")
     _verify_hash(composite, "composite_sha256", "qualification composite")
-    if (
-        composite.get("episode_count") != 150
-        or composite.get("system_episode_counts")
-        != {"mathrouter": 50, "icma": 50, "mathgoal": 50}
-    ):
+    if composite.get("episode_count") != 150 or composite.get("system_episode_counts") != {
+        "mathrouter": 50,
+        "icma": 50,
+        "mathgoal": 50,
+    }:
         raise ValueError("qualification composite is not exact 150 / 50-per-system")
     if (
         composite.get("outcome_blind") is not True

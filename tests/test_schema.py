@@ -11,16 +11,12 @@ from mathaudit.hashing import sha256_json
 from mathaudit.models import Episode
 from mathaudit.sampling import verify_sample_manifest_hash
 
-SCHEMA_PATH = (
-    Path(__file__).resolve().parents[1] / "schemas" / "mathaudit-episode-v0.1.schema.json"
-)
+SCHEMA_PATH = Path(__file__).resolve().parents[1] / "schemas" / "mathaudit-episode-v0.1.schema.json"
 EPISODE_V10_SCHEMA_PATH = SCHEMA_PATH.with_name("mathaudit-episode-v1.0.schema.json")
 RUN_SCHEMA_PATH = SCHEMA_PATH.with_name("mathaudit-run-manifest-v0.1.schema.json")
 DEVIATION_SCHEMA_PATH = SCHEMA_PATH.with_name("mathaudit-deviation-event-v0.1.schema.json")
 SAMPLE_SCHEMA_PATH = SCHEMA_PATH.with_name("mathaudit-sample-manifest-v0.1.schema.json")
-PUBLICATION_SCHEMA_PATH = SCHEMA_PATH.with_name(
-    "mathaudit-publication-config-v0.1.schema.json"
-)
+PUBLICATION_SCHEMA_PATH = SCHEMA_PATH.with_name("mathaudit-publication-config-v0.1.schema.json")
 SOURCE_FINGERPRINT_SCHEMA_PATH = SCHEMA_PATH.with_name(
     "mathaudit-source-fingerprint-v0.1.schema.json"
 )
@@ -54,7 +50,9 @@ def test_checked_schema_accepts_canonical_serialization(episode_factory):
     Draft202012Validator.check_schema(schema)
     payload = episode_factory(0, True, False, True).model_dump(mode="json")
     payload["schema_version"] = "0.1"
-    errors = sorted(Draft202012Validator(schema).iter_errors(payload), key=lambda item: list(item.path))
+    errors = sorted(
+        Draft202012Validator(schema).iter_errors(payload), key=lambda item: list(item.path)
+    )
     assert errors == []
     assert Episode.model_validate(payload).episode_id == "episode:0"
 
@@ -153,10 +151,7 @@ def test_compute_authorization_schema_accepts_pending_template():
     Draft202012Validator.check_schema(schema)
     template = json.loads(
         (
-            SCHEMA_PATH.parents[1]
-            / "examples"
-            / "fixtures"
-            / "compute_authorization_pending.json"
+            SCHEMA_PATH.parents[1] / "examples" / "fixtures" / "compute_authorization_pending.json"
         ).read_text(encoding="utf-8")
     )
     assert list(Draft202012Validator(schema).iter_errors(template)) == []

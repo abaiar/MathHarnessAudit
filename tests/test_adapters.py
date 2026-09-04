@@ -40,7 +40,9 @@ def run_context(system_id):
 
 def test_icma_fixture_converts_without_semantic_issues():
     adapter = ICMAAdapter()
-    episode = adapter.convert(load_json(FIXTURES / "icma" / "0.json"), contexts()["0"], run_context("icma"))
+    episode = adapter.convert(
+        load_json(FIXTURES / "icma" / "0.json"), contexts()["0"], run_context("icma")
+    )
     assert validate_episode(episode) == []
     assert episode.adapter.fidelity.value == "B"
     assert len(episode.evidence) == 4
@@ -48,14 +50,18 @@ def test_icma_fixture_converts_without_semantic_issues():
 
 def test_mathrouter_fixture_preserves_selection():
     adapter = MathRouterAdapter()
-    episode = adapter.convert(load_json(FIXTURES / "mathrouter" / "1.json"), contexts()["1"], run_context("mathrouter"))
+    episode = adapter.convert(
+        load_json(FIXTURES / "mathrouter" / "1.json"), contexts()["1"], run_context("mathrouter")
+    )
     assert validate_episode(episode) == []
     assert any(decision.selected_evidence_ids for decision in episode.decisions)
 
 
 def test_mathgoal_full_fixture_is_fidelity_a():
     adapter = MathGoalAdapter()
-    episode = adapter.convert(load_json(FIXTURES / "mathgoal_full.json"), contexts()["2"], run_context("mathgoal"))
+    episode = adapter.convert(
+        load_json(FIXTURES / "mathgoal_full.json"), contexts()["2"], run_context("mathgoal")
+    )
     assert validate_episode(episode) == []
     assert episode.adapter.fidelity.value == "A"
     assert len(episode.sources) >= 4
@@ -69,9 +75,7 @@ def test_mathgoal_full_fixture_is_fidelity_a():
         }
     )
     alternative_tool = next(
-        item
-        for item in episode.source_observations
-        if item.source_id == "tool_role:alternative"
+        item for item in episode.source_observations if item.source_id == "tool_role:alternative"
     )
     assert alternative_tool.invocation.value == "not_called"
     assert alternative_tool.outcome.value == "not_observable"
@@ -107,7 +111,9 @@ def test_mathgoal_tool_corrected_candidate_reuses_original_tool_provenance():
 
 def test_otel_bridge_requires_explicit_final_marker():
     adapter = OTelAdapter()
-    episode = adapter.convert(load_json(FIXTURES / "otel.json"), contexts()["2"], run_context("otel"))
+    episode = adapter.convert(
+        load_json(FIXTURES / "otel.json"), contexts()["2"], run_context("otel")
+    )
     assert validate_episode(episode) == []
     assert episode.final_output.status.value == "produced"
     assert episode.final_output.evidence_id == "evidence:otel:span-final"

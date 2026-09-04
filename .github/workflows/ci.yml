@@ -28,12 +28,28 @@ jobs:
       - name: Verify lock consistency
         run: uv lock --check
       - name: Lint
-        run: uv run --frozen --python ${{ matrix.python }} --extra dev --extra parquet ruff check src tests examples/run_demo.py
+        run: uv run --frozen --python ${{ matrix.python }} --extra dev --extra parquet ruff check src tests examples/run_demo.py paper
+      - name: Check formatting
+        run: uv run --frozen --python ${{ matrix.python }} --extra dev --extra parquet ruff format --check src tests examples/run_demo.py paper
       - name: Test
         run: uv run --frozen --python ${{ matrix.python }} --extra dev --extra parquet pytest
+      - name: Verify paper reproduction and claim lineage
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.12'
+        run: |
+          uv run --frozen mathaudit qualification-verify-public-analysis --analysis paper/data/analysis-deterministic-q14-v1.json --config paper/config/qualification-analysis-config-v0.1.json
+          uv run --frozen mathaudit qualification-reproduce-check --analysis paper/data/analysis-deterministic-q14-v1.json --reference-dir paper/results/deterministic-q14-v1
+          uv run --frozen python paper/verify_claims.py
+          uv run --frozen python paper/build_submission_manifest.py
       - name: Audit dependencies
         if: matrix.os == 'ubuntu-latest' && matrix.python == '3.12'
         run: uv run --frozen --python ${{ matrix.python }} --all-extras --with pip-audit==2.10.1 pip-audit --progress-spinner off
       - name: Build distributions
         if: matrix.os == 'ubuntu-latest' && matrix.python == '3.12'
         run: uv build
+      - name: Smoke-test built wheel in a clean environment
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.12'
+        run: |
+          uv venv .wheel-smoke --python 3.12
+          uv pip install --python .wheel-smoke/bin/python dist/*.whl
+          .wheel-smoke/bin/mathaudit --help
+          .wheel-smoke/bin/mathaudit list-schemas

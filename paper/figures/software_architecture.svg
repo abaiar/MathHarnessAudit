@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="950" viewBox="0 0 1800 950" role="img" aria-labelledby="title desc">
+  <title id="title">MathHarnessAudit evidence-preserving audit architecture</title>
+  <desc id="desc">Read-only heterogeneous trace inputs pass through five numbered layers: fidelity-aware adapters and semantic validation, a canonical episode ledger, deterministic-first scoring, a denominator-aware descriptive audit, and reproducible outputs. Reference answers cross a separate audit-only boundary into scoring only. Reproducibility controls span the pipeline, while qualification acquisition governance is optional.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker>
+    <marker id="goldArrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#c2410c"/></marker>
+    <style>
+      .title{font:700 31px Arial,sans-serif;fill:#0f172a}.subtitle{font:16px Arial,sans-serif;fill:#475569}
+      .eyebrow{font:700 12px Arial,sans-serif;letter-spacing:1.1px;fill:#475569}.h{font:700 18px Arial,sans-serif;fill:#0f172a}
+      .t{font:15px Arial,sans-serif;fill:#1e293b}.small{font:13px Arial,sans-serif;fill:#334155}.tiny{font:12px Arial,sans-serif;fill:#475569}.warn{font:700 16px Arial,sans-serif;fill:#0f172a}
+      .mono{font:12px Consolas,monospace;fill:#0f172a}.box{stroke:#334155;stroke-width:2;rx:14}
+      .chip{stroke:#94a3b8;stroke-width:1;rx:8}.flow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .gold{stroke:#c2410c;stroke-width:3;stroke-dasharray:3 7;stroke-linecap:round;fill:none;marker-end:url(#goldArrow)}
+      .optional{stroke:#2563eb;stroke-width:2;stroke-dasharray:8 6;fill:#eff6ff;rx:12}
+    </style>
+  </defs>
+  <rect width="1800" height="950" fill="#ffffff"/>
+  <text x="40" y="48" class="title">MathHarnessAudit: evidence-preserving audit architecture</text>
+  <text x="40" y="76" class="subtitle">Read-only trace translation; unobserved structure stays unavailable; reference answers enter only at scoring.</text>
+
+  <rect x="30" y="120" width="190" height="480" class="box" fill="#f1f5f9"/>
+  <text x="50" y="150" class="eyebrow">EXTERNAL INPUTS</text>
+  <text x="50" y="184" class="h">Audited traces</text>
+  <rect x="50" y="210" width="150" height="105" class="chip" fill="#ffffff"/>
+  <text x="65" y="237" class="t">MathRouterAgent</text><text x="65" y="265" class="t">ICMA</text><text x="65" y="293" class="t">MathGoal</text>
+  <rect x="50" y="335" width="150" height="62" class="chip" fill="#ffffff"/>
+  <text x="65" y="361" class="t">Canonical JSON</text><text x="65" y="383" class="tiny">producer-declared</text>
+  <rect x="50" y="417" width="150" height="70" class="chip" fill="#ffffff"/>
+  <text x="65" y="444" class="t">OTel spans</text><text x="65" y="466" class="tiny">conservative bridge</text>
+  <line x1="50" y1="512" x2="200" y2="512" stroke="#94a3b8"/>
+  <text x="50" y="540" class="small">Harness unchanged</text><text x="50" y="565" class="small">No hidden CoT recovery</text>
+
+  <rect x="250" y="120" width="225" height="480" class="box" fill="#dbeafe"/>
+  <text x="270" y="151" class="eyebrow">LAYER 1</text><text x="270" y="181" class="h">Adapters + validation</text>
+  <text x="270" y="220" class="t">Native versioned adapters</text><text x="270" y="249" class="t">Canonical pass-through</text><text x="270" y="278" class="t">Conservative OTel map</text>
+  <rect x="270" y="307" width="185" height="58" class="chip" fill="#ffffff"/>
+  <text x="288" y="331" class="small">Fidelity A / B / C</text><text x="288" y="352" class="tiny">full / staged / final-only</text>
+  <rect x="270" y="385" width="185" height="90" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="288" y="414" class="h">Semantic gate</text><text x="288" y="438" class="small">schema + IDs + refs</text><text x="288" y="460" class="small">acyclicity + gold isolation</text>
+  <rect x="270" y="500" width="185" height="66" class="chip" fill="#eff6ff"/>
+  <text x="286" y="525" class="tiny">provenance tags:</text><text x="286" y="548" class="mono">observed | declared |</text><text x="286" y="565" class="mono">adapter_inferred</text>
+
+  <rect x="505" y="120" width="345" height="480" class="box" fill="#ecfdf5"/>
+  <text x="525" y="151" class="eyebrow">LAYER 2</text><text x="525" y="181" class="h">Canonical Episode v1.0</text>
+  <text x="525" y="207" class="small">Typed evidence ledger — not a fixed agent topology</text>
+  <rect x="525" y="228" width="305" height="42" class="chip" fill="#ffffff"/><text x="542" y="254" class="small">Identity: problem · system · run · adapter</text>
+  <rect x="525" y="283" width="145" height="70" class="chip" fill="#ffffff"/><text x="542" y="309" class="h">Sources</text><text x="542" y="333" class="tiny">agent / model / tool</text>
+  <rect x="685" y="283" width="145" height="70" class="chip" fill="#ffffff"/><text x="702" y="309" class="h">Observations</text><text x="702" y="333" class="tiny">opportunity · call · outcome</text>
+  <rect x="525" y="366" width="145" height="70" class="chip" fill="#ffffff"/><text x="542" y="392" class="h">Evidence</text><text x="542" y="416" class="tiny">content · hash · visibility</text>
+  <rect x="685" y="366" width="145" height="70" class="chip" fill="#ffffff"/><text x="702" y="392" class="h">Decisions</text><text x="702" y="416" class="tiny">inputs · candidates · outputs</text>
+  <rect x="525" y="449" width="305" height="58" class="chip" fill="#ffffff"/>
+  <text x="542" y="474" class="h">Typed provenance + final output</text><text x="542" y="495" class="tiny">derived / verifies / supports / aggregates / produces</text>
+  <rect x="525" y="520" width="305" height="55" class="chip" fill="#f0fdf4"/>
+  <text x="542" y="542" class="tiny">Availability: not_called · failed · timeout · not_observable</text><text x="542" y="563" class="tiny">Scoring labels remain separate downstream</text>
+
+  <rect x="880" y="120" width="195" height="480" class="box" fill="#fef3c7"/>
+  <text x="900" y="151" class="eyebrow">LAYER 3</text><text x="900" y="181" class="h">Deterministic-first</text><text x="900" y="203" class="h">scoring</text>
+  <text x="900" y="246" class="t">Exact</text><text x="900" y="276" class="t">Rational numeric</text><text x="900" y="306" class="t">Categorical</text><text x="900" y="336" class="t">Restricted symbolic</text>
+  <rect x="900" y="366" width="155" height="118" class="chip" fill="#ffffff"/>
+  <text x="917" y="394" class="small">correct</text><text x="917" y="420" class="small">incorrect</text><text x="917" y="446" class="small">abstain</text><text x="917" y="472" class="small">unscorable</text>
+  <text x="900" y="522" class="tiny">Human sensitivity labels</text><text x="900" y="543" class="tiny">remain separate</text><text x="900" y="572" class="tiny">No unsafe symbolic guess</text>
+
+  <rect x="1105" y="120" width="250" height="480" class="box" fill="#fee2e2"/>
+  <text x="1125" y="151" class="eyebrow">LAYER 4</text><text x="1125" y="181" class="h">Denominator-aware audit</text>
+  <rect x="1125" y="211" width="210" height="47" class="chip" fill="#ffffff"/><text x="1144" y="240" class="t">1 · availability first</text>
+  <text x="1125" y="292" class="t">dependence + co-failure</text><text x="1125" y="323" class="t">repair / harm + adoption</text><text x="1125" y="354" class="t">text repetition + N<tspan baseline-shift="sub" font-size="11">eff</tspan></text><text x="1125" y="385" class="t">cost + final outcomes</text>
+  <rect x="1125" y="420" width="210" height="72" class="chip" fill="#ffffff"/><text x="1143" y="447" class="small">registered panels</text><text x="1143" y="470" class="small">complete cases + intervals</text>
+  <rect x="1125" y="516" width="210" height="50" rx="9" fill="#fff1f2" stroke="#b91c1c" stroke-width="1.5"/><text x="1142" y="546" class="warn">Descriptive, not causal</text>
+
+  <rect x="1385" y="120" width="385" height="480" class="box" fill="#ede9fe"/>
+  <text x="1405" y="151" class="eyebrow">LAYER 5</text><text x="1405" y="181" class="h">Reproducible outputs</text>
+  <rect x="1405" y="211" width="160" height="72" class="chip" fill="#ffffff"/><text x="1425" y="239" class="t">JSON / JSONL</text><text x="1425" y="264" class="tiny">canonical + scored</text>
+  <rect x="1585" y="211" width="165" height="72" class="chip" fill="#ffffff"/><text x="1605" y="239" class="t">Static HTML</text><text x="1605" y="264" class="tiny">dependency-free view</text>
+  <rect x="1405" y="301" width="160" height="72" class="chip" fill="#ffffff"/><text x="1425" y="329" class="t">Optional Parquet</text><text x="1425" y="354" class="tiny">7 normalized entities</text>
+  <rect x="1585" y="301" width="165" height="72" class="chip" fill="#ffffff"/><text x="1605" y="329" class="t">Registered CSV/SVG</text><text x="1605" y="354" class="tiny">paper-facing bundles</text>
+  <rect x="1405" y="395" width="345" height="80" class="chip" fill="#ffffff"/><text x="1425" y="425" class="h">Content-linked manifests</text><text x="1425" y="450" class="small">input · config · tool · artifact hashes</text>
+  <text x="1405" y="513" class="small">Refuse unregistered panels</text><text x="1405" y="539" class="small">Refuse nonempty output destinations</text><text x="1405" y="568" class="small">No system ranking by default</text>
+
+  <path d="M220 360 L250 360" class="flow"/><path d="M475 360 L505 360" class="flow"/><path d="M850 360 L880 360" class="flow"/><path d="M1075 360 L1105 360" class="flow"/><path d="M1355 360 L1385 360" class="flow"/>
+
+  <line x1="505" y1="662" x2="1075" y2="662" stroke="#c2410c" stroke-width="2" stroke-dasharray="3 7" stroke-linecap="round"/>
+  <text x="525" y="649" class="small" fill="#9a3412">solver-visible above · audit-only below</text>
+  <rect x="610" y="690" width="260" height="72" rx="12" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/>
+  <text x="633" y="719" class="h">Reference / gold answer</text><text x="633" y="745" class="small">scorer input only; never solver-visible</text>
+  <path d="M870 726 C935 726 977 690 977 600" class="gold"/><text x="910" y="718" class="tiny" fill="#9a3412">scoring only</text>
+
+  <rect x="250" y="805" width="1520" height="105" rx="14" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+  <text x="270" y="835" class="eyebrow">CROSS-CUTTING REPRODUCIBILITY CONTROLS</text>
+  <text x="270" y="865" class="t">schema + coverage</text><text x="497" y="865" class="t">adapter + tool versions</text><text x="765" y="865" class="t">configuration + seed + registered panels</text><text x="1190" y="865" class="t">fingerprints + artifact hashes</text>
+  <line x1="270" y1="883" x2="1750" y2="883" stroke="#cbd5e1"/>
+  <text x="270" y="902" class="tiny">Fixed validated episodes + configuration/seed + tool version → same analytical content; manifests bind lineage.</text>
+
+  <rect x="30" y="684" width="550" height="86" class="optional"/>
+  <text x="50" y="710" class="eyebrow" fill="#1d4ed8">OPTIONAL QUALIFICATION ACQUISITION GOVERNANCE</text>
+  <text x="50" y="735" class="small">sample + fingerprints → authorization → plan/ledger</text>
+  <text x="50" y="757" class="small">→ executor state → closeout lineage</text>
+
+  <path d="M1180 720 L1235 720" class="flow"/><text x="1248" y="725" class="small">validated data flow</text>
+  <path d="M1430 720 L1485 720" class="gold"/><text x="1498" y="725" class="small">audit-only reference</text>
+  <rect x="1180" y="742" width="55" height="18" class="optional"/><text x="1248" y="756" class="small">optional governance</text>
+</svg>

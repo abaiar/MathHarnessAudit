@@ -84,10 +84,18 @@ def qualification_authorization_issues(
         monetary_cap = budget.get("monetary_cap")
         if not isinstance(currency, str) or not re.fullmatch(r"[A-Z]{3}", currency):
             issues.append("a three-letter budget currency is required")
-        if not isinstance(monetary_cap, (int, float)) or isinstance(monetary_cap, bool) or monetary_cap <= 0:
+        if (
+            not isinstance(monetary_cap, (int, float))
+            or isinstance(monetary_cap, bool)
+            or monetary_cap <= 0
+        ):
             issues.append("a positive hard monetary_cap is required")
         wall_time_cap = budget.get("summed_wall_time_cap_s")
-        if not isinstance(wall_time_cap, int) or isinstance(wall_time_cap, bool) or wall_time_cap <= 0:
+        if (
+            not isinstance(wall_time_cap, int)
+            or isinstance(wall_time_cap, bool)
+            or wall_time_cap <= 0
+        ):
             issues.append("a positive hard total summed_wall_time_cap_s is required")
 
     monetary_accounting = payload.get("monetary_accounting")
@@ -110,11 +118,7 @@ def qualification_authorization_issues(
                 ("input_cny_per_million_tokens", input_rate),
                 ("output_cny_per_million_tokens", output_rate),
             ):
-                if (
-                    not isinstance(value, (int, float))
-                    or isinstance(value, bool)
-                    or value < 0
-                ):
+                if not isinstance(value, (int, float)) or isinstance(value, bool) or value < 0:
                     issues.append("monetary_accounting.%s must be nonnegative" % field)
         else:
             issues.append("monetary_accounting.mode must be free_quota or token_tariff")
@@ -134,7 +138,9 @@ def qualification_authorization_issues(
             if stop.get("continue_after_episode_failure") is not True:
                 issues.append("continue-after-failure mode must be explicitly enabled")
             if stop.get("stop_on_task_dependent_missingness") is not False:
-                issues.append("continue-after-failure mode must disable task-missingness batch stop")
+                issues.append(
+                    "continue-after-failure mode must disable task-missingness batch stop"
+                )
             if stop.get("stop_on_trace_loss") is not False:
                 issues.append("continue-after-failure mode must disable trace-loss batch stop")
             if stop.get("stop_on_quota_or_transport_failure_rate") is not False:
@@ -200,8 +206,7 @@ def qualification_authorization_issues(
         ):
             value = item.get(field)
             allow_zero = (
-                authorization_format == REPLACEMENT_AUTHORIZATION_FORMAT
-                and episode_cap == 0
+                authorization_format == REPLACEMENT_AUTHORIZATION_FORMAT and episode_cap == 0
             )
             if (
                 not isinstance(value, (int, float))
@@ -265,10 +270,9 @@ def qualification_authorization_issues(
                 and isinstance(item.get("episode_cap"), int)
                 and not isinstance(item.get("episode_cap"), bool)
             ]
-            if (
-                len(system_episode_caps) == len(expected_system_ids)
-                and sum(system_episode_caps) != budget.get("episode_cap")
-            ):
+            if len(system_episode_caps) == len(expected_system_ids) and sum(
+                system_episode_caps
+            ) != budget.get("episode_cap"):
                 issues.append("continuation system episode caps must sum to total episode_cap")
         comparisons = (
             (token_caps, budget.get("token_cap"), "token"),
@@ -306,15 +310,12 @@ def qualification_authorization_issues(
             if replacement.get("final_target_episode_count") != expected_episode_cap:
                 issues.append("replacement final target must equal %d" % expected_episode_cap)
             if replacement.get("complete_slot_count_before_replacement") != (
-                expected_episode_cap - len(sequences)
-                if isinstance(sequences, list)
-                else None
+                expected_episode_cap - len(sequences) if isinstance(sequences, list) else None
             ):
                 issues.append("replacement prior complete-slot count is inconsistent")
             provenance_fields = (
                 ("source_state_sha256", "source_closeout_sha256")
-                if "source_state_sha256" in replacement
-                or "source_closeout_sha256" in replacement
+                if "source_state_sha256" in replacement or "source_closeout_sha256" in replacement
                 else ("source_q11_state_sha256", "source_q11_closeout_sha256")
             )
             if "source_state_sha256" in replacement and not isinstance(
@@ -379,13 +380,10 @@ def qualification_authorization_issues(
             prefix = continuation.get("completed_prefix_episode_count")
             restart = continuation.get("restart_sequence")
             target = continuation.get("final_target_episode_count")
-            skip_failed_boundary = (
-                authorization_format
-                in {
-                    SKIP_BOUNDARY_CONTINUATION_AUTHORIZATION_FORMAT,
-                    CONTINUE_AFTER_FAILURE_AUTHORIZATION_FORMAT,
-                }
-            )
+            skip_failed_boundary = authorization_format in {
+                SKIP_BOUNDARY_CONTINUATION_AUTHORIZATION_FORMAT,
+                CONTINUE_AFTER_FAILURE_AUTHORIZATION_FORMAT,
+            }
             if (
                 not isinstance(prefix, int)
                 or isinstance(prefix, bool)
@@ -404,16 +402,12 @@ def qualification_authorization_issues(
                 if continuation.get("deferred_replacement_count") != 1:
                     issues.append("skip-boundary continuation must defer exactly one replacement")
                 deferred_sequence = continuation.get("deferred_replacement_sequence")
-                deferred_ok = (
-                    isinstance(prefix, int)
-                    and (
-                        deferred_sequence == prefix
-                        if authorization_format
-                        == SKIP_BOUNDARY_CONTINUATION_AUTHORIZATION_FORMAT
-                        else isinstance(deferred_sequence, int)
-                        and not isinstance(deferred_sequence, bool)
-                        and 1 <= deferred_sequence < prefix
-                    )
+                deferred_ok = isinstance(prefix, int) and (
+                    deferred_sequence == prefix
+                    if authorization_format == SKIP_BOUNDARY_CONTINUATION_AUTHORIZATION_FORMAT
+                    else isinstance(deferred_sequence, int)
+                    and not isinstance(deferred_sequence, bool)
+                    and 1 <= deferred_sequence < prefix
                 )
                 if not deferred_ok:
                     issues.append(
@@ -533,9 +527,7 @@ def _registered_run_environment(
         raise ValueError("reference environment is not unique: %s" % system_id)
     item = matches[0]
     python_path = _resolve_path(workspace, {"path": item["python_path"]}, environment)
-    snapshot_path = _resolve_path(
-        workspace, {"path": item["snapshot_path"]}, environment
-    )
+    snapshot_path = _resolve_path(workspace, {"path": item["snapshot_path"]}, environment)
     if not snapshot_path.is_file():
         raise ValueError("reference environment snapshot is missing: %s" % system_id)
     version = str(item.get("expected_python_version") or "").strip()
@@ -606,9 +598,7 @@ def run_qualification_preflight(
         if not authorization_path.is_file():
             raise ValueError("authorization record is missing")
         authorization = json.loads(authorization_path.read_text(encoding="utf-8"))
-        schema_path = _resolve_path(
-            workspace, {"path": authorization_spec["schema"]}, env
-        )
+        schema_path = _resolve_path(workspace, {"path": authorization_spec["schema"]}, env)
         errors = _schema_errors(authorization, schema_path)
         if errors:
             raise ValueError("authorization Schema: " + "; ".join(errors))
@@ -648,9 +638,7 @@ def run_qualification_preflight(
                     try:
                         _verify_file_hash(root / critical["path"], critical["sha256"])
                     except ValueError as exc:
-                        raise ValueError(
-                            "critical file drift: %s" % critical["path"]
-                        ) from exc
+                        raise ValueError("critical file drift: %s" % critical["path"]) from exc
                 fingerprint = fingerprint_source_tree(root, system_id=system_id)
                 if fingerprint["manifest_sha256"] != item["run_source_fingerprint"]:
                     raise ValueError("full Git source-tree fingerprint drift")
@@ -668,9 +656,7 @@ def run_qualification_preflight(
                 root: Path = root,
                 system_id: str = system_id,
             ) -> str:
-                manifest_path = _resolve_path(
-                    workspace, {"path": item["manifest"]}, env
-                )
+                manifest_path = _resolve_path(workspace, {"path": item["manifest"]}, env)
                 if not manifest_path.is_file():
                     raise ValueError("source fingerprint manifest is missing")
                 manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -745,9 +731,7 @@ def run_qualification_preflight(
 
         def check_artifact_tree(item: Dict[str, Any] = item) -> str:
             tree_root = _resolve_path(workspace, {"path": item["path"]}, env)
-            manifest_path = _resolve_path(
-                workspace, {"path": item["manifest"]}, env
-            )
+            manifest_path = _resolve_path(workspace, {"path": item["manifest"]}, env)
             if not manifest_path.is_file():
                 raise ValueError("artifact-tree fingerprint manifest is missing")
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -767,18 +751,14 @@ def run_qualification_preflight(
             item: Dict[str, Any] = item,
             system_id: str = system_id,
         ) -> str:
-            python_path = _resolve_path(
-                workspace, {"path": item["python_path"]}, env
-            )
+            python_path = _resolve_path(workspace, {"path": item["python_path"]}, env)
             detail = _verify_reference_environment(
                 python_path,
                 _resolve_path(workspace, {"path": item["snapshot_path"]}, env),
                 str(item["expected_python_version"]),
             )
             if "entrypoint_path" in item:
-                entrypoint_path = _resolve_path(
-                    workspace, {"path": item["entrypoint_path"]}, env
-                )
+                entrypoint_path = _resolve_path(workspace, {"path": item["entrypoint_path"]}, env)
             else:
                 entrypoint_root = _resolve_path(
                     workspace, {"root_env": item["entrypoint_root_env"]}, env
@@ -797,9 +777,7 @@ def run_qualification_preflight(
             lambda: _verify_system_set(environment_system_ids, expected_systems),
         )
 
-    run_schema_path = _resolve_path(
-        workspace, {"path": config["run_manifest_schema"]}, env
-    )
+    run_schema_path = _resolve_path(workspace, {"path": config["run_manifest_schema"]}, env)
     run_system_ids: List[str] = []
     for item in config.get("run_manifests") or []:
         system_id = str(item["system_id"])
@@ -862,8 +840,7 @@ def run_qualification_preflight(
                     "monetary_accounting": authorization["monetary_accounting"],
                 }
                 if any(
-                    payload["budget"].get(key) != value
-                    for key, value in budget_comparisons.items()
+                    payload["budget"].get(key) != value for key, value in budget_comparisons.items()
                 ):
                     raise ValueError("run manifest budget differs from authorization")
             run_system_ids.append(system_id)
@@ -937,7 +914,11 @@ print(json.dumps({"python": platform.python_version(), "distributions": sorted(s
         timeout=30,
         # Do not let the auditor's source checkout (and its local .egg-info)
         # contaminate the isolated reference environment's distribution set.
-        env={key: value for key, value in os.environ.items() if key not in {"PYTHONPATH", "PYTHONHOME"}},
+        env={
+            key: value
+            for key, value in os.environ.items()
+            if key not in {"PYTHONPATH", "PYTHONHOME"}
+        },
     )
     if result.returncode:
         raise ValueError("reference interpreter metadata probe failed")
@@ -955,9 +936,7 @@ print(json.dumps({"python": platform.python_version(), "distributions": sorted(s
         if not value:
             continue
         if not re.fullmatch(r"[a-z0-9][a-z0-9._-]*==[^\s=]+", value):
-            raise ValueError(
-                "invalid normalized environment snapshot line %d" % line_number
-            )
+            raise ValueError("invalid normalized environment snapshot line %d" % line_number)
         name, version = value.split("==", 1)
         canonical_name = re.sub(r"[-_.]+", "-", name).lower()
         expected_rows.append(canonical_name + "==" + version)
@@ -1078,8 +1057,7 @@ def prepare_qualification_run_manifests(
         source = source_by_id[system_id]
         payload = {
             "format": "mathaudit-run-manifest-v0.1",
-            "run_id": "qualification-q-%s-%s"
-            % (system_id, authorization["authorization_id"]),
+            "run_id": "qualification-q-%s-%s" % (system_id, authorization["authorization_id"]),
             "study_phase": "qualification",
             "status": "planned",
             "system": {
@@ -1118,13 +1096,13 @@ def prepare_qualification_run_manifests(
                 "summed_wall_time_cap_s": system_auth["summed_wall_time_cap_s"],
                 "monetary_accounting": authorization["monetary_accounting"],
             },
-              "environment": _registered_run_environment(
-                  config,
-                  workspace,
-                  system_id,
-                  lock_hash,
-                  dict(os.environ),
-              ),
+            "environment": _registered_run_environment(
+                config,
+                workspace,
+                system_id,
+                lock_hash,
+                dict(os.environ),
+            ),
             "started_at": None,
             "ended_at": None,
             "counts": {
@@ -1153,9 +1131,7 @@ def prepare_qualification_run_manifests(
         "format": "mathaudit-run-manifest-preparation-v0.1",
         "authorization_id": authorization["authorization_id"],
         "input_bundle_sha256": bundle["bundle_sha256"],
-        "files": [
-            {"path": path.name, "sha256": _file_sha256(path)} for path in written
-        ],
+        "files": [{"path": path.name, "sha256": _file_sha256(path)} for path in written],
     }
     preparation["preparation_sha256"] = sha256_json(preparation)
     preparation_path = output_dir / "preparation_manifest.json"

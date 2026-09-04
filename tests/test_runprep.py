@@ -16,9 +16,7 @@ def _frozen_sample(tmp_path):
         {"id": "a", "problem": "one", "answer": "1", "solution": "private one"},
         {"id": "b", "problem": "two", "answer": "2", "solution": "private two"},
     ]
-    source.write_text(
-        "".join(json.dumps(row) + "\n" for row in records), encoding="utf-8"
-    )
+    source.write_text("".join(json.dumps(row) + "\n" for row in records), encoding="utf-8")
     selected, diagnostics = select_sample(
         records, dataset_id="fixture", count=2, seed=3, id_field="id"
     )
@@ -57,9 +55,7 @@ def test_prepare_run_inputs_separates_gold_and_preserves_public_problem_ids(tmp_
         system_ids=["mathgoal", "icma", "mathrouter"],
         schedule_seed=9,
     )
-    competition = (output / "solver_visible" / "competition.jsonl").read_text(
-        encoding="utf-8"
-    )
+    competition = (output / "solver_visible" / "competition.jsonl").read_text(encoding="utf-8")
     mathgoal = (output / "solver_visible" / "mathgoal.jsonl").read_text(encoding="utf-8")
     audit = (output / "audit_only" / "problems.jsonl").read_text(encoding="utf-8")
     assert "answer" not in competition and "solution" not in competition

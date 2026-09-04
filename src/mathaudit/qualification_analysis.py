@@ -48,9 +48,7 @@ def _file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _pair(
-    value: Any, label: str, *, allow_equal: bool = False
-) -> Tuple[str, str]:
+def _pair(value: Any, label: str, *, allow_equal: bool = False) -> Tuple[str, str]:
     if (
         not isinstance(value, list)
         or len(value) != 2
@@ -137,8 +135,7 @@ def _validate_config(config: Dict[str, Any]) -> List[Dict[str, Any]]:
         if not isinstance(type_pairs, list):
             raise ValueError("source_type_pairs must be an array")
         normalized["source_type_pairs"] = [
-            _pair(value, "source_type_pairs", allow_equal=True)
-            for value in type_pairs
+            _pair(value, "source_type_pairs", allow_equal=True) for value in type_pairs
         ]
         type_values = []
         for source_a, source_b in normalized["source_type_pairs"]:
@@ -167,9 +164,7 @@ def _validate_config(config: Dict[str, Any]) -> List[Dict[str, Any]]:
         normalized["cofailure_source_sets"] = normalized_sets
         validated.append(normalized)
     if {(item["system_id"], item["stratum"]) for item in validated} != {
-        (system_id, stratum)
-        for system_id in SYSTEM_IDS
-        for stratum in ("standard", "hard_gt_5")
+        (system_id, stratum) for system_id in SYSTEM_IDS for stratum in ("standard", "hard_gt_5")
     }:
         raise ValueError("qualification panels must cover every system/stratum cell")
     return validated
@@ -177,9 +172,7 @@ def _validate_config(config: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 def _load_scored(scoring_dir: Path) -> Tuple[Dict[str, Any], List[Episode]]:
     manifest, by_system = load_qualification_scoring(scoring_dir)
-    return manifest, [
-        episode for system_id in SYSTEM_IDS for episode in by_system[system_id]
-    ]
+    return manifest, [episode for system_id in SYSTEM_IDS for episode in by_system[system_id]]
 
 
 def _binary_type_counts(episodes: Sequence[Episode], source_type: SourceType) -> List[int]:
@@ -281,9 +274,7 @@ def build_qualification_analysis(
                 )
                 item["minimum_complete_cases"] = minimum
                 item["precision_flag"] = (
-                    "adequate"
-                    if item["episodes_with_pairs"] >= minimum
-                    else "imprecise"
+                    "adequate" if item["episodes_with_pairs"] >= minimum else "imprecise"
                 )
                 type_pairs.append(item)
                 if source_type_a == source_type_b and relation == "all":
@@ -300,8 +291,7 @@ def build_qualification_analysis(
                     for source_id in sorted(observed_sources)
                 ],
                 "cost": [
-                    cost_profile(selected, source_id)
-                    for source_id in sorted(observed_sources)
+                    cost_profile(selected, source_id) for source_id in sorted(observed_sources)
                 ],
                 "exact_pairwise": exact_pairs,
                 "source_type_pairwise": type_pairs,

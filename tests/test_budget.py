@@ -180,9 +180,7 @@ def test_request_finalization_is_one_way_and_keeps_reservation():
         },
     )
     assert finalized["requests"][0]["status"] == "completed"
-    assert finalized["totals"]["reserved_token_upper"] == reserved["totals"][
-        "reserved_token_upper"
-    ]
+    assert finalized["totals"]["reserved_token_upper"] == reserved["totals"]["reserved_token_upper"]
     assert finalized["totals"]["observed_usage_request_count"] == 1
     assert finalized["totals"]["observed_total_tokens"] == 25
     with pytest.raises(ValueError, match="already finalized"):

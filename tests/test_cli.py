@@ -25,6 +25,48 @@ def test_ingest_help_lists_every_builtin_adapter():
         assert adapter in result.output
 
 
+def test_ingest_directory_with_no_matches_fails_loudly(tmp_path):
+    input_dir = tmp_path / "empty"
+    input_dir.mkdir()
+    problems = tmp_path / "problems.jsonl"
+    problems.write_text(
+        json.dumps({"id": "p1", "problem": "1+1", "answer": "2"}) + "\n",
+        encoding="utf-8",
+    )
+
+    result = CliRunner().invoke(
+        app,
+        [
+            "ingest",
+            "--adapter",
+            "canonical",
+            "--input",
+            str(input_dir),
+            "--input-glob",
+            "*.json",
+            "--problems",
+            str(problems),
+            "--output",
+            str(tmp_path / "episodes.jsonl"),
+            "--dataset-id",
+            "fixture",
+            "--stratum",
+            "easy",
+            "--run-id",
+            "empty-input",
+            "--system-id",
+            "fixture",
+            "--system-name",
+            "Fixture",
+            "--system-version",
+            "synthetic",
+        ],
+    )
+
+    assert result.exit_code != 0
+    assert "contains no files matching" in result.output
+
+
 def test_cli_end_to_end(tmp_path):
     runner = CliRunner()
     canonical = tmp_path / "canonical.jsonl"

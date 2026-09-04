@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="880" viewBox="0 0 1600 880" role="img" aria-labelledby="title desc">
+  <title id="title">Provider-free MathHarnessAudit core demonstration and optional output branches</title>
+  <desc id="desc">A synthetic ICMA-shaped trace is adapted, semantically validated and deterministically scored. Scored canonical episodes feed both the core audit report and two optional sibling branches: normalized Parquet export and registered publication. The single episode demonstrates behavior and lineage, not performance.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#334155"/></marker>
+    <marker id="branchArrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 z" fill="#2563eb"/></marker>
+    <style>
+      .title{font:700 30px Arial,sans-serif;fill:#0f172a}.subtitle{font:16px Arial,sans-serif;fill:#475569}
+      .eyebrow{font:700 12px Arial,sans-serif;letter-spacing:1.1px;fill:#475569}.h{font:700 18px Arial,sans-serif;fill:#0f172a}
+      .t{font:14px Arial,sans-serif;fill:#1e293b}.small{font:13px Arial,sans-serif;fill:#475569}.mono{font:13px Consolas,monospace;fill:#0f172a}
+      .box{stroke:#334155;stroke-width:2;rx:14}.chip{stroke:#94a3b8;stroke-width:1;rx:8}
+      .flow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .branch{stroke:#2563eb;stroke-width:2.5;fill:none;marker-end:url(#branchArrow)}
+      .optional{stroke:#2563eb;stroke-width:2;stroke-dasharray:8 6;rx:14}
+    </style>
+  </defs>
+  <rect width="1600" height="880" fill="#ffffff"/>
+  <text x="40" y="48" class="title">Provider-free core demonstration and optional output branches</text>
+  <text x="40" y="76" class="subtitle">One synthetic episode verifies installation, contracts, denominators and lineage—not model performance.</text>
+  <rect x="40" y="99" width="188" height="30" rx="15" fill="#e2e8f0"/>
+  <text x="58" y="120" class="eyebrow">CORE DEMONSTRATION</text>
+
+  <rect x="35" y="150" width="250" height="320" class="box" fill="#f1f5f9"/>
+  <text x="55" y="181" class="eyebrow">STEP 1</text><text x="55" y="211" class="h">Synthetic safe fixture</text>
+  <text x="55" y="252" class="t">ICMA-shaped JSON</text><text x="55" y="281" class="t">reasoner · python_executor</text><text x="55" y="310" class="t">validator · final answer</text>
+  <line x1="55" y1="338" x2="265" y2="338" stroke="#cbd5e1"/>
+  <text x="55" y="370" class="t">No provider call</text><text x="55" y="397" class="t">No API key</text><text x="55" y="424" class="t">No private trace</text>
+
+  <rect x="325" y="150" width="340" height="320" class="box" fill="#dbeafe"/>
+  <text x="345" y="181" class="eyebrow">STEP 2</text><text x="345" y="211" class="h">Adapt + semantic validate</text>
+  <text x="345" y="244" class="mono">python examples/run_demo.py</text>
+  <text x="345" y="282" class="t">ICMA adapter mapping</text><text x="345" y="310" class="t">schema + ID/reference checks</text><text x="345" y="338" class="t">acyclic provenance + gold isolation</text>
+  <rect x="365" y="382" width="260" height="55" class="chip" fill="#ffffff"/>
+  <text x="421" y="416" class="mono">canonical.jsonl</text>
+
+  <rect x="705" y="150" width="300" height="320" class="box" fill="#ecfdf5"/>
+  <text x="725" y="181" class="eyebrow">STEP 3</text><text x="725" y="211" class="h">Deterministic score</text>
+  <text x="725" y="252" class="t">exact · numeric · categorical</text><text x="725" y="280" class="t">restricted symbolic rules</text><text x="725" y="308" class="t">explicit abstain / unscorable</text>
+  <rect x="745" y="357" width="220" height="64" rx="9" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="796" y="395" class="mono">scored.jsonl</text>
+  <text x="725" y="448" class="small">This file feeds every downstream branch.</text>
+
+  <rect x="1045" y="150" width="510" height="320" class="box" fill="#fef3c7"/>
+  <text x="1065" y="181" class="eyebrow">STEP 4</text><text x="1065" y="211" class="h">Audit + inspect</text>
+  <text x="1065" y="251" class="t">availability first · paired 2×2 cells</text><text x="1065" y="279" class="t">cost + provenance · explicit denominators</text>
+  <rect x="1085" y="320" width="205" height="78" class="chip" fill="#ffffff"/>
+  <text x="1129" y="350" class="mono">report.json</text><text x="1130" y="378" class="mono">index.html</text>
+  <rect x="1310" y="320" width="205" height="78" class="chip" fill="#ffffff"/>
+  <text x="1344" y="364" class="mono">manifest.json</text>
+  <text x="1065" y="435" class="small">One-case phi may be undefined—and remains undefined.</text>
+
+  <path d="M285 310 L325 310" class="flow"/><path d="M665 310 L705 310" class="flow"/><path d="M1005 310 L1045 310" class="flow"/>
+
+  <rect x="40" y="500" width="210" height="30" rx="15" fill="#dbeafe"/>
+  <text x="58" y="521" class="eyebrow" fill="#1d4ed8">OPTIONAL SIBLING BRANCHES</text>
+  <path d="M855 421 L855 505 L375 505 L375 550" class="branch"/>
+  <path d="M855 505 L1180 505 L1180 550" class="branch"/>
+
+  <rect x="75" y="550" width="600" height="180" class="optional" fill="#eff6ff"/>
+  <text x="100" y="583" class="eyebrow" fill="#1d4ed8">OPTION A · NORMALIZED REUSE</text>
+  <text x="100" y="615" class="h">export-parquet</text>
+  <text x="100" y="648" class="t">7 entity tables: episodes · sources · observations · evidence</text>
+  <text x="100" y="676" class="t">decisions · provenance_edges · labels</text>
+  <text x="100" y="706" class="small">Consumes scored.jsonl directly; it is not generated from report.json.</text>
+
+  <rect x="735" y="550" width="820" height="180" class="optional" fill="#eff6ff"/>
+  <text x="760" y="583" class="eyebrow" fill="#1d4ed8">OPTION B · REGISTERED PAPER OUTPUTS</text>
+  <text x="760" y="615" class="h">publish --config</text>
+  <text x="760" y="648" class="t">publication_data.json · 7 CSV tables · 3 accessible SVG figures</text>
+  <text x="760" y="676" class="t">3 figure sidecars · publication_manifest.json</text>
+  <text x="760" y="706" class="small">Consumes scored.jsonl + a registered configuration; refuses a nonempty output directory.</text>
+
+  <rect x="35" y="765" width="1520" height="82" rx="13" fill="#f8fafc" stroke="#64748b" stroke-width="1.6"/>
+  <text x="58" y="794" class="h">Reproducibility statement</text>
+  <text x="58" y="822" class="t">Fixed canonical episodes + analysis configuration/seed + tool version → same analytical content; manifests bind outputs to input/configuration hashes.</text>
+</svg>

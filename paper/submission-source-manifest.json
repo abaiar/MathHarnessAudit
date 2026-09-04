@@ -1,0 +1,1050 @@
+{
+  "format": "mathaudit-softwarex-submission-source-manifest-v1",
+  "candidate_version": "0.2.0",
+  "release_status": "local-candidate; public tag and archival DOI not asserted",
+  "scope": "Public software, tests, documentation, and aggregate paper reproduction inputs",
+  "file_count": 208,
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 2463,
+      "sha256": "645804cd543c50249ae6fd1774366fd806388dbaf7f42d5bd99a5dc1517d3e88"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 3910,
+      "sha256": "b33515a6b30867f32310621cd5a2b0d569b5f14fa9982c6c85ba5641b891d0f3"
+    },
+    {
+      "path": "CITATION.cff",
+      "bytes": 804,
+      "sha256": "107465cd9dcf839594d624d0f1bd6b681ee5d743a8f60430fdf01ea67b147cf4"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1086,
+      "sha256": "69bce27653ae8bb66ae0a4c25abcdfad01500337f4d7c97aeb69f9b70d1c38e4"
+    },
+    {
+      "path": "Licence.txt",
+      "bytes": 1086,
+      "sha256": "69bce27653ae8bb66ae0a4c25abcdfad01500337f4d7c97aeb69f9b70d1c38e4"
+    },
+    {
+      "path": "MANIFEST.in",
+      "bytes": 735,
+      "sha256": "ebfc5a355dfed4783cf960679eb0c4fb30271e60f0b1f8624b08368080161b80"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7015,
+      "sha256": "342c6b09b93fdbf9d85d211e9b6a24464f0aaf1027db67a48f15a762d2e58315"
+    },
+    {
+      "path": "docs/compatibility.md",
+      "bytes": 2570,
+      "sha256": "656dcf957b0cce97f99feb8f62e4d5b9d765b7512dcd4f51c7556185f36fc78c"
+    },
+    {
+      "path": "docs/migrating_to_v1.md",
+      "bytes": 1511,
+      "sha256": "1419c386c98f6d2c96864ce0c15752ec8825c8e0210ccff33a4d7e45c83e351c"
+    },
+    {
+      "path": "docs/related_work_matrix.md",
+      "bytes": 3763,
+      "sha256": "2fcc534e8d3bdde526a5c299b350461e7ae5a6f2980cf0919b53ad7a0d057a1d"
+    },
+    {
+      "path": "docs/research_governance.md",
+      "bytes": 2458,
+      "sha256": "b7ef6ae6d13a2b7ac26fee8dec7ef767c1646cd5fa70b09d75f14c5534822959"
+    },
+    {
+      "path": "docs/statistical_contract.md",
+      "bytes": 4975,
+      "sha256": "4941df0afdc8d73035f3de428a7558617caf6539d819e60a7bf9880609b219b4"
+    },
+    {
+      "path": "docs/troubleshooting.md",
+      "bytes": 2644,
+      "sha256": "39a4cf4a6ac29ad34fe0301938d2129cd52427a56dd92b8f8625d073c74f69b4"
+    },
+    {
+      "path": "docs/writing_an_adapter.md",
+      "bytes": 3814,
+      "sha256": "ed4bcde9802ee15b16b26d77ac555ff2db51338776cc97b0cfbb2d1b91f88bc0"
+    },
+    {
+      "path": "examples/README.md",
+      "bytes": 1116,
+      "sha256": "b34cef81fa2e5e7c98e473b1f6d1076f44b10ed04202d743a782b0d8220ce74a"
+    },
+    {
+      "path": "examples/fixtures/compute_authorization_pending.json",
+      "bytes": 3181,
+      "sha256": "7ee3e69604e09426e8dbb37d1a5834662c674c2697aa995e137f906583920aff"
+    },
+    {
+      "path": "examples/fixtures/icma/0.json",
+      "bytes": 784,
+      "sha256": "5268be2c2d71b4e9b637b5935332d8c5fd0134a5ce88f5b27a12abf010996d9f"
+    },
+    {
+      "path": "examples/fixtures/mathgoal_full.json",
+      "bytes": 1318,
+      "sha256": "c0294db729d31f49eac852703e8897ab8e8c68f094b6497809a5b7095216e91e"
+    },
+    {
+      "path": "examples/fixtures/mathrouter/1.json",
+      "bytes": 709,
+      "sha256": "723922c80dac369683a4f39fbac75ea892998a18af1b1826cea3cd309d481996"
+    },
+    {
+      "path": "examples/fixtures/otel.json",
+      "bytes": 1276,
+      "sha256": "19bb594e0c72289f4ad203d5a514467cef352d460b2455fa90b5cce48c41e9be"
+    },
+    {
+      "path": "examples/fixtures/problems.jsonl",
+      "bytes": 306,
+      "sha256": "36c7988408e512e07721c6189715ccaa5c2d9067e3acdae95e608ff6d78d7389"
+    },
+    {
+      "path": "examples/fixtures/publication_config.json",
+      "bytes": 572,
+      "sha256": "585e104a35701e4ef8c86fb295f6f26bc424c91db2ed90d324292b724e3468a2"
+    },
+    {
+      "path": "examples/fixtures/run_manifest.json",
+      "bytes": 2125,
+      "sha256": "cefb19de7751e021d81cf4ae232b305f5eee7a0d7e83b8e09e6048c56fdcb081"
+    },
+    {
+      "path": "examples/fixtures/sample_manifest.json",
+      "bytes": 1618,
+      "sha256": "1b159e2984de3240ab776e81fac9f6245f803074f471ee8ae760175a066a39c9"
+    },
+    {
+      "path": "examples/run_demo.py",
+      "bytes": 1813,
+      "sha256": "e754fcc7720bd975229a505045153449e77a0a93c9761d90893f9b82f7ad5ac4"
+    },
+    {
+      "path": "paper/README.md",
+      "bytes": 3262,
+      "sha256": "98732c7b966d20ae94dc882fdedd9897fb8ec6a104cb641036e9e875544b1322"
+    },
+    {
+      "path": "paper/build_submission_manifest.py",
+      "bytes": 4171,
+      "sha256": "cfd62e0245e26db0042ed45806f765e090edcee1ef5b63d56fcad8d755518440"
+    },
+    {
+      "path": "paper/citation-audit.md",
+      "bytes": 2464,
+      "sha256": "0cef342a88dee8339fab2fee997831aaa1b193a4b6562e1fb4fbb47d88ffab53"
+    },
+    {
+      "path": "paper/claim-ledger.json",
+      "bytes": 4167,
+      "sha256": "f91bdd3d42162194edb2db9d4d72cb43e21a51e4510437efba8833cdff137fc5"
+    },
+    {
+      "path": "paper/config/qualification-analysis-config-v0.1.json",
+      "bytes": 3783,
+      "sha256": "bacb9aa4cc0d28311829bc9b8ed20a206b19ca6aca6eaef25907bb4f2b15a549"
+    },
+    {
+      "path": "paper/data/analysis-deterministic-q14-v1.json",
+      "bytes": 392239,
+      "sha256": "bcbc7b21981273d0268f54e0811617ff4b4a026794ba349071dd74b8a853c904"
+    },
+    {
+      "path": "paper/experiment-validation.md",
+      "bytes": 6157,
+      "sha256": "ea58e9585a31d996d9b1248adb4087d2a17fc6c70610f8c3ec0a6e00662d924b"
+    },
+    {
+      "path": "paper/figures/five_minute_workflow.png",
+      "bytes": 93095,
+      "sha256": "41cd328170fb1c380ec2c3bf5fcc2def39f4be31461b785c08c3c47a05c3326c"
+    },
+    {
+      "path": "paper/figures/five_minute_workflow.svg",
+      "bytes": 6588,
+      "sha256": "b0bfe8990e16f71e865b0854459486bf11cc4075329f5301a72007a94c6e82b4"
+    },
+    {
+      "path": "paper/figures/software_architecture.png",
+      "bytes": 158355,
+      "sha256": "d27c4bfeab3bc74149f82356c439b8c6b3bd05a39751d6b5d73fa3a5be81b2ae"
+    },
+    {
+      "path": "paper/figures/software_architecture.svg",
+      "bytes": 11715,
+      "sha256": "bc39b7027a3df7d28b4bd5fcf7c35098d6f76816227e0312d6d99bb0fe7a75b4"
+    },
+    {
+      "path": "paper/references_final.bib",
+      "bytes": 6008,
+      "sha256": "13c337398615c68b516d553a71a8c23b0ad334a545155580464c6937fc776d28"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/figures/availability.svg",
+      "bytes": 35752,
+      "sha256": "55109451c0e3637cdfe5ea941ebc76e52344ec7d6404be3da1a48947720e4de4"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/figures/availability.svg.manifest.json",
+      "bytes": 802,
+      "sha256": "d8e633b222250deafeb3ef36d721e5d94dc6b341d22f4b1fcc1dc6f79934bc70"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/figures/dependence.svg",
+      "bytes": 3411,
+      "sha256": "92f06948cfb783ee40ae59bb713acc298e656bd957ebc36032a93303040ca940"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/figures/dependence.svg.manifest.json",
+      "bytes": 800,
+      "sha256": "f5926e0c39308c26de3aa3d51c3617717399077802453f1b372e79971ba9f3b2"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/figures/repair_harm.svg",
+      "bytes": 1950,
+      "sha256": "fe37f784fdcff78b9646befebb45ec84f202a96a9857fee61bc1944f21824624"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/figures/repair_harm.svg.manifest.json",
+      "bytes": 801,
+      "sha256": "66e700424366d5219d0c4904915b22efadc1683352c99fe2bdc87c6c61ca7aa0"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/figures/repetition.svg",
+      "bytes": 2379,
+      "sha256": "28517fc3153463d85a6f249a79ea641e7b5e19ba197f89a87b4129f3edeb68b8"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/figures/repetition.svg.manifest.json",
+      "bytes": 800,
+      "sha256": "04744f0b9fcd06ae488b2033671d84e44f1ff6379e91ca3027ac393f8adb22e0"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/publication-data.json",
+      "bytes": 1062,
+      "sha256": "1df7cd4ca97e6c1005040292c6cd5fb70d10283e2487cec102377a60fa35f2dc"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/publication-manifest.json",
+      "bytes": 3784,
+      "sha256": "c9442c5203141b2af3afa1e12ccb4ced26993d38003c6250f6cd3a4bf45a6ec2"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/availability.csv",
+      "bytes": 38893,
+      "sha256": "f79e0cfb2f7b0888b1b599cb5a95c3247e27bd9b18ab0ace39c207ee1a43fd6d"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/cofailure.csv",
+      "bytes": 1010,
+      "sha256": "3aa6ee46bd79036c29446cc28064005d7cbea9a8503119fbf677781b0aa16e4f"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/cost.csv",
+      "bytes": 21875,
+      "sha256": "67a54099eb04e057e3e7611aee3c77ddc41408e8b949fb6f78af58064f9775dc"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/effective_support.csv",
+      "bytes": 1366,
+      "sha256": "76ea14aff2a44acfea2ead9d26c9f4d82c013fb835dc3777e7fb11ef6496f600"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/exact_pairwise.csv",
+      "bytes": 1954,
+      "sha256": "e8f944ed4ff838e33e8e884053d4800ee799609b7c264a66e39aa915bff752de"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/final_outcomes.csv",
+      "bytes": 1520,
+      "sha256": "5f56b0552d49ac99c1d89a32290b3055d2934a9a6127f565d8642e9e524108db"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/source_type_pairwise.csv",
+      "bytes": 6651,
+      "sha256": "26b7d7ab368560318f16d360e3ea7f1ab3508208b582eed8dc70d177781af7da"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/text_repetition.csv",
+      "bytes": 1219,
+      "sha256": "ddafe1182c48391a1566c9d439b3420675b58350d5d7970cdc92cac61a4ac31a"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/transitions.csv",
+      "bytes": 1171,
+      "sha256": "7c0441c37bcc10b45b3d76ade49185b24bfb7f34f56802fcf4a2f952984002ee"
+    },
+    {
+      "path": "paper/results/deterministic-q14-v1/tables/utilization.csv",
+      "bytes": 889,
+      "sha256": "db52405853d50af646c6e8942778390ee2df15f7bc63c1ca6c6e15c90bf8dbf0"
+    },
+    {
+      "path": "paper/softwarex.tex",
+      "bytes": 28087,
+      "sha256": "6d4cacf9676c816a4b1add8cfd320fe25a66bfbc3ddd01cd173c152be209c611"
+    },
+    {
+      "path": "paper/submission-readiness-audit.md",
+      "bytes": 12536,
+      "sha256": "92ea6b474b24c4bde8b23671f1165030c72cbcdb4ddf680f22286f111fb6f2e6"
+    },
+    {
+      "path": "paper/verify_claims.py",
+      "bytes": 3116,
+      "sha256": "e480c95af1e7fff3b26d6f06cb85dd8fb900a7d2f2ddbaf85fc00aed011e8a12"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 2096,
+      "sha256": "7822c9b1e565ec7682fef844a55e05388890fd18d82dcbd18364de5dc020c532"
+    },
+    {
+      "path": "schemas/mathaudit-compute-authorization-v0.1.schema.json",
+      "bytes": 5242,
+      "sha256": "93fed865654557b3cb2eb90470ece05434b1ece8886bb332fd6f3231605d4d54"
+    },
+    {
+      "path": "schemas/mathaudit-compute-authorization-v0.2.schema.json",
+      "bytes": 6318,
+      "sha256": "87b70010e4dd8a4d598fd4bf3ec6fca0c9f7be06e1551ed5b9a05de436842fca"
+    },
+    {
+      "path": "schemas/mathaudit-compute-authorization-v0.3.schema.json",
+      "bytes": 9584,
+      "sha256": "94e0cb2fc5cdf7ec8bf049c7cfcfa31ac5fbe849ccac8867170eb54466b40286"
+    },
+    {
+      "path": "schemas/mathaudit-compute-authorization-v0.4.schema.json",
+      "bytes": 9853,
+      "sha256": "975d515b64df13801f47998ff198d4825103da13edfa0ff83fe5f15322498227"
+    },
+    {
+      "path": "schemas/mathaudit-compute-authorization-v0.5.schema.json",
+      "bytes": 11348,
+      "sha256": "18b84254cd6c3b4b4b8559cbabf0b071388f94f146289e9b7380eb5539db98e9"
+    },
+    {
+      "path": "schemas/mathaudit-deviation-event-v0.1.schema.json",
+      "bytes": 1363,
+      "sha256": "7a3d1c255873f3f23665d2a59f4a59d93984442541227438a1a05a61595d3c42"
+    },
+    {
+      "path": "schemas/mathaudit-episode-v0.1.schema.json",
+      "bytes": 12304,
+      "sha256": "b93c866d47d63bae6729b19c4e281234063ebb596d7fd650e83a3d76a7684b78"
+    },
+    {
+      "path": "schemas/mathaudit-episode-v1.0.schema.json",
+      "bytes": 12304,
+      "sha256": "db60feef3d7131308d90d7c187ec7338d06e981e9e0b302123528de3bd84bc74"
+    },
+    {
+      "path": "schemas/mathaudit-mathgoal-partial-trace-v0.1.schema.json",
+      "bytes": 1211,
+      "sha256": "cff648df8d26677e6ecef849eb4ded7172ab6032522ce952bdd9f13641e70be8"
+    },
+    {
+      "path": "schemas/mathaudit-publication-config-v0.1.schema.json",
+      "bytes": 2034,
+      "sha256": "caea7ea3e51468b9b23a73ae96a5c18131c7e3a6f314f27339cba40fa1d0b50c"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-adjudication-input-v0.1.schema.json",
+      "bytes": 1646,
+      "sha256": "ee13ce556c0d0a617b1a076585f4d749c6d6d4f55a46e48aaabdd2edd7b1588e"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-analysis-config-v0.1.schema.json",
+      "bytes": 2628,
+      "sha256": "97c35ed43160f53f00fcde3d183bfdf1e53e4c7df46f359348f13fff06969e0b"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-analysis-v0.1.schema.json",
+      "bytes": 3102,
+      "sha256": "e0456b94f21b6f0a6e54928290426d4a6acdf41ae1bacd4dd55ef6f0bb8b8f05"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-budget-ledger-v0.1.schema.json",
+      "bytes": 4737,
+      "sha256": "66ff4f15ec5900b61ee17d35a5e494390b944bf32c41aabc7e22748403bd98fc"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-closeout-v0.1.schema.json",
+      "bytes": 1656,
+      "sha256": "50ca9c5d88283ce96ef27aeb01bc691287d59b04daa49de71e987bf3f12895ee"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-composite-index-v0.3.schema.json",
+      "bytes": 1667,
+      "sha256": "70a364b708e7f0190b849ced807e31b7b9be195527033a81dd8251ba964826cd"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-composite-v0.1.schema.json",
+      "bytes": 3134,
+      "sha256": "d50a238acc34e27174c7c672659be3ffa9a3bad3681fb674592fd7ac72948b1b"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-composite-v0.2.schema.json",
+      "bytes": 3477,
+      "sha256": "3742047fafc7f0b4beb8f49a6502d802e58790d3d0deb257c236b52431063c16"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-composite-v0.3.schema.json",
+      "bytes": 4097,
+      "sha256": "bb63253461fe96cc2d6ba661d4214671ca1a7b6fc5dfa11279ca1fadd58d67a8"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-execution-plan-v0.1.schema.json",
+      "bytes": 3199,
+      "sha256": "3624c6f71ea595fcaf7d283e12ebf04342b12f3f116355499c97d65ba2d2eb85"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-execution-plan-v0.2.schema.json",
+      "bytes": 4230,
+      "sha256": "ef4ac06970de2ed8418c278bd2d9abe9f8bd599e50019aec472ec456d4371874"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-execution-plan-v0.3.schema.json",
+      "bytes": 5850,
+      "sha256": "0af82563a0c85cddd1cf88a0412bf8574a26adc42b5372e701436dda1a5cea9c"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-execution-plan-v0.4.schema.json",
+      "bytes": 5850,
+      "sha256": "e84c558d66f5947eb915e1b86ba76a99aceb949fa829c349ee739d3033ac8c17"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-execution-plan-v0.5.schema.json",
+      "bytes": 6721,
+      "sha256": "3dc1137f3330673d2be9e6b755a1262dddf9a49ac2f955d2526e573a8fd5298a"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-executor-state-v0.1.schema.json",
+      "bytes": 3922,
+      "sha256": "7c44912a6decef12f5967ed3e5df8dc98dbde056d709a831896da9505917fe91"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-executor-state-v0.2.schema.json",
+      "bytes": 4287,
+      "sha256": "3d4b7461806b6b0fe60580349beadcb29f5bf1562c49c6edb76aefa42b160f99"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-executor-state-v0.3.schema.json",
+      "bytes": 4923,
+      "sha256": "9823da60e6c755c498242789cc5a131fa0686152fded0fb4d701e919f80c3d3f"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-executor-state-v0.4.schema.json",
+      "bytes": 5522,
+      "sha256": "4173d60f7c87202c4b0c7da4550126acc587142cc76a18d6bca448c0a4b587ec"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-forecast-v0.1.schema.json",
+      "bytes": 4198,
+      "sha256": "ae26dc57e10b0663113044b5ead6e57f7472e59e067007abd0467c8ecb2bc8b7"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-health-v0.1.schema.json",
+      "bytes": 5595,
+      "sha256": "f3a10fc7f02d2d9b484f1653d1c602164bd084ad8c9632adc8192a67424d341a"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-health-v0.2.schema.json",
+      "bytes": 5649,
+      "sha256": "4f59bb35b33cd7fbf483d1ca5d8ac3a0f413e9a6127b52f8334752a35244354f"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-publication-data-v0.1.schema.json",
+      "bytes": 2762,
+      "sha256": "82fb3ade6d7c085e1dde70175527e0bb3dd8603d77c0438204d4862b7b6b27e5"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-publication-manifest-v0.1.schema.json",
+      "bytes": 2081,
+      "sha256": "c23798ee9de33ccf00db97f428339f1c818066cab140ab056801cd3a3b8f25fa"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-scoring-v0.1.schema.json",
+      "bytes": 2283,
+      "sha256": "e1c12f743731fe5fe6b764af4fc60b76e647d3f8ed33e1462b18f4ad7cd3359b"
+    },
+    {
+      "path": "schemas/mathaudit-qualification-scoring-v0.2.schema.json",
+      "bytes": 2811,
+      "sha256": "c3dbeec3c49b0785277f73847bd503f461a48420ba81867061ab05eff334959e"
+    },
+    {
+      "path": "schemas/mathaudit-reference-audit-scale-decision-v0.1.schema.json",
+      "bytes": 1994,
+      "sha256": "6977f20a14b28b575f61f92217c4c268859e7d2780131941700e4d334cdd4499"
+    },
+    {
+      "path": "schemas/mathaudit-run-manifest-replacement-v0.1.schema.json",
+      "bytes": 10408,
+      "sha256": "ae3bb3ac1f7d20e5020644bd32956402cc77794e2d101e202a3bcf024a14baad"
+    },
+    {
+      "path": "schemas/mathaudit-run-manifest-v0.1.schema.json",
+      "bytes": 6917,
+      "sha256": "f59fecf9996732bee6683b49e813aafaca68619968c51815205f0c5a2084d962"
+    },
+    {
+      "path": "schemas/mathaudit-sample-manifest-v0.1.schema.json",
+      "bytes": 4584,
+      "sha256": "ab56eeb1fcad4e8814922878d5d47569c6cdb8a5b397452849c47681cff9547f"
+    },
+    {
+      "path": "schemas/mathaudit-source-fingerprint-v0.1.schema.json",
+      "bytes": 1615,
+      "sha256": "c9fcc403829b56d6eea32bf344d52c66c0281e1de73a890fa6b8f4af31c0cbab"
+    },
+    {
+      "path": "schemas/mathaudit-v1-compatibility.json",
+      "bytes": 1283,
+      "sha256": "ca2c8e403b9f785846268d2339ba8a3b2e01004cf9f2f04fc5299f4722f43835"
+    },
+    {
+      "path": "src/mathaudit/__init__.py",
+      "bytes": 238,
+      "sha256": "da88ee9b1038837684d6bdbbb889306fbd0089f41d584e465aa19521342cbcf2"
+    },
+    {
+      "path": "src/mathaudit/__main__.py",
+      "bytes": 60,
+      "sha256": "9d9b1fbde464bd8db8ca3867f0de7fcf61f0d67495795ef9ab430c172e60e737"
+    },
+    {
+      "path": "src/mathaudit/adapters/__init__.py",
+      "bytes": 636,
+      "sha256": "0fd6fa85f6373bccc1766b40093af408b2d1da6d4723d6a3eb22bcc40181b712"
+    },
+    {
+      "path": "src/mathaudit/adapters/base.py",
+      "bytes": 1279,
+      "sha256": "95b8f8b516f88073e60d6dce8dc210f8b4529d38ee429552a6067114f7499b7a"
+    },
+    {
+      "path": "src/mathaudit/adapters/canonical.py",
+      "bytes": 666,
+      "sha256": "7c5207e29026b8bc1d6580a2cfa746ea17ae55daefb57569f73150e0355eb66e"
+    },
+    {
+      "path": "src/mathaudit/adapters/common.py",
+      "bytes": 3253,
+      "sha256": "7e23e26ee18fe9d70a1ef18e5f83be83d61baf52525397a17429ff13d98d2ba5"
+    },
+    {
+      "path": "src/mathaudit/adapters/icma.py",
+      "bytes": 14576,
+      "sha256": "101d74ec673fdba0167ad882268856cc9ad3ab4586438d2e20689ace517d89da"
+    },
+    {
+      "path": "src/mathaudit/adapters/mathgoal.py",
+      "bytes": 23310,
+      "sha256": "4f77afc69e26e4ab38fce639af2dd249e9822caf660f88562be946b3383d7b69"
+    },
+    {
+      "path": "src/mathaudit/adapters/mathrouter.py",
+      "bytes": 16837,
+      "sha256": "bc158f75f2d512d55a8e9c490d7706029bb909e069d84edc3b51c0c02d8112ef"
+    },
+    {
+      "path": "src/mathaudit/adapters/otel.py",
+      "bytes": 10381,
+      "sha256": "ff5ae7ac817811649064136ccaaefc592068b7161d187a4a03682484176a1b1d"
+    },
+    {
+      "path": "src/mathaudit/adjudication.py",
+      "bytes": 28726,
+      "sha256": "039c36ea1cb6269b7a1ae0779b976c43e1f32a2b5bbf228807fe1917e28df9a5"
+    },
+    {
+      "path": "src/mathaudit/budget.py",
+      "bytes": 19426,
+      "sha256": "364bc46cbc29bc7f9e63de0ec60a2ba5779e4cbee97f5f005e3e83426b39e5a8"
+    },
+    {
+      "path": "src/mathaudit/cli.py",
+      "bytes": 45743,
+      "sha256": "1b0cc35ec46ad8e0c3c3efc6d2e471736f2d65148b146743d811b0df2c7765d0"
+    },
+    {
+      "path": "src/mathaudit/coverage.py",
+      "bytes": 1984,
+      "sha256": "eecee3e4f6a44c6c3a81093fcc3f9d486c63df2fae7715003fdd6e19f72579cc"
+    },
+    {
+      "path": "src/mathaudit/execution.py",
+      "bytes": 29411,
+      "sha256": "f57ccaec9b83b04d3c77eae59e1882ba440173b1e3e72bb7e0fd23223206e7ac"
+    },
+    {
+      "path": "src/mathaudit/executor_state.py",
+      "bytes": 3271,
+      "sha256": "a96fd55240ad589ede1b75999c96856d1c0c09f9723fd128eb2fa353f7280e53"
+    },
+    {
+      "path": "src/mathaudit/fingerprint.py",
+      "bytes": 5395,
+      "sha256": "f0094a5fcd4dbfde589ccfcea6185c1387da42b4db46d753a651e9ddc480b57a"
+    },
+    {
+      "path": "src/mathaudit/hashing.py",
+      "bytes": 708,
+      "sha256": "3449161a5ba9542baf129f18b68a97b34973e4befb795eaba592af961a9859e2"
+    },
+    {
+      "path": "src/mathaudit/ingest.py",
+      "bytes": 6000,
+      "sha256": "280c026eb09979f1d7b36b015df372692bf2b10e4f7049e96c3c583ce73251a8"
+    },
+    {
+      "path": "src/mathaudit/io.py",
+      "bytes": 1739,
+      "sha256": "2cd1eb2d4945a24b8b22ec47d1e6adea6f5b5839dc27f85b1006a4f6d531674d"
+    },
+    {
+      "path": "src/mathaudit/locking.py",
+      "bytes": 2450,
+      "sha256": "d27ad15e568109c115db56a218bccdba6c0a98c9fac79f8205d49bcedf35532c"
+    },
+    {
+      "path": "src/mathaudit/metrics.py",
+      "bytes": 31144,
+      "sha256": "bd54b9ae70856ed1e99cd97d4c5a254bab7898b83332d1d66febe2ac092782cd"
+    },
+    {
+      "path": "src/mathaudit/migration.py",
+      "bytes": 1400,
+      "sha256": "911a9d41b2252807fc50416789e0d221f662f2a55d28f59898c3ca6b9e47fe67"
+    },
+    {
+      "path": "src/mathaudit/models.py",
+      "bytes": 9752,
+      "sha256": "e1f960f1198a0c2d1b27c40080a146dc701cf674baf3cd9f7dc3d763fb1d46da"
+    },
+    {
+      "path": "src/mathaudit/parquet.py",
+      "bytes": 4887,
+      "sha256": "3396755593d2c7e548dbcac7b7302b5b25913b56542a47cd6f83ce14d11ec2e8"
+    },
+    {
+      "path": "src/mathaudit/publication.py",
+      "bytes": 27689,
+      "sha256": "279b60262292b993e01fa311f9891e4632a08fe9387a2af90732b6898714ab91"
+    },
+    {
+      "path": "src/mathaudit/qualification.py",
+      "bytes": 52115,
+      "sha256": "0b45fba8dc0d80ec542c6a4e7cd325a8a345f447e85ba7624ea3def5c8acaed1"
+    },
+    {
+      "path": "src/mathaudit/qualification_analysis.py",
+      "bytes": 14279,
+      "sha256": "dff126ae3e20d6e772cf29f3f27acc83132976524bb3d20895343c6c0e6043a9"
+    },
+    {
+      "path": "src/mathaudit/qualification_closeout.py",
+      "bytes": 24405,
+      "sha256": "78b36c8800361fa8509c1f38b54652ce43bb03c16e996fd1b3c4555cbaaa3999"
+    },
+    {
+      "path": "src/mathaudit/qualification_composite.py",
+      "bytes": 39046,
+      "sha256": "26b12e470309be24de48fac894b73649454bb646fa4fbab797318156d92abf2e"
+    },
+    {
+      "path": "src/mathaudit/qualification_forecast.py",
+      "bytes": 6725,
+      "sha256": "25cfc7737e2e023ed2e591b2a561711749170a435a0ad6138bad58b55813ecda"
+    },
+    {
+      "path": "src/mathaudit/qualification_publication.py",
+      "bytes": 29315,
+      "sha256": "4e845d734973e208c61d456e36628b3d0304c89c7f41da072919722d7fcb327c"
+    },
+    {
+      "path": "src/mathaudit/qualification_scoring.py",
+      "bytes": 16154,
+      "sha256": "093f91da04574209a2a5dba715a13ed3a4cd9f7e738d3f4e5cf51ab4a7e5e31d"
+    },
+    {
+      "path": "src/mathaudit/report.py",
+      "bytes": 11746,
+      "sha256": "5316f21f6c459aa8e040fc3530989411fc67ae9f9e412613511efcfde0e779ec"
+    },
+    {
+      "path": "src/mathaudit/runprep.py",
+      "bytes": 11253,
+      "sha256": "e270c40cc5c5e7faba415ca8868167706ee6ad19c0b98f3aeebc0b7d32c57331"
+    },
+    {
+      "path": "src/mathaudit/sampling.py",
+      "bytes": 10272,
+      "sha256": "e6252cc8107442f8f1e9c9115687195b3d774e1bd12d864bb348d8a5fd7851bc"
+    },
+    {
+      "path": "src/mathaudit/schema_resources.py",
+      "bytes": 1459,
+      "sha256": "99daeb3df0f0652e39dfbc816a8972c909db5f291e0011af9f6af7599f09fc3e"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-compute-authorization-v0.1.schema.json",
+      "bytes": 5242,
+      "sha256": "93fed865654557b3cb2eb90470ece05434b1ece8886bb332fd6f3231605d4d54"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-compute-authorization-v0.2.schema.json",
+      "bytes": 6318,
+      "sha256": "87b70010e4dd8a4d598fd4bf3ec6fca0c9f7be06e1551ed5b9a05de436842fca"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-compute-authorization-v0.3.schema.json",
+      "bytes": 9584,
+      "sha256": "94e0cb2fc5cdf7ec8bf049c7cfcfa31ac5fbe849ccac8867170eb54466b40286"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-compute-authorization-v0.4.schema.json",
+      "bytes": 9853,
+      "sha256": "975d515b64df13801f47998ff198d4825103da13edfa0ff83fe5f15322498227"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-compute-authorization-v0.5.schema.json",
+      "bytes": 11348,
+      "sha256": "18b84254cd6c3b4b4b8559cbabf0b071388f94f146289e9b7380eb5539db98e9"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-deviation-event-v0.1.schema.json",
+      "bytes": 1363,
+      "sha256": "7a3d1c255873f3f23665d2a59f4a59d93984442541227438a1a05a61595d3c42"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-episode-v0.1.schema.json",
+      "bytes": 12304,
+      "sha256": "b93c866d47d63bae6729b19c4e281234063ebb596d7fd650e83a3d76a7684b78"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-episode-v1.0.schema.json",
+      "bytes": 12304,
+      "sha256": "db60feef3d7131308d90d7c187ec7338d06e981e9e0b302123528de3bd84bc74"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-mathgoal-partial-trace-v0.1.schema.json",
+      "bytes": 1211,
+      "sha256": "cff648df8d26677e6ecef849eb4ded7172ab6032522ce952bdd9f13641e70be8"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-publication-config-v0.1.schema.json",
+      "bytes": 2034,
+      "sha256": "caea7ea3e51468b9b23a73ae96a5c18131c7e3a6f314f27339cba40fa1d0b50c"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-adjudication-input-v0.1.schema.json",
+      "bytes": 1646,
+      "sha256": "ee13ce556c0d0a617b1a076585f4d749c6d6d4f55a46e48aaabdd2edd7b1588e"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-analysis-config-v0.1.schema.json",
+      "bytes": 2628,
+      "sha256": "97c35ed43160f53f00fcde3d183bfdf1e53e4c7df46f359348f13fff06969e0b"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-analysis-v0.1.schema.json",
+      "bytes": 3102,
+      "sha256": "e0456b94f21b6f0a6e54928290426d4a6acdf41ae1bacd4dd55ef6f0bb8b8f05"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-budget-ledger-v0.1.schema.json",
+      "bytes": 4737,
+      "sha256": "66ff4f15ec5900b61ee17d35a5e494390b944bf32c41aabc7e22748403bd98fc"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-closeout-v0.1.schema.json",
+      "bytes": 1656,
+      "sha256": "50ca9c5d88283ce96ef27aeb01bc691287d59b04daa49de71e987bf3f12895ee"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-composite-index-v0.3.schema.json",
+      "bytes": 1667,
+      "sha256": "70a364b708e7f0190b849ced807e31b7b9be195527033a81dd8251ba964826cd"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-composite-v0.1.schema.json",
+      "bytes": 3134,
+      "sha256": "d50a238acc34e27174c7c672659be3ffa9a3bad3681fb674592fd7ac72948b1b"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-composite-v0.2.schema.json",
+      "bytes": 3477,
+      "sha256": "3742047fafc7f0b4beb8f49a6502d802e58790d3d0deb257c236b52431063c16"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-composite-v0.3.schema.json",
+      "bytes": 4097,
+      "sha256": "bb63253461fe96cc2d6ba661d4214671ca1a7b6fc5dfa11279ca1fadd58d67a8"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-execution-plan-v0.1.schema.json",
+      "bytes": 3199,
+      "sha256": "3624c6f71ea595fcaf7d283e12ebf04342b12f3f116355499c97d65ba2d2eb85"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-execution-plan-v0.2.schema.json",
+      "bytes": 4230,
+      "sha256": "ef4ac06970de2ed8418c278bd2d9abe9f8bd599e50019aec472ec456d4371874"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-execution-plan-v0.3.schema.json",
+      "bytes": 5850,
+      "sha256": "0af82563a0c85cddd1cf88a0412bf8574a26adc42b5372e701436dda1a5cea9c"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-execution-plan-v0.4.schema.json",
+      "bytes": 5850,
+      "sha256": "e84c558d66f5947eb915e1b86ba76a99aceb949fa829c349ee739d3033ac8c17"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-execution-plan-v0.5.schema.json",
+      "bytes": 6721,
+      "sha256": "3dc1137f3330673d2be9e6b755a1262dddf9a49ac2f955d2526e573a8fd5298a"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-executor-state-v0.1.schema.json",
+      "bytes": 3922,
+      "sha256": "7c44912a6decef12f5967ed3e5df8dc98dbde056d709a831896da9505917fe91"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-executor-state-v0.2.schema.json",
+      "bytes": 4287,
+      "sha256": "3d4b7461806b6b0fe60580349beadcb29f5bf1562c49c6edb76aefa42b160f99"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-executor-state-v0.3.schema.json",
+      "bytes": 4923,
+      "sha256": "9823da60e6c755c498242789cc5a131fa0686152fded0fb4d701e919f80c3d3f"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-executor-state-v0.4.schema.json",
+      "bytes": 5522,
+      "sha256": "4173d60f7c87202c4b0c7da4550126acc587142cc76a18d6bca448c0a4b587ec"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-forecast-v0.1.schema.json",
+      "bytes": 4198,
+      "sha256": "ae26dc57e10b0663113044b5ead6e57f7472e59e067007abd0467c8ecb2bc8b7"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-health-v0.1.schema.json",
+      "bytes": 5595,
+      "sha256": "f3a10fc7f02d2d9b484f1653d1c602164bd084ad8c9632adc8192a67424d341a"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-health-v0.2.schema.json",
+      "bytes": 5649,
+      "sha256": "4f59bb35b33cd7fbf483d1ca5d8ac3a0f413e9a6127b52f8334752a35244354f"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-publication-data-v0.1.schema.json",
+      "bytes": 2762,
+      "sha256": "82fb3ade6d7c085e1dde70175527e0bb3dd8603d77c0438204d4862b7b6b27e5"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-publication-manifest-v0.1.schema.json",
+      "bytes": 2081,
+      "sha256": "c23798ee9de33ccf00db97f428339f1c818066cab140ab056801cd3a3b8f25fa"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-scoring-v0.1.schema.json",
+      "bytes": 2283,
+      "sha256": "e1c12f743731fe5fe6b764af4fc60b76e647d3f8ed33e1462b18f4ad7cd3359b"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-qualification-scoring-v0.2.schema.json",
+      "bytes": 2811,
+      "sha256": "c3dbeec3c49b0785277f73847bd503f461a48420ba81867061ab05eff334959e"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-reference-audit-scale-decision-v0.1.schema.json",
+      "bytes": 1994,
+      "sha256": "6977f20a14b28b575f61f92217c4c268859e7d2780131941700e4d334cdd4499"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-run-manifest-replacement-v0.1.schema.json",
+      "bytes": 10408,
+      "sha256": "ae3bb3ac1f7d20e5020644bd32956402cc77794e2d101e202a3bcf024a14baad"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-run-manifest-v0.1.schema.json",
+      "bytes": 6917,
+      "sha256": "f59fecf9996732bee6683b49e813aafaca68619968c51815205f0c5a2084d962"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-sample-manifest-v0.1.schema.json",
+      "bytes": 4584,
+      "sha256": "ab56eeb1fcad4e8814922878d5d47569c6cdb8a5b397452849c47681cff9547f"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-source-fingerprint-v0.1.schema.json",
+      "bytes": 1615,
+      "sha256": "c9fcc403829b56d6eea32bf344d52c66c0281e1de73a890fa6b8f4af31c0cbab"
+    },
+    {
+      "path": "src/mathaudit/schemas/mathaudit-v1-compatibility.json",
+      "bytes": 1283,
+      "sha256": "ca2c8e403b9f785846268d2339ba8a3b2e01004cf9f2f04fc5299f4722f43835"
+    },
+    {
+      "path": "src/mathaudit/scoring.py",
+      "bytes": 10191,
+      "sha256": "d86ceb92d37839e2570dba9fd4f97da5e60ccdf7078e150669febc6c907cda88"
+    },
+    {
+      "path": "src/mathaudit/validation.py",
+      "bytes": 8669,
+      "sha256": "7b94d4cf09be44b0182e41bdd5d8679dfbe27a446e2f4572986c6959a9066694"
+    },
+    {
+      "path": "tests/conftest.py",
+      "bytes": 4072,
+      "sha256": "5804653407228f1b2f3b422521f53c5957acccf7035c082dc2fab19ef55949bc"
+    },
+    {
+      "path": "tests/test_adapters.py",
+      "bytes": 4032,
+      "sha256": "05a855dd865261316680c74acd952c5bda457e6b0210c346dc4323c490a1eeca"
+    },
+    {
+      "path": "tests/test_adjudication.py",
+      "bytes": 10051,
+      "sha256": "176de5a8f6c8fcd7bebad3b6ead0015aaa07fbbb3ea414fdf911005ab9d8014b"
+    },
+    {
+      "path": "tests/test_budget.py",
+      "bytes": 9773,
+      "sha256": "3276e7252ff375b7af85f7ded888e5cc58f018c02661c0e35c3785b0fd376e8a"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "bytes": 13487,
+      "sha256": "779d982a9e58cd7e1d8d5eb458243dea508536f86e72ff16039d8fc35608c1e8"
+    },
+    {
+      "path": "tests/test_execution.py",
+      "bytes": 17834,
+      "sha256": "c00fb74ff057b542e829dca2be080339a10efc74b429e8252dff8b446690f8b4"
+    },
+    {
+      "path": "tests/test_executor_state.py",
+      "bytes": 2685,
+      "sha256": "c72e04a92e06cc2e70faffc0e1039badaf02bd61bbe3d2c31e2cecba112cccaa"
+    },
+    {
+      "path": "tests/test_fingerprint.py",
+      "bytes": 2751,
+      "sha256": "2406c197a2f09c006e6d2ca3bc976f86557ec987313f83ca3deb1fc88f563c69"
+    },
+    {
+      "path": "tests/test_hashing.py",
+      "bytes": 471,
+      "sha256": "ba63b8149971a8e15df166548c2561fa5e0a22654fa6816b9ea82f82f36d4565"
+    },
+    {
+      "path": "tests/test_locking.py",
+      "bytes": 855,
+      "sha256": "6ead97af8ee59c302891267d451c69af21c60802e0373be18f7db7f1433ef911"
+    },
+    {
+      "path": "tests/test_metrics.py",
+      "bytes": 11993,
+      "sha256": "f9b09ee8d2c6fcec1f471fd1ca89fae5bd9d98cb3fcd47af8f3601eda0179a3c"
+    },
+    {
+      "path": "tests/test_migration.py",
+      "bytes": 3677,
+      "sha256": "1a1f557898f6613fe3fd76fb068a47d0dd82bce95ae7bab3be39b96b82424bdd"
+    },
+    {
+      "path": "tests/test_parquet.py",
+      "bytes": 660,
+      "sha256": "4d38cfcb9a02e3df3c9a6c6cecb2a4e090fdb1f929af0ce94b9da069801ce097"
+    },
+    {
+      "path": "tests/test_publication.py",
+      "bytes": 3859,
+      "sha256": "f55713a5008624d765be6cbc878678a899231294fbfc0cee719354be774d8b92"
+    },
+    {
+      "path": "tests/test_qualification.py",
+      "bytes": 19596,
+      "sha256": "df3cb40cf6fceca765105b7a5c9fe6cceb4494e02f00fca2d8e761cdab5f0582"
+    },
+    {
+      "path": "tests/test_qualification_closeout.py",
+      "bytes": 16476,
+      "sha256": "54c218484811af954a7dccc1f499e17696a64cefc8d61bd87b5d2bc532abbed7"
+    },
+    {
+      "path": "tests/test_qualification_composite.py",
+      "bytes": 37467,
+      "sha256": "f92e459547e3daa90877bd7c162ce5341d66b1fbcc1dbcbff2f62f5564856869"
+    },
+    {
+      "path": "tests/test_qualification_forecast.py",
+      "bytes": 2817,
+      "sha256": "e2821e81acabad5e6a16b8dea3910d6c18f3a79358492dd223f0f87c288a970a"
+    },
+    {
+      "path": "tests/test_report.py",
+      "bytes": 1035,
+      "sha256": "72acffedf0ea28a5d5331576340ae4b1d71f66505849e0cb84d0770cb758ff7f"
+    },
+    {
+      "path": "tests/test_runprep.py",
+      "bytes": 5290,
+      "sha256": "61c40e9b748778eefdc9cf63c2d1f763d794c5db104940bd03790d6daa7b2893"
+    },
+    {
+      "path": "tests/test_sampling.py",
+      "bytes": 4815,
+      "sha256": "7b1655e62752cb87af8ede75e6789cad1f1add6af588f32097c1d87b140ca835"
+    },
+    {
+      "path": "tests/test_schema.py",
+      "bytes": 12961,
+      "sha256": "80863ec24460e0c47998bcc9a7c07566345091932d0e8d611478bc139ab7719d"
+    },
+    {
+      "path": "tests/test_schema_resources.py",
+      "bytes": 1917,
+      "sha256": "82657d604a65e3340259bef08519440ca3a357fe1badbcc4211a7a637b6921ee"
+    },
+    {
+      "path": "tests/test_scoring.py",
+      "bytes": 1255,
+      "sha256": "eaa7884565ae33f5e98e51b9d88fde8995172d848c36a6878fa8240b0ab2b50e"
+    },
+    {
+      "path": "tests/test_validation.py",
+      "bytes": 2294,
+      "sha256": "f689af0812f13d009206ab01d92db5a7aa2fde8029d21c7bd7b7b3f6926a58c7"
+    },
+    {
+      "path": "uv.lock",
+      "bytes": 361055,
+      "sha256": "3e1792434d7ec50fa03ffe9bf6a219505b15fee77f26dd0fea3d12e012356b87"
+    }
+  ],
+  "self_sha256": "196f83aa38fbe61e487bea62513b4203f623235ac08a3e44766810cc2c8943d2"
+}

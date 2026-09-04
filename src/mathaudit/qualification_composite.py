@@ -153,9 +153,7 @@ def assemble_qualification_composite(
         row.get("sequence") for row in continuation_entries
     ] != list(range(restart, 150)):
         raise ValueError("continuation plan does not cover the exact frozen suffix")
-    for observed, expected in zip(
-        continuation_entries, source_entries[restart:], strict=True
-    ):
+    for observed, expected in zip(continuation_entries, source_entries[restart:], strict=True):
         for field in (
             "sequence",
             "task_position",
@@ -190,9 +188,11 @@ def assemble_qualification_composite(
         raise ValueError("restart boundary was not failed in the prefix state")
     if continuation_state.get("status") != "completed":
         raise ValueError("continuation state is not completed")
-    if not isinstance(suffix_rows, list) or [row.get("sequence") for row in suffix_rows] != list(
-        range(restart, 150)
-    ) or any(row.get("status") != "completed" for row in suffix_rows):
+    if (
+        not isinstance(suffix_rows, list)
+        or [row.get("sequence") for row in suffix_rows] != list(range(restart, 150))
+        or any(row.get("status") != "completed" for row in suffix_rows)
+    ):
         raise ValueError("continuation state is not the complete registered suffix")
 
     prefix_closeout, prefix_paths = _canonical_paths(prefix_closeout_dir)
@@ -258,9 +258,7 @@ def assemble_qualification_composite(
     }
     index["index_sha256"] = sha256_json(index)
     index_path = output_dir / "sequence-index.json"
-    index_path.write_text(
-        json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    index_path.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     manifest = {
         "format": COMPOSITE_FORMAT,
         "source_plan_sha256": source_plan["plan_sha256"],
@@ -310,10 +308,7 @@ def assemble_qualification_lineage_composite(
 
     if output_dir.exists() and any(output_dir.iterdir()):
         raise FileExistsError("composite output directory must be absent or empty")
-    if not (
-        len(plan_paths) == len(state_paths) == len(closeout_dirs)
-        and len(plan_paths) >= 2
-    ):
+    if not (len(plan_paths) == len(state_paths) == len(closeout_dirs) and len(plan_paths) >= 2):
         raise ValueError("lineage requires equal plan/state/closeout lists of length at least two")
 
     plans = [_load_object(path) for path in plan_paths]
@@ -327,9 +322,9 @@ def assemble_qualification_lineage_composite(
     if root_plan.get("format") != "mathaudit-qualification-execution-plan-v0.1":
         raise ValueError("lineage root must be the full qualification v0.1 plan")
     root_entries = root_plan.get("entries")
-    if not isinstance(root_entries, list) or [
-        row.get("sequence") for row in root_entries
-    ] != list(range(150)):
+    if not isinstance(root_entries, list) or [row.get("sequence") for row in root_entries] != list(
+        range(150)
+    ):
         raise ValueError("lineage root plan must contain sequences 0-149")
 
     starts: List[int] = []
@@ -353,10 +348,8 @@ def assemble_qualification_lineage_composite(
             if (
                 continuation.get("source_authorization_id")
                 != previous_state.get("authorization_id")
-                or continuation.get("source_plan_sha256")
-                != previous_plan.get("plan_sha256")
-                or continuation.get("source_state_sha256")
-                != previous_state.get("state_sha256")
+                or continuation.get("source_plan_sha256") != previous_plan.get("plan_sha256")
+                or continuation.get("source_state_sha256") != previous_state.get("state_sha256")
                 or continuation.get("completed_prefix_episode_count") != start
                 or continuation.get("final_target_episode_count") != 150
             ):
@@ -402,9 +395,8 @@ def assemble_qualification_lineage_composite(
         for row in state_rows:
             sequence = int(row["sequence"])
             expected = root_entries[sequence]
-            if (
-                row.get("system_id") != expected.get("system_id")
-                or row.get("idx") != expected.get("idx")
+            if row.get("system_id") != expected.get("system_id") or row.get("idx") != expected.get(
+                "idx"
             ):
                 raise ValueError("lineage executor state entry mismatch")
             if sequence <= end:
@@ -420,10 +412,9 @@ def assemble_qualification_lineage_composite(
                 raise ValueError("lineage restart boundary was not failed")
 
         closeout, canonical_paths = _canonical_paths(closeout_dir)
-        if (
-            closeout.get("plan_sha256") != plan.get("plan_sha256")
-            or closeout.get("authorization_id") != plan.get("authorization_id")
-        ):
+        if closeout.get("plan_sha256") != plan.get("plan_sha256") or closeout.get(
+            "authorization_id"
+        ) != plan.get("authorization_id"):
             raise ValueError("lineage closeout does not match its plan")
         episodes = _episode_map(canonical_paths)
         expected_entries = root_entries[start : end + 1]
@@ -449,9 +440,7 @@ def assemble_qualification_lineage_composite(
             }
         )
 
-    if set(combined) != _expected_keys(root_entries) or set(source_by_sequence) != set(
-        range(150)
-    ):
+    if set(combined) != _expected_keys(root_entries) or set(source_by_sequence) != set(range(150)):
         raise ValueError("lineage composite does not contain the exact full plan")
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -496,9 +485,7 @@ def assemble_qualification_lineage_composite(
     }
     index["index_sha256"] = sha256_json(index)
     index_path = output_dir / "sequence-index.json"
-    index_path.write_text(
-        json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    index_path.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     manifest = {
         "format": LINEAGE_COMPOSITE_FORMAT,
         "source_plan_sha256": root_plan["plan_sha256"],
@@ -539,8 +526,7 @@ def assemble_qualification_replacement_composite(
     if output_dir.exists() and any(output_dir.iterdir()):
         raise FileExistsError("replacement composite output directory must be absent or empty")
     if not (
-        len(base_plan_paths) == len(base_state_paths) == len(base_closeout_dirs)
-        and base_plan_paths
+        len(base_plan_paths) == len(base_state_paths) == len(base_closeout_dirs) and base_plan_paths
     ):
         raise ValueError("replacement composite requires equal non-empty base lineage lists")
 
@@ -549,9 +535,9 @@ def assemble_qualification_replacement_composite(
     if root_plan.get("format") != "mathaudit-qualification-execution-plan-v0.1":
         raise ValueError("replacement root must be the full qualification v0.1 plan")
     root_entries = root_plan.get("entries")
-    if not isinstance(root_entries, list) or [
-        row.get("sequence") for row in root_entries
-    ] != list(range(150)):
+    if not isinstance(root_entries, list) or [row.get("sequence") for row in root_entries] != list(
+        range(150)
+    ):
         raise ValueError("replacement root plan must contain sequences 0-149")
     root_by_sequence = {int(row["sequence"]): row for row in root_entries}
 
@@ -619,8 +605,7 @@ def assemble_qualification_replacement_composite(
         for observed in plan_entries:
             expected = root_by_sequence.get(int(observed["sequence"]))
             if expected is None or any(
-                observed.get(field) != expected.get(field)
-                for field in PLAN_ENTRY_IDENTITY_FIELDS
+                observed.get(field) != expected.get(field) for field in PLAN_ENTRY_IDENTITY_FIELDS
             ):
                 raise ValueError("replacement base plan drifts from the root schedule")
 
@@ -651,10 +636,9 @@ def assemble_qualification_replacement_composite(
                 completed_entries.append(expected)
 
         closeout, canonical_paths = _canonical_paths(closeout_dir)
-        if (
-            closeout.get("plan_sha256") != plan.get("plan_sha256")
-            or closeout.get("authorization_id") != plan.get("authorization_id")
-        ):
+        if closeout.get("plan_sha256") != plan.get("plan_sha256") or closeout.get(
+            "authorization_id"
+        ) != plan.get("authorization_id"):
             raise ValueError("replacement base closeout does not match its plan")
         episodes = _episode_map(canonical_paths)
         if set(episodes) != _expected_keys(completed_entries):
@@ -730,11 +714,9 @@ def assemble_qualification_replacement_composite(
             raise ValueError("replacement episode is not a complete full trace")
 
     replacement_closeout, replacement_paths = _canonical_paths(replacement_closeout_dir)
-    if (
-        replacement_closeout.get("plan_sha256") != replacement_plan.get("plan_sha256")
-        or replacement_closeout.get("authorization_id")
-        != replacement_plan.get("authorization_id")
-    ):
+    if replacement_closeout.get("plan_sha256") != replacement_plan.get(
+        "plan_sha256"
+    ) or replacement_closeout.get("authorization_id") != replacement_plan.get("authorization_id"):
         raise ValueError("replacement closeout does not match its plan")
     replacement_episodes = _episode_map(replacement_paths)
     if set(replacement_episodes) != _expected_keys(replacement_entries):
@@ -770,7 +752,9 @@ def assemble_qualification_replacement_composite(
                 "private": True,
             }
         )
-        for line_number, (entry, episode) in enumerate(zip(entries, episodes, strict=True), start=1):
+        for line_number, (entry, episode) in enumerate(
+            zip(entries, episodes, strict=True), start=1
+        ):
             source_role, authorization_id = source_by_sequence[int(entry["sequence"])]
             index_rows.append(
                 {

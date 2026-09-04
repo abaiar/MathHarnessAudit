@@ -54,7 +54,12 @@ from .qualification_composite import (
     assemble_qualification_replacement_composite,
 )
 from .qualification_forecast import DEFAULT_SCENARIOS, write_qualification_forecast
-from .qualification_publication import write_qualification_publication_bundle
+from .qualification_publication import (
+    reproduce_and_compare_qualification_publication,
+    verify_public_analysis_release,
+    verify_qualification_publication_bundle,
+    write_qualification_publication_bundle,
+)
 from .qualification_scoring import (
     freeze_qualification_adjudication,
     prepare_qualification_adjudication,
@@ -136,13 +141,17 @@ def ingest_command(
         commit=commit,
         seed=seed,
     )
-    episodes = ingest_payloads(
-        iter_payloads(input_path, input_glob),
-        adapter_name=adapter,
-        problems=problems,
-        run=run,
-        limit=limit,
-    )
+    try:
+        episodes = ingest_payloads(
+            iter_payloads(input_path, input_glob),
+            adapter_name=adapter,
+            problems=problems,
+            run=run,
+            limit=limit,
+        )
+    except (ValueError, KeyError) as exc:
+        console.print(f"[red]Ingestion failed:[/red] {exc}")
+        raise typer.Exit(code=2) from exc
     write_episodes(output_path, episodes)
     console.print(json.dumps(adapter_coverage(episodes), ensure_ascii=False, indent=2))
 
@@ -159,8 +168,7 @@ def validate_command(input_path: Path = typer.Argument(..., exists=True, readabl
         issue_count += len(issues)
         for issue in issues:
             console.print(
-                "[%s] %s %s: %s"
-                % (issue.severity.upper(), issue.code, issue.path, issue.message)
+                "[%s] %s %s: %s" % (issue.severity.upper(), issue.code, issue.path, issue.message)
             )
     if issue_count:
         raise typer.Exit(code=1)
@@ -247,9 +255,7 @@ def verify_source_fingerprint_command(
 @app.command("verify-qualification-authorization")
 def verify_qualification_authorization_command(
     input_path: Path = typer.Argument(..., exists=True, readable=True),
-    schema_path: Optional[Path] = typer.Option(
-        None, "--schema", exists=True, readable=True
-    ),
+    schema_path: Optional[Path] = typer.Option(None, "--schema", exists=True, readable=True),
 ) -> None:
     """Require a structurally and semantically runnable Q authorization record."""
 
@@ -269,8 +275,7 @@ def verify_qualification_authorization_command(
         )
         if errors:
             raise typer.BadParameter(
-                "authorization Schema errors: "
-                + "; ".join(error.message for error in errors)
+                "authorization Schema errors: " + "; ".join(error.message for error in errors)
             )
     console.print(json.dumps(verify_qualification_authorization(payload), indent=2))
 
@@ -358,12 +363,8 @@ def migrate_qualification_state_command(
 def qualification_composite_command(
     source_plan_path: Path = typer.Option(..., "--source-plan", exists=True),
     prefix_state_path: Path = typer.Option(..., "--prefix-state", exists=True),
-    continuation_plan_path: Path = typer.Option(
-        ..., "--continuation-plan", exists=True
-    ),
-    continuation_state_path: Path = typer.Option(
-        ..., "--continuation-state", exists=True
-    ),
+    continuation_plan_path: Path = typer.Option(..., "--continuation-plan", exists=True),
+    continuation_state_path: Path = typer.Option(..., "--continuation-state", exists=True),
     prefix_closeout_dir: Path = typer.Option(
         ..., "--prefix-closeout", exists=True, file_okay=False
     ),
@@ -390,9 +391,7 @@ def qualification_composite_command(
 def qualification_composite_lineage_command(
     plan_paths: list[Path] = typer.Option(..., "--plan", exists=True),
     state_paths: list[Path] = typer.Option(..., "--state", exists=True),
-    closeout_dirs: list[Path] = typer.Option(
-        ..., "--closeout", exists=True, file_okay=False
-    ),
+    closeout_dirs: list[Path] = typer.Option(..., "--closeout", exists=True, file_okay=False),
     output_dir: Path = typer.Option(..., "--output-dir"),
 ) -> None:
     """Assemble exact-150 traces from two or more continuation segments."""
@@ -419,9 +418,7 @@ def qualification_composite_replacements_command(
     replacement_closeout_dir: Path = typer.Option(
         ..., "--replacement-closeout", exists=True, file_okay=False
     ),
-    replacement_inventory_path: Path = typer.Option(
-        ..., "--replacement-inventory", exists=True
-    ),
+    replacement_inventory_path: Path = typer.Option(..., "--replacement-inventory", exists=True),
     output_dir: Path = typer.Option(..., "--output-dir"),
 ) -> None:
     """Overlay separately authorized replacements onto an incomplete frozen lineage."""
@@ -442,24 +439,18 @@ def qualification_composite_replacements_command(
 
 @app.command("qualification-score-composite")
 def qualification_score_composite_command(
-    composite_dir: Path = typer.Option(
-        ..., "--composite-dir", exists=True, file_okay=False
-    ),
+    composite_dir: Path = typer.Option(..., "--composite-dir", exists=True, file_okay=False),
     output_dir: Path = typer.Option(..., "--output-dir"),
 ) -> None:
     """Cross the correctness boundary only after exact-150 composite validation."""
 
-    result = score_qualification_composite(
-        composite_dir=composite_dir, output_dir=output_dir
-    )
+    result = score_qualification_composite(composite_dir=composite_dir, output_dir=output_dir)
     console.print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
 @app.command("qualification-analyze")
 def qualification_analyze_command(
-    scoring_dir: Path = typer.Option(
-        ..., "--scoring-dir", exists=True, file_okay=False
-    ),
+    scoring_dir: Path = typer.Option(..., "--scoring-dir", exists=True, file_okay=False),
     config_path: Path = typer.Option(..., "--config", exists=True, readable=True),
     output_path: Path = typer.Option(..., "--output"),
 ) -> None:
@@ -475,24 +466,18 @@ def qualification_analyze_command(
 
 @app.command("qualification-prepare-adjudication")
 def qualification_prepare_adjudication_command(
-    scoring_dir: Path = typer.Option(
-        ..., "--scoring-dir", exists=True, file_okay=False
-    ),
+    scoring_dir: Path = typer.Option(..., "--scoring-dir", exists=True, file_okay=False),
     output_dir: Path = typer.Option(..., "--output-dir"),
 ) -> None:
     """Create a hash-linked exact-150 input for blinded adjudication."""
 
-    result = prepare_qualification_adjudication(
-        scoring_dir=scoring_dir, output_dir=output_dir
-    )
+    result = prepare_qualification_adjudication(scoring_dir=scoring_dir, output_dir=output_dir)
     console.print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
 @app.command("qualification-publish")
 def qualification_publish_command(
-    analysis_paths: list[Path] = typer.Option(
-        ..., "--analysis", exists=True, dir_okay=False
-    ),
+    analysis_paths: list[Path] = typer.Option(..., "--analysis", exists=True, dir_okay=False),
     output_dir: Path = typer.Option(..., "--output-dir"),
 ) -> None:
     """Render hash-linked tables and figures from frozen six-panel analyses."""
@@ -503,17 +488,62 @@ def qualification_publish_command(
     console.print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+@app.command("qualification-verify-public-analysis")
+def qualification_verify_public_analysis_command(
+    analysis_path: Path = typer.Option(
+        ..., "--analysis", exists=True, dir_okay=False, readable=True
+    ),
+    config_path: Optional[Path] = typer.Option(
+        None, "--config", exists=True, dir_okay=False, readable=True
+    ),
+) -> None:
+    """Check a frozen analysis before aggregate-only public release."""
+
+    result = verify_public_analysis_release(analysis_path, config_path=config_path)
+    console.print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+@app.command("qualification-verify-publication")
+def qualification_verify_publication_command(
+    bundle_dir: Path = typer.Option(
+        ..., "--bundle-dir", exists=True, file_okay=False, readable=True
+    ),
+    analysis_paths: Optional[list[Path]] = typer.Option(
+        None, "--analysis", exists=True, dir_okay=False, readable=True
+    ),
+) -> None:
+    """Verify every registered table, figure, sidecar, and analysis input."""
+
+    result = verify_qualification_publication_bundle(
+        bundle_dir=bundle_dir, analysis_paths=analysis_paths or []
+    )
+    console.print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+@app.command("qualification-reproduce-check")
+def qualification_reproduce_check_command(
+    analysis_paths: list[Path] = typer.Option(
+        ..., "--analysis", exists=True, dir_okay=False, readable=True
+    ),
+    reference_dir: Path = typer.Option(
+        ..., "--reference-dir", exists=True, file_okay=False, readable=True
+    ),
+) -> None:
+    """Regenerate paper tables/figures and require byte-identical outputs."""
+
+    result = reproduce_and_compare_qualification_publication(
+        analysis_paths=analysis_paths, reference_dir=reference_dir
+    )
+    console.print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 @app.command("qualification-freeze-adjudication")
 def qualification_freeze_adjudication_command(
-    scoring_dir: Path = typer.Option(
-        ..., "--scoring-dir", exists=True, file_okay=False
-    ),
+    scoring_dir: Path = typer.Option(..., "--scoring-dir", exists=True, file_okay=False),
     adjudication_input_dir: Path = typer.Option(
         ..., "--adjudication-input-dir", exists=True, file_okay=False
     ),
-    adjudication_dir: Path = typer.Option(
-        ..., "--adjudication-dir", exists=True, file_okay=False
-    ),
+    adjudication_dir: Path = typer.Option(..., "--adjudication-dir", exists=True, file_okay=False),
     guide_file: Path = typer.Option(..., "--guide-file", exists=True, readable=True),
     guide_version: str = typer.Option("1.0"),
     output_dir: Path = typer.Option(..., "--output-dir"),
@@ -562,24 +592,18 @@ def qualification_forecast_command(
 @app.command("prepare-qualification-runs")
 def prepare_qualification_runs_command(
     config_path: Path = typer.Option(..., "--config", exists=True, readable=True),
-    authorization_path: Path = typer.Option(
-        ..., "--authorization", exists=True, readable=True
-    ),
+    authorization_path: Path = typer.Option(..., "--authorization", exists=True, readable=True),
     output_dir: Path = typer.Option(..., "--output-dir"),
 ) -> None:
     """Create three planned Q manifests from one approved, budgeted record."""
 
-    manifest = prepare_qualification_run_manifests(
-        config_path, authorization_path, output_dir
-    )
+    manifest = prepare_qualification_run_manifests(config_path, authorization_path, output_dir)
     console.print(json.dumps(manifest, ensure_ascii=False, indent=2))
 
 
 @app.command("initialize-qualification-ledger")
 def initialize_qualification_ledger_command(
-    authorization_path: Path = typer.Option(
-        ..., "--authorization", exists=True, readable=True
-    ),
+    authorization_path: Path = typer.Option(..., "--authorization", exists=True, readable=True),
     output_path: Path = typer.Option(..., "--output"),
 ) -> None:
     """Create a prompt-free hard-budget ledger from final authorization."""
@@ -606,12 +630,8 @@ def initialize_qualification_ledger_command(
 
 @app.command("compile-qualification-plan")
 def compile_qualification_plan_command(
-    bundle_manifest_path: Path = typer.Option(
-        ..., "--bundle-manifest", exists=True, readable=True
-    ),
-    authorization_path: Path = typer.Option(
-        ..., "--authorization", exists=True, readable=True
-    ),
+    bundle_manifest_path: Path = typer.Option(..., "--bundle-manifest", exists=True, readable=True),
+    authorization_path: Path = typer.Option(..., "--authorization", exists=True, readable=True),
     output_path: Path = typer.Option(..., "--output"),
 ) -> None:
     """Compile the 150-episode blocked schedule without provider contact."""
@@ -622,9 +642,7 @@ def compile_qualification_plan_command(
     authorization = json.loads(authorization_path.read_text(encoding="utf-8"))
     plan = compile_qualification_execution_plan(bundle, authorization)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    output_path.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     console.print(
         json.dumps(
             {
@@ -640,16 +658,10 @@ def compile_qualification_plan_command(
 
 @app.command("compile-qualification-continuation-plan")
 def compile_qualification_continuation_plan_command(
-    bundle_manifest_path: Path = typer.Option(
-        ..., "--bundle-manifest", exists=True, readable=True
-    ),
-    authorization_path: Path = typer.Option(
-        ..., "--authorization", exists=True, readable=True
-    ),
+    bundle_manifest_path: Path = typer.Option(..., "--bundle-manifest", exists=True, readable=True),
+    authorization_path: Path = typer.Option(..., "--authorization", exists=True, readable=True),
     source_plan_path: Path = typer.Option(..., "--source-plan", exists=True, readable=True),
-    source_state_path: Path = typer.Option(
-        ..., "--source-state", exists=True, readable=True
-    ),
+    source_state_path: Path = typer.Option(..., "--source-state", exists=True, readable=True),
     output_path: Path = typer.Option(..., "--output"),
 ) -> None:
     """Compile a failed-boundary rerun plus the remaining frozen suffix."""
@@ -667,9 +679,7 @@ def compile_qualification_continuation_plan_command(
         source_state=source_state,
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    output_path.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     console.print(
         json.dumps(
             {
@@ -686,12 +696,8 @@ def compile_qualification_continuation_plan_command(
 
 @app.command("compile-qualification-replacement-plan")
 def compile_qualification_replacement_plan_command(
-    bundle_manifest_path: Path = typer.Option(
-        ..., "--bundle-manifest", exists=True, readable=True
-    ),
-    authorization_path: Path = typer.Option(
-        ..., "--authorization", exists=True, readable=True
-    ),
+    bundle_manifest_path: Path = typer.Option(..., "--bundle-manifest", exists=True, readable=True),
+    authorization_path: Path = typer.Option(..., "--authorization", exists=True, readable=True),
     source_plan_path: Path = typer.Option(..., "--source-plan", exists=True, readable=True),
     replacement_inventory_path: Path = typer.Option(
         ..., "--replacement-inventory", exists=True, readable=True
@@ -713,9 +719,7 @@ def compile_qualification_replacement_plan_command(
         replacement_inventory=inventory,
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    output_path.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     console.print(
         json.dumps(
             {
@@ -733,12 +737,8 @@ def compile_qualification_replacement_plan_command(
 @app.command("verify-qualification-plan")
 def verify_qualification_plan_command(
     plan_path: Path = typer.Argument(..., exists=True, readable=True),
-    bundle_manifest_path: Path = typer.Option(
-        ..., "--bundle-manifest", exists=True, readable=True
-    ),
-    authorization_path: Path = typer.Option(
-        ..., "--authorization", exists=True, readable=True
-    ),
+    bundle_manifest_path: Path = typer.Option(..., "--bundle-manifest", exists=True, readable=True),
+    authorization_path: Path = typer.Option(..., "--authorization", exists=True, readable=True),
     source_plan_path: Optional[Path] = typer.Option(
         None, "--source-plan", exists=True, readable=True
     ),
@@ -756,9 +756,7 @@ def verify_qualification_plan_command(
     authorization = json.loads(authorization_path.read_text(encoding="utf-8"))
     if replacement_inventory_path is None:
         if (source_plan_path is None) != (source_state_path is None):
-            raise typer.BadParameter(
-                "--source-plan and --source-state must be supplied together"
-            )
+            raise typer.BadParameter("--source-plan and --source-state must be supplied together")
     elif source_plan_path is None or source_state_path is not None:
         raise typer.BadParameter(
             "replacement verification requires --source-plan and --replacement-inventory only"
@@ -809,9 +807,7 @@ def score_command(
 def adjudication_export_command(
     input_path: Path = typer.Option(..., "--input", exists=True, readable=True),
     output_dir: Path = typer.Option(..., "--output-dir"),
-    blinding_key_file: Path = typer.Option(
-        ..., "--blinding-key-file", exists=True, readable=True
-    ),
+    blinding_key_file: Path = typer.Option(..., "--blinding-key-file", exists=True, readable=True),
     guide_file: Path = typer.Option(..., "--guide-file", exists=True, readable=True),
     audit_sample_size: int = typer.Option(50, min=0),
     minimum_item_count: int = typer.Option(1, min=1),
@@ -1103,9 +1099,7 @@ def verify_sample_manifest_command(
 
 @app.command("prepare-run-inputs")
 def prepare_run_inputs_command(
-    private_samples: list[Path] = typer.Option(
-        ..., "--private-sample", exists=True, readable=True
-    ),
+    private_samples: list[Path] = typer.Option(..., "--private-sample", exists=True, readable=True),
     public_manifests: list[Path] = typer.Option(
         ..., "--public-manifest", exists=True, readable=True
     ),

@@ -1,0 +1,112 @@
+{
+  "format": "mathaudit-qualification-analysis-config-v0.1",
+  "source_plan_sha256": "c246d426ca8b06e01546d9c3d276c29b1ae81de682bdf33cfaa7edb1573b1c18",
+  "minimum_complete_cases": 20,
+  "bootstrap_replicates": 10000,
+  "seed": 20260823,
+  "expected_panel_episode_count": 25,
+  "panels": [
+    {
+      "panel_id": "mathrouter-standard",
+      "system_id": "mathrouter",
+      "stratum": "standard",
+      "exact_pairs": [
+        ["hermes_reasoner", "deep_reasoner"],
+        ["hermes_reasoner", "python_executor"],
+        ["deep_reasoner", "python_executor"]
+      ],
+      "source_type_pairs": [["llm", "llm"], ["llm", "python"]],
+      "cofailure_source_sets": [
+        {
+          "set_id": "reasoner-deep-python",
+          "source_ids": ["hermes_reasoner", "deep_reasoner", "python_executor"]
+        }
+      ],
+      "transition_directions": [["hermes_reasoner", "python_executor"]],
+      "utilization_directions": [["hermes_reasoner", "python_executor"]],
+      "text_repetition_pairs": []
+    },
+    {
+      "panel_id": "mathrouter-hard",
+      "system_id": "mathrouter",
+      "stratum": "hard_gt_5",
+      "exact_pairs": [
+        ["hermes_reasoner", "deep_reasoner"],
+        ["hermes_reasoner", "python_executor"],
+        ["deep_reasoner", "python_executor"]
+      ],
+      "source_type_pairs": [["llm", "llm"], ["llm", "python"]],
+      "cofailure_source_sets": [
+        {
+          "set_id": "reasoner-deep-python",
+          "source_ids": ["hermes_reasoner", "deep_reasoner", "python_executor"]
+        }
+      ],
+      "transition_directions": [["hermes_reasoner", "python_executor"]],
+      "utilization_directions": [["hermes_reasoner", "python_executor"]],
+      "text_repetition_pairs": []
+    },
+    {
+      "panel_id": "icma-standard",
+      "system_id": "icma",
+      "stratum": "standard",
+      "exact_pairs": [
+        ["reasoner", "validator"],
+        ["reasoner", "python_executor"],
+        ["validator", "python_executor"]
+      ],
+      "source_type_pairs": [["llm", "llm"], ["llm", "python"]],
+      "cofailure_source_sets": [
+        {
+          "set_id": "reasoner-validator-python",
+          "source_ids": ["reasoner", "validator", "python_executor"]
+        }
+      ],
+      "transition_directions": [["reasoner", "python_executor"]],
+      "utilization_directions": [["reasoner", "python_executor"]],
+      "text_repetition_pairs": [["reasoner", "validator"]]
+    },
+    {
+      "panel_id": "icma-hard",
+      "system_id": "icma",
+      "stratum": "hard_gt_5",
+      "exact_pairs": [
+        ["reasoner", "validator"],
+        ["reasoner", "python_executor"],
+        ["validator", "python_executor"]
+      ],
+      "source_type_pairs": [["llm", "llm"], ["llm", "python"]],
+      "cofailure_source_sets": [
+        {
+          "set_id": "reasoner-validator-python",
+          "source_ids": ["reasoner", "validator", "python_executor"]
+        }
+      ],
+      "transition_directions": [["reasoner", "python_executor"]],
+      "utilization_directions": [["reasoner", "python_executor"]],
+      "text_repetition_pairs": [["reasoner", "validator"]]
+    },
+    {
+      "panel_id": "mathgoal-standard",
+      "system_id": "mathgoal",
+      "stratum": "standard",
+      "exact_pairs": [],
+      "source_type_pairs": [["llm", "llm"], ["llm", "python"]],
+      "cofailure_source_sets": [],
+      "transition_directions": [],
+      "utilization_directions": [],
+      "text_repetition_pairs": []
+    },
+    {
+      "panel_id": "mathgoal-hard",
+      "system_id": "mathgoal",
+      "stratum": "hard_gt_5",
+      "exact_pairs": [],
+      "source_type_pairs": [["llm", "llm"], ["llm", "python"]],
+      "cofailure_source_sets": [],
+      "transition_directions": [],
+      "utilization_directions": [],
+      "text_repetition_pairs": []
+    }
+  ]
+}

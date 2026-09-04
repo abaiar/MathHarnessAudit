@@ -35,7 +35,9 @@ class MathRouterAdapter:
     version = "0.1.0"
 
     def can_handle(self, payload: Dict[str, Any]) -> bool:
-        steps = [str(item.get("step")) for item in payload.get("trace", []) if isinstance(item, dict)]
+        steps = [
+            str(item.get("step")) for item in payload.get("trace", []) if isinstance(item, dict)
+        ]
         return (
             "trace" in payload
             and "validation" not in steps
@@ -62,11 +64,42 @@ class MathRouterAdapter:
             ],
         )
         sources = [
-            Source(source_id="hermes_reasoner", source_type=SourceType.llm, role="pass_a", producer=run.system_name, provenance_group="shared_primary_context"),
-            Source(source_id="python_executor", source_type=SourceType.python, role="executable_verifier", producer="hermes.execute_code", tool="python", provenance_group="shared_primary_context"),
-            Source(source_id="deep_reasoner", source_type=SourceType.llm, role="pass_b", producer=run.system_name, provenance_group="shared_model_family"),
-            Source(source_id="recovery", source_type=SourceType.llm, role="recovery", producer=run.system_name, provenance_group="shared_model_family"),
-            Source(source_id="finalizer", source_type=SourceType.composite, role="finalizer", producer=run.system_name, provenance_group="shared_model_family"),
+            Source(
+                source_id="hermes_reasoner",
+                source_type=SourceType.llm,
+                role="pass_a",
+                producer=run.system_name,
+                provenance_group="shared_primary_context",
+            ),
+            Source(
+                source_id="python_executor",
+                source_type=SourceType.python,
+                role="executable_verifier",
+                producer="hermes.execute_code",
+                tool="python",
+                provenance_group="shared_primary_context",
+            ),
+            Source(
+                source_id="deep_reasoner",
+                source_type=SourceType.llm,
+                role="pass_b",
+                producer=run.system_name,
+                provenance_group="shared_model_family",
+            ),
+            Source(
+                source_id="recovery",
+                source_type=SourceType.llm,
+                role="recovery",
+                producer=run.system_name,
+                provenance_group="shared_model_family",
+            ),
+            Source(
+                source_id="finalizer",
+                source_type=SourceType.composite,
+                role="finalizer",
+                producer=run.system_name,
+                provenance_group="shared_model_family",
+            ),
         ]
         observations: List[SourceObservation] = []
         evidence: List[Evidence] = []
@@ -93,7 +126,10 @@ class MathRouterAdapter:
                     text=text,
                     kind=EvidenceKind.candidate_answer,
                     outcome=ObservationOutcome.produced if text else ObservationOutcome.no_vote,
-                    metadata={"attempts": raw.get("attempts"), "steps_count": raw.get("steps_count")},
+                    metadata={
+                        "attempts": raw.get("attempts"),
+                        "steps_count": raw.get("steps_count"),
+                    },
                 )
                 seen.add("hermes_reasoner")
                 if evidence_id:
@@ -117,7 +153,9 @@ class MathRouterAdapter:
                     stage=step,
                     sequence=sequence,
                     text=text,
-                    kind=EvidenceKind.recovered_answer if pass_a_timed_out else EvidenceKind.candidate_answer,
+                    kind=EvidenceKind.recovered_answer
+                    if pass_a_timed_out
+                    else EvidenceKind.candidate_answer,
                     outcome=outcome,
                     metadata={key: value for key, value in raw.items() if key != "step"},
                 )
@@ -126,7 +164,9 @@ class MathRouterAdapter:
                     evidence_by_key["A"] = evidence_id
                 sequence += 1
             elif step == "python_verification":
-                text = first_text(raw, "answer") or nested_text(raw, "thinking.extracted_answer", "thinking.evidence_summary")
+                text = first_text(raw, "answer") or nested_text(
+                    raw, "thinking.extracted_answer", "thinking.evidence_summary"
+                )
                 if not text:
                     for tool in raw.get("tools", []) or []:
                         if isinstance(tool, dict):
@@ -134,7 +174,11 @@ class MathRouterAdapter:
                             if text:
                                 break
                 success = bool(raw.get("success"))
-                outcome = ObservationOutcome.produced if success and text else (ObservationOutcome.no_vote if success else ObservationOutcome.failed)
+                outcome = (
+                    ObservationOutcome.produced
+                    if success and text
+                    else (ObservationOutcome.no_vote if success else ObservationOutcome.failed)
+                )
                 evidence_id = self._record(
                     observations,
                     evidence,
@@ -188,7 +232,11 @@ class MathRouterAdapter:
                 if evidence_id:
                     evidence_by_key["B"] = evidence_id
                 sequence += 1
-            elif step in {"survival_compressed_retry", "survival_compressed_retry_only", "survival_emergency_answer"}:
+            elif step in {
+                "survival_compressed_retry",
+                "survival_compressed_retry_only",
+                "survival_emergency_answer",
+            }:
                 text = first_text(raw, "answer", "guess")
                 evidence_id = self._record(
                     observations,
@@ -212,12 +260,12 @@ class MathRouterAdapter:
                 selection_reason = str(raw.get("reason") or "") or None
                 candidates = list(
                     dict.fromkeys(
-                        value
-                        for key, value in evidence_by_key.items()
-                        if key in {"A", "B", "R"}
+                        value for key, value in evidence_by_key.items() if key in {"A", "B", "R"}
                     )
                 )
-                selected = [evidence_by_key[selected_key]] if selected_key in evidence_by_key else []
+                selected = (
+                    [evidence_by_key[selected_key]] if selected_key in evidence_by_key else []
+                )
                 decisions.append(
                     Decision(
                         decision_id="decision:final_selection",
@@ -286,9 +334,23 @@ class MathRouterAdapter:
                 )
             )
             if final_id:
-                edges.append(ProvenanceEdge(from_id=decision_id, to_id=final_id, relation=EdgeRelation.produces, observability=EdgeObservability.observed))
+                edges.append(
+                    ProvenanceEdge(
+                        from_id=decision_id,
+                        to_id=final_id,
+                        relation=EdgeRelation.produces,
+                        observability=EdgeObservability.observed,
+                    )
+                )
                 for input_id in selected or input_ids:
-                    edges.append(ProvenanceEdge(from_id=input_id, to_id=final_id, relation=EdgeRelation.aggregates, observability=EdgeObservability.adapter_inferred))
+                    edges.append(
+                        ProvenanceEdge(
+                            from_id=input_id,
+                            to_id=final_id,
+                            relation=EdgeRelation.aggregates,
+                            observability=EdgeObservability.adapter_inferred,
+                        )
+                    )
             final_status = FinalStatus.produced
         else:
             observations.append(
@@ -310,7 +372,9 @@ class MathRouterAdapter:
         }
         diagnostics = next((item for item in trace if item.get("step") == "diagnostics"), None)
         if diagnostics:
-            metadata["diagnostics"] = {key: value for key, value in diagnostics.items() if key != "step"}
+            metadata["diagnostics"] = {
+                key: value for key, value in diagnostics.items() if key != "step"
+            }
 
         return Episode(
             episode_id="%s:%s:%s" % (run.run_id, run.system_id, problem.problem_id),

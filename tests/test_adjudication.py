@@ -81,9 +81,7 @@ def test_export_is_blinded_stratified_and_deterministic(episode_factory, tmp_pat
     )
     assert first == second
     assert first["item_count"] == 3
-    rater_text = (tmp_path / "first" / "public" / "rater_a.csv").read_text(
-        encoding="utf-8-sig"
-    )
+    rater_text = (tmp_path / "first" / "public" / "rater_a.csv").read_text(encoding="utf-8-sig")
     assert "synthetic" not in rater_text
     assert "unscorable" not in rater_text
     linkage = json.loads((tmp_path / "first" / "private" / "linkage.json").read_text())

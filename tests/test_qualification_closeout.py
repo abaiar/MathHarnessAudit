@@ -271,9 +271,7 @@ def test_full_qualification_closeout_is_outcome_blind_and_schema_valid(tmp_path)
         "mathrouter": json.loads(
             (root / "examples/fixtures/mathrouter/1.json").read_text(encoding="utf-8")
         ),
-        "icma": json.loads(
-            (root / "examples/fixtures/icma/0.json").read_text(encoding="utf-8")
-        ),
+        "icma": json.loads((root / "examples/fixtures/icma/0.json").read_text(encoding="utf-8")),
         "mathgoal": json.loads(
             (root / "examples/fixtures/mathgoal_full.json").read_text(encoding="utf-8")
         ),
@@ -368,16 +366,12 @@ def test_full_qualification_closeout_is_outcome_blind_and_schema_valid(tmp_path)
         output_dir=output_dir,
     )
     assert closeout["outcome_blind"] is True
-    health = json.loads(
-        (output_dir / "qualification-health.json").read_text(encoding="utf-8")
-    )
+    health = json.loads((output_dir / "qualification-health.json").read_text(encoding="utf-8"))
     assert health["correctness_aggregates_computed"] is False
     assert health["totals"]["complete_full_trace_episodes"] == 150
     assert health["totals"]["request_count"] == 0
     for system_id in ("mathrouter", "icma", "mathgoal"):
-        canonical = (output_dir / system_id / "canonical.jsonl").read_text(
-            encoding="utf-8"
-        )
+        canonical = (output_dir / system_id / "canonical.jsonl").read_text(encoding="utf-8")
         assert len(canonical.splitlines()) == 50
 
     for schema_name, payload in (
@@ -387,15 +381,11 @@ def test_full_qualification_closeout_is_outcome_blind_and_schema_valid(tmp_path)
         schema = json.loads((root / "schemas" / schema_name).read_text(encoding="utf-8"))
         assert list(Draft202012Validator(schema).iter_errors(payload)) == []
     run_schema = json.loads(
-        (root / "schemas/mathaudit-run-manifest-v0.1.schema.json").read_text(
-            encoding="utf-8"
-        )
+        (root / "schemas/mathaudit-run-manifest-v0.1.schema.json").read_text(encoding="utf-8")
     )
     for system_id in ("mathrouter", "icma", "mathgoal"):
         final_manifest = json.loads(
-            (output_dir / system_id / "run-manifest.final.json").read_text(
-                encoding="utf-8"
-            )
+            (output_dir / system_id / "run-manifest.final.json").read_text(encoding="utf-8")
         )
         assert final_manifest["status"] == "completed"
         assert final_manifest["counts"]["completed"] == 50

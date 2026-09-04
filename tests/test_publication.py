@@ -45,9 +45,7 @@ def test_publication_bundle_is_deterministic_and_hashes_every_artifact(episode_f
     )
     assert pair_rows[0]["complete_cases"] == "3"
     assert pair_rows[0]["precision_flag"] == "adequate"
-    svg = (tmp_path / "first" / "figures" / "dependence_cofailure.svg").read_text(
-        encoding="utf-8"
-    )
+    svg = (tmp_path / "first" / "figures" / "dependence_cofailure.svg").read_text(encoding="utf-8")
     assert "<title" in svg and "all-wrong beta" in svg
     assert "nan" not in svg.lower()
 

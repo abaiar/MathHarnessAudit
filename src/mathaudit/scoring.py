@@ -31,7 +31,11 @@ def _strip_outer_math(text: str) -> str:
     while changed:
         changed = False
         for left, right in wrappers:
-            if value.startswith(left) and value.endswith(right) and len(value) > len(left) + len(right):
+            if (
+                value.startswith(left)
+                and value.endswith(right)
+                and len(value) > len(left) + len(right)
+            ):
                 value = value[len(left) : -len(right)].strip()
                 changed = True
     return value
@@ -193,7 +197,9 @@ def _fraction(text: str) -> Optional[Fraction]:
         return None
 
 
-def compare_answers(candidate: str, gold: str, answer_type: Optional[str] = None) -> Tuple[LabelValue, Optional[ScorerType], str, str]:
+def compare_answers(
+    candidate: str, gold: str, answer_type: Optional[str] = None
+) -> Tuple[LabelValue, Optional[ScorerType], str, str]:
     """Return label, scorer type, normalized candidate, and rule identifier."""
 
     extracted = extract_answer(candidate)
@@ -231,7 +237,12 @@ def compare_answers(candidate: str, gold: str, answer_type: Optional[str] = None
     if answer_type and answer_type.lower() in {"categorical", "choice", "boolean", "text"}:
         simple = re.compile(r"[A-Za-z0-9_\- ]{1,80}")
         if simple.fullmatch(normalized_candidate) and simple.fullmatch(normalized_gold):
-            return LabelValue.incorrect, ScorerType.exact, normalized_candidate, "registered_categorical_v1"
+            return (
+                LabelValue.incorrect,
+                ScorerType.exact,
+                normalized_candidate,
+                "registered_categorical_v1",
+            )
 
     return LabelValue.unscorable, None, normalized_candidate, "unsupported_deterministic_form"
 

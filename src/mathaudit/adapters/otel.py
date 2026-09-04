@@ -147,10 +147,16 @@ class OTelAdapter:
         final_id: Optional[str] = None
 
         for sequence, (span, attributes) in enumerate(parsed):
-            operation = str(attributes.get("gen_ai.operation.name") or span.get("name") or "operation")
+            operation = str(
+                attributes.get("gen_ai.operation.name") or span.get("name") or "operation"
+            )
             tool_name = attributes.get("gen_ai.tool.name")
-            model_name = attributes.get("gen_ai.request.model") or attributes.get("gen_ai.response.model")
-            agent_name = attributes.get("gen_ai.agent.name") or attributes.get("gen_ai.workflow.name")
+            model_name = attributes.get("gen_ai.request.model") or attributes.get(
+                "gen_ai.response.model"
+            )
+            agent_name = attributes.get("gen_ai.agent.name") or attributes.get(
+                "gen_ai.workflow.name"
+            )
             if tool_name or operation == "execute_tool":
                 source_type = SourceType.other
                 role = "tool"
@@ -169,14 +175,19 @@ class OTelAdapter:
                     producer=str(agent_name) if agent_name else None,
                     model=str(model_name) if model_name else None,
                     tool=str(tool_name) if tool_name else None,
-                    provenance_group="otel_trace:%s" % (span.get("traceId") or span.get("trace_id") or run.run_id),
+                    provenance_group="otel_trace:%s"
+                    % (span.get("traceId") or span.get("trace_id") or run.run_id),
                 ),
             )
             span_id = str(span.get("spanId") or span.get("span_id") or sequence)
             observation_id = "observation:otel:%s" % span_id
             text = self._span_text(attributes)
             status = span.get("status") or {}
-            status_code = str(status.get("code") or status.get("statusCode") or "").upper() if isinstance(status, dict) else str(status).upper()
+            status_code = (
+                str(status.get("code") or status.get("statusCode") or "").upper()
+                if isinstance(status, dict)
+                else str(status).upper()
+            )
             if "ERROR" in status_code or attributes.get("error.type"):
                 outcome = ObservationOutcome.failed
             elif text:

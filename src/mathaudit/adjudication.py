@@ -212,7 +212,9 @@ def _select_rows(rows: Sequence[Dict[str, Any]], audit_sample_size: int) -> List
 def _validate_guide_identity(guide_version: str, guide_sha256: str) -> None:
     if not guide_version.strip():
         raise ValueError("guide_version must not be empty")
-    if len(guide_sha256) != 64 or any(character not in "0123456789abcdef" for character in guide_sha256):
+    if len(guide_sha256) != 64 or any(
+        character not in "0123456789abcdef" for character in guide_sha256
+    ):
         raise ValueError("guide_sha256 must be a lowercase SHA-256 digest")
 
 
@@ -399,7 +401,9 @@ def agreement_and_conflicts(
     )
     report["report_sha256"] = sha256_json(report)
     report_path = output_dir / "agreement.json"
-    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    report_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
     conflicts: List[Dict[str, Any]] = []
     for item_id in ids:
@@ -545,7 +549,9 @@ def apply_adjudication(
         episode = episodes_by_id.get(link["episode_id"])
         if episode is None:
             raise ValueError("linked episode is absent: %s" % link["episode_id"])
-        evidence = next((item for item in episode.evidence if item.evidence_id == link["target_id"]), None)
+        evidence = next(
+            (item for item in episode.evidence if item.evidence_id == link["target_id"]), None
+        )
         if evidence is None:
             raise ValueError("linked evidence is absent: %s" % link["target_id"])
         statement = episode.problem.statement or ""
@@ -559,8 +565,7 @@ def apply_adjudication(
         for rating in (a[item_id], b[item_id]):
             if (
                 sha256_text(rating["problem_statement"]) != link["problem_sha256"]
-                or sha256_text(rating["answer_to_judge"])
-                != link["display_answer_sha256"]
+                or sha256_text(rating["answer_to_judge"]) != link["display_answer_sha256"]
                 or sha256_text(rating["answer_type"]) != link["answer_type_sha256"]
                 or sha256_text(rating["reference_answer"]) != link["reference_sha256"]
             ):
@@ -669,9 +674,7 @@ def apply_adjudication(
         "guide_sha256": guide_sha256,
         "item_count": len(frozen),
         "final_counts": dict(sorted(final_counts.items())),
-        "unresolved_count": sum(
-            row["adjudication_status"] == "unresolved" for row in frozen
-        ),
+        "unresolved_count": sum(row["adjudication_status"] == "unresolved" for row in frozen),
         "input_hashes": {
             "episodes": input_episode_content_sha256,
             "linkage": sha256_text(linkage_path.read_text(encoding="utf-8")),

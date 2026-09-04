@@ -90,9 +90,7 @@ def _verify_executor_state(
     if len(episodes) > len(plan["entries"]):
         raise ValueError("executor state exceeds the registered plan")
     expected_prefix = plan["entries"][: len(episodes)]
-    for position, (observed, expected) in enumerate(
-        zip(episodes, expected_prefix, strict=True)
-    ):
+    for position, (observed, expected) in enumerate(zip(episodes, expected_prefix, strict=True)):
         if not isinstance(observed, dict):
             raise ValueError("executor episode is not an object")
         for field in ("sequence", "system_id", "idx", "output_relative_path"):
@@ -315,9 +313,7 @@ def closeout_qualification(
     source_plan = _load_object(source_plan_path) if source_plan_path is not None else None
     source_state = _load_object(source_state_path) if source_state_path is not None else None
     replacement_inventory = (
-        _load_object(replacement_inventory_path)
-        if replacement_inventory_path is not None
-        else None
+        _load_object(replacement_inventory_path) if replacement_inventory_path is not None else None
     )
     verify_qualification_execution_plan(
         plan,
@@ -348,9 +344,7 @@ def closeout_qualification(
             or planned.get("system", {}).get("system_id") != system_id
         ):
             raise ValueError("planned run manifest is invalid: %s" % system_id)
-        payloads, raw_index = _raw_payloads(
-            raw_dir, plan, state_episodes, system_id
-        )
+        payloads, raw_index = _raw_payloads(raw_dir, plan, state_episodes, system_id)
         run = RunContext(
             run_id=planned["run_id"],
             system_id=system_id,
@@ -359,9 +353,7 @@ def closeout_qualification(
             config=planned["runtime"],
             environment=planned["environment"],
             harness_family="Hermes" if system_id == "mathrouter" else system_id,
-            commit=(
-                planned["system"]["version"] if system_id == "mathrouter" else None
-            ),
+            commit=(planned["system"]["version"] if system_id == "mathrouter" else None),
             seed=plan["schedule_seed"],
         )
         episodes = ingest_payloads(
@@ -379,8 +371,7 @@ def closeout_qualification(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     registered_by_system = {
-        item["system_id"]: int(item["episode_count"])
-        for item in plan["systems"]
+        item["system_id"]: int(item["episode_count"]) for item in plan["systems"]
     }
     health_systems: Dict[str, Any] = {}
     final_manifest_paths: List[Path] = []
@@ -407,9 +398,7 @@ def closeout_qualification(
             json.dumps(item["coverage"], ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        system_state = [
-            row for row in state_episodes if row["system_id"] == system_id
-        ]
+        system_state = [row for row in state_episodes if row["system_id"] == system_id]
         partial_rows = _partial_trace_index(raw_dir, system_state, system_id)
         artifacts = [
             {
@@ -455,13 +444,10 @@ def closeout_qualification(
                 "records": partial_rows,
                 "contains_prompt_or_response_text": False,
             }
-            partial_index_payload["index_sha256"] = sha256_json(
-                partial_index_payload
-            )
+            partial_index_payload["index_sha256"] = sha256_json(partial_index_payload)
             partial_index_path = system_dir / "partial-trace-index.json"
             partial_index_path.write_text(
-                json.dumps(partial_index_payload, ensure_ascii=False, indent=2)
-                + "\n",
+                json.dumps(partial_index_payload, ensure_ascii=False, indent=2) + "\n",
                 encoding="utf-8",
             )
             artifacts.insert(
@@ -474,9 +460,7 @@ def closeout_qualification(
                     "private": True,
                 },
             )
-        final_manifest = _finalize_run_manifest(
-            item["planned"], state, system_state, artifacts
-        )
+        final_manifest = _finalize_run_manifest(item["planned"], state, system_state, artifacts)
         final_manifest_path = system_dir / "run-manifest.final.json"
         final_manifest_path.write_text(
             json.dumps(final_manifest, ensure_ascii=False, indent=2) + "\n",
@@ -498,18 +482,11 @@ def closeout_qualification(
             "observed_usage_request_count": ledger["systems"][system_id][
                 "observed_usage_request_count"
             ],
-            "observed_input_tokens": ledger["systems"][system_id][
-                "observed_input_tokens"
-            ],
-            "observed_output_tokens": ledger["systems"][system_id][
-                "observed_output_tokens"
-            ],
-            "observed_total_tokens": ledger["systems"][system_id][
-                "observed_total_tokens"
-            ],
+            "observed_input_tokens": ledger["systems"][system_id]["observed_input_tokens"],
+            "observed_output_tokens": ledger["systems"][system_id]["observed_output_tokens"],
+            "observed_total_tokens": ledger["systems"][system_id]["observed_total_tokens"],
             "observed_usage_fraction": (
-                ledger["systems"][system_id]["observed_usage_request_count"]
-                / len(request_rows)
+                ledger["systems"][system_id]["observed_usage_request_count"] / len(request_rows)
                 if request_rows
                 else None
             ),
@@ -555,23 +532,18 @@ def closeout_qualification(
                 len(prepared[system_id]["episodes"]) for system_id in SYSTEM_IDS
             ),
             "request_count": ledger_summary["request_count"],
-            "observed_usage_request_count": ledger["totals"][
-                "observed_usage_request_count"
-            ],
+            "observed_usage_request_count": ledger["totals"]["observed_usage_request_count"],
             "observed_input_tokens": ledger["totals"]["observed_input_tokens"],
             "observed_output_tokens": ledger["totals"]["observed_output_tokens"],
             "observed_total_tokens": ledger["totals"]["observed_total_tokens"],
             "observed_usage_fraction": (
-                ledger["totals"]["observed_usage_request_count"]
-                / ledger_summary["request_count"]
+                ledger["totals"]["observed_usage_request_count"] / ledger_summary["request_count"]
                 if ledger_summary["request_count"]
                 else None
             ),
             "reserved_token_upper": ledger_summary["reserved_token_upper"],
             "reserved_monetary_cny": ledger_summary["reserved_monetary_cny"],
-            "summed_episode_wall_time_s": ledger_summary[
-                "summed_episode_wall_time_s"
-            ],
+            "summed_episode_wall_time_s": ledger_summary["summed_episode_wall_time_s"],
         },
         "systems": health_systems,
         "artifacts": artifact_rows,

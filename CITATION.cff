@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use MathHarnessAudit, please cite the software and accompanying SoftwareX article."
+title: "MathHarnessAudit: Outcome-Linked Evidence Auditing for Mathematical Reasoning Agents"
+type: software
+version: 0.2.0
+authors:
+  - family-names: Zhao
+    given-names: Jianshuo
+    orcid: "https://orcid.org/0009-0000-8086-4172"
+    email: "934508623@qq.com"
+    affiliation: "School of Computer and Control Engineering, Yantai University"
+  - family-names: Yan
+    given-names: Weiqing
+    email: "wqyan@tju.edu.cn"
+    affiliation: "School of Computer and Control Engineering, Yantai University"
+repository-code: "https://github.com/abaiar/MathHarnessAudit"
+license: MIT
+keywords:
+  - mathematical reasoning agents
+  - evidence auditing
+  - provenance
+  - reproducible research

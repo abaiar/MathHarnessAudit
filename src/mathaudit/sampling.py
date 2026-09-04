@@ -173,8 +173,7 @@ def select_sample(
         preview = ", ".join(repr(value) for value in duplicate_source_ids[:3])
         suffix = "" if len(duplicate_source_ids) <= 3 else ", ..."
         raise ValueError(
-            "id field %r must be unique; duplicate source ID(s): %s%s"
-            % (id_field, preview, suffix)
+            "id field %r must be unique; duplicate source ID(s): %s%s" % (id_field, preview, suffix)
         )
 
     duplicate_hashes = {value for value, frequency in statement_counts.items() if frequency > 1}
@@ -212,11 +211,17 @@ def select_sample(
         "unique_non_null_source_ids": len(source_id_counts),
         "unique_problem_hashes": len(statement_counts),
         "duplicate_problem_groups_excluded": len(duplicate_hashes),
-        "records_excluded_for_duplicate_problem": sum(statement_counts[item] for item in duplicate_hashes),
+        "records_excluded_for_duplicate_problem": sum(
+            statement_counts[item] for item in duplicate_hashes
+        ),
         "records_missing_required_difficulty": missing_difficulty,
         "eligible_records": len(eligible),
-        "eligible_by_balance_group": dict(sorted(Counter(item.balance_group for item in eligible).items())),
-        "selected_by_balance_group": dict(sorted(Counter(item.balance_group for item in selected).items())),
+        "eligible_by_balance_group": dict(
+            sorted(Counter(item.balance_group for item in eligible).items())
+        ),
+        "selected_by_balance_group": dict(
+            sorted(Counter(item.balance_group for item in selected).items())
+        ),
     }
     return selected, diagnostics
 

@@ -86,9 +86,7 @@ def prepare_matched_run_inputs(
     seen_problem_hashes = set()
     source_manifests = []
 
-    for private_path, manifest_path in zip(
-        private_samples, public_manifests, strict=True
-    ):
+    for private_path, manifest_path in zip(private_samples, public_manifests, strict=True):
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         if not isinstance(manifest, dict) or not verify_sample_manifest_hash(manifest):
             raise ValueError("invalid sample manifest self-hash: %s" % manifest_path)
@@ -119,7 +117,9 @@ def prepare_matched_run_inputs(
             original = dict(private_record)
             original.pop("_mathaudit", None)
             if sha256_json(original) != entry["record_sha256"]:
-                raise ValueError("public record hash does not match private record: %s" % problem_hash)
+                raise ValueError(
+                    "public record hash does not match private record: %s" % problem_hash
+                )
             statement = canonical_problem_text(_nested_value(private_record, statement_field))
             index = len(task_entries)
             public_problem_id = str(entry["problem_id"])
@@ -140,9 +140,7 @@ def prepare_matched_run_inputs(
             system_order = sorted(
                 systems,
                 key=lambda system_id: sha256_text(
-                    "\x1f".join(
-                        [str(schedule_seed), "system-order", public_problem_id, system_id]
-                    )
+                    "\x1f".join([str(schedule_seed), "system-order", public_problem_id, system_id])
                 ),
             )
             task_entries.append(
@@ -248,7 +246,9 @@ def verify_input_bundle(output_dir: Path) -> Dict[str, Any]:
             for row in rows:
                 forbidden = FORBIDDEN_SOLVER_FIELDS.intersection(row)
                 if forbidden:
-                    raise ValueError("solver-visible file exposes gold field(s): %s" % sorted(forbidden))
+                    raise ValueError(
+                        "solver-visible file exposes gold field(s): %s" % sorted(forbidden)
+                    )
             if role in expected_keys and any(set(row) != expected_keys[role] for row in rows):
                 raise ValueError("solver-visible file has unexpected fields: %s" % role)
     return {

@@ -69,7 +69,9 @@ def build_episode(index, a, b, final, *, group_a="group_a", group_b="group_b"):
             Evidence(
                 evidence_id=evidence_id,
                 observation_id=observation_id,
-                kind=EvidenceKind.final_answer if source_id == "final" else EvidenceKind.candidate_answer,
+                kind=EvidenceKind.final_answer
+                if source_id == "final"
+                else EvidenceKind.candidate_answer,
                 stage=source_id,
                 sequence=sequence,
                 content=make_content("1" if values[source_id] else "0"),

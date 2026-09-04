@@ -1,0 +1,13 @@
+label_variant,panel_id,system_id,stratum,episode_count,cells_a_correct_b_wrong,cells_a_wrong_b_correct,cells_both_correct,cells_both_wrong,complete_cases,joint_error_probability,minimum_complete_cases,mutual_information_nats,odds_ratio_haldane,p_a_wrong_given_b_wrong,p_b_wrong_given_a_wrong,phi,phi_bootstrap_95_high,phi_bootstrap_95_low,precision_flag,source_a,source_b
+deterministic,mathrouter-standard,mathrouter,standard,25,0,2,9,0,11,0.0,20,0.0,3.8,,0.0,,,,imprecise,hermes_reasoner,deep_reasoner
+deterministic,mathrouter-standard,mathrouter,standard,25,0,0,0,0,0,,20,,,,,,,,imprecise,hermes_reasoner,python_executor
+deterministic,mathrouter-standard,mathrouter,standard,25,0,0,0,0,0,,20,,,,,,,,imprecise,deep_reasoner,python_executor
+deterministic,mathrouter-hard,mathrouter,hard_gt_5,25,0,0,0,0,0,,20,,,,,,,,imprecise,hermes_reasoner,deep_reasoner
+deterministic,mathrouter-hard,mathrouter,hard_gt_5,25,0,0,0,0,0,,20,,,,,,,,imprecise,hermes_reasoner,python_executor
+deterministic,mathrouter-hard,mathrouter,hard_gt_5,25,0,0,0,0,0,,20,,,,,,,,imprecise,deep_reasoner,python_executor
+deterministic,icma-standard,icma,standard,25,0,0,17,0,17,0.0,20,0.0,35.0,,,,,,imprecise,reasoner,validator
+deterministic,icma-standard,icma,standard,25,1,0,12,0,13,0.0,20,0.0,8.333333333333334,0.0,,,,,imprecise,reasoner,python_executor
+deterministic,icma-standard,icma,standard,25,1,0,12,1,14,0.07142857142857142,20,0.1582976147495539,25.0,0.5,1.0,0.6793662204867574,1.0,0.43852900965351466,imprecise,validator,python_executor
+deterministic,icma-hard,icma,hard_gt_5,25,0,0,3,1,4,0.25,20,0.5623351446188083,21.0,1.0,1.0,1.0,1.0,1.0,imprecise,reasoner,validator
+deterministic,icma-hard,icma,hard_gt_5,25,0,0,3,1,4,0.25,20,0.5623351446188083,21.0,1.0,1.0,1.0,1.0,1.0,imprecise,reasoner,python_executor
+deterministic,icma-hard,icma,hard_gt_5,25,0,0,4,2,6,0.3333333333333333,20,0.6365141682948128,45.0,1.0,1.0,1.0,1.0,1.0,imprecise,validator,python_executor

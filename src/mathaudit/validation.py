@@ -87,14 +87,10 @@ def validate_episode(episode: Episode) -> List[ValidationIssue]:
     }
     for group, values in id_groups.items():
         for duplicate in sorted(_duplicates(values)):
-            issues.append(
-                ValidationIssue("duplicate_id", group, "duplicate ID: %s" % duplicate)
-            )
+            issues.append(ValidationIssue("duplicate_id", group, "duplicate ID: %s" % duplicate))
 
     source_ids = set(id_groups["sources"])
-    observation_map = {
-        item.observation_id: item for item in episode.source_observations
-    }
+    observation_map = {item.observation_id: item for item in episode.source_observations}
     evidence_map = {item.evidence_id: item for item in episode.evidence}
     decision_ids = set(id_groups["decisions"])
     node_ids = set(evidence_map) | decision_ids
@@ -156,9 +152,7 @@ def validate_episode(episode: Episode) -> List[ValidationIssue]:
                         "unknown_decision_evidence", path, "unknown evidence ID: %s" % evidence_id
                     )
                 )
-        allowed_selection = set(decision.input_evidence_ids) | set(
-            decision.candidate_evidence_ids
-        )
+        allowed_selection = set(decision.input_evidence_ids) | set(decision.candidate_evidence_ids)
         if not set(decision.selected_evidence_ids).issubset(allowed_selection):
             issues.append(
                 ValidationIssue(

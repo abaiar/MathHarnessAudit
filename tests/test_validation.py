@@ -41,8 +41,18 @@ def test_not_called_is_not_allowed_to_produce(episode_factory):
 def test_derivation_cycle_is_rejected(episode_factory):
     episode = episode_factory(0, True, True, True)
     episode.provenance_edges = [
-        ProvenanceEdge(from_id="ev:a:0", to_id="ev:b:0", relation=EdgeRelation.derived_from, observability=EdgeObservability.observed),
-        ProvenanceEdge(from_id="ev:b:0", to_id="ev:a:0", relation=EdgeRelation.derived_from, observability=EdgeObservability.observed),
+        ProvenanceEdge(
+            from_id="ev:a:0",
+            to_id="ev:b:0",
+            relation=EdgeRelation.derived_from,
+            observability=EdgeObservability.observed,
+        ),
+        ProvenanceEdge(
+            from_id="ev:b:0",
+            to_id="ev:a:0",
+            relation=EdgeRelation.derived_from,
+            observability=EdgeObservability.observed,
+        ),
     ]
     assert "provenance_cycle" in issue_codes(episode)
 

@@ -18,11 +18,7 @@ def _json(value: Any) -> str:
 
 
 def _write_rows(path: Path, rows: List[Dict[str, Any]]) -> None:
-    frame = (
-        pd.DataFrame(rows)
-        if rows
-        else pd.DataFrame({"episode_id": pd.Series(dtype="string")})
-    )
+    frame = pd.DataFrame(rows) if rows else pd.DataFrame({"episode_id": pd.Series(dtype="string")})
     frame.to_parquet(path, index=False)
 
 

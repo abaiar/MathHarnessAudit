@@ -36,9 +36,7 @@ def _validate_config(config: Dict[str, Any]) -> List[Dict[str, Any]]:
         "panels",
     }
     if set(config) != allowed_config:
-        raise ValueError(
-            "publication config fields must be exactly: %s" % sorted(allowed_config)
-        )
+        raise ValueError("publication config fields must be exactly: %s" % sorted(allowed_config))
     if config.get("format") != "mathaudit-publication-config-v0.1":
         raise ValueError("publication config format must be mathaudit-publication-config-v0.1")
     panels = config.get("panels")
@@ -81,9 +79,7 @@ def _validate_config(config: Dict[str, Any]) -> List[Dict[str, Any]]:
         sources = panel["source_ids"]
         cofailure_sources = panel["cofailure_source_ids"]
         pair = panel["pair"]
-        if not all(
-            isinstance(value, str) for value in [*sources, *cofailure_sources, *pair]
-        ):
+        if not all(isinstance(value, str) for value in [*sources, *cofailure_sources, *pair]):
             raise ValueError("panel source IDs must be strings")
         if len(sources) < 2 or len(set(sources)) != len(sources) or not all(sources):
             raise ValueError("panel source_ids must contain at least two unique values")
@@ -122,9 +118,7 @@ def _validate_config(config: Dict[str, Any]) -> List[Dict[str, Any]]:
     return validated
 
 
-def build_publication_data(
-    episodes: Iterable[Episode], config: Dict[str, Any]
-) -> Dict[str, Any]:
+def build_publication_data(episodes: Iterable[Episode], config: Dict[str, Any]) -> Dict[str, Any]:
     episodes = list(episodes)
     panels = _validate_config(config)
     minimum_value = config["minimum_complete_cases"]
@@ -132,7 +126,11 @@ def build_publication_data(
     seed_value = config["seed"]
     if isinstance(minimum_value, bool) or not isinstance(minimum_value, int) or minimum_value < 1:
         raise ValueError("minimum_complete_cases must be positive")
-    if isinstance(replicates_value, bool) or not isinstance(replicates_value, int) or replicates_value < 0:
+    if (
+        isinstance(replicates_value, bool)
+        or not isinstance(replicates_value, int)
+        or replicates_value < 0
+    ):
         raise ValueError("bootstrap_replicates cannot be negative")
     if isinstance(seed_value, bool) or not isinstance(seed_value, int):
         raise ValueError("seed must be an integer")
@@ -149,9 +147,7 @@ def build_publication_data(
         ]
         if not selected:
             raise ValueError("publication panel %s has no matching episodes" % panel["panel_id"])
-        observed_sources = {
-            source.source_id for episode in selected for source in episode.sources
-        }
+        observed_sources = {source.source_id for episode in selected for source in episode.sources}
         missing_sources = sorted(set(panel["source_ids"]).difference(observed_sources))
         if missing_sources:
             raise ValueError(
@@ -166,9 +162,7 @@ def build_publication_data(
             seed=seed,
         )
         pair["minimum_complete_cases"] = minimum
-        pair["precision_flag"] = (
-            "adequate" if pair["complete_cases"] >= minimum else "imprecise"
-        )
+        pair["precision_flag"] = "adequate" if pair["complete_cases"] >= minimum else "imprecise"
         transition = panel["transition_direction"]
         utilization = panel["utilization_direction"]
         results.append(
@@ -180,8 +174,7 @@ def build_publication_data(
                 "source_ids": panel["source_ids"],
                 "cofailure_source_ids": panel["cofailure_source_ids"],
                 "availability": [
-                    availability_profile(selected, source_id)
-                    for source_id in panel["source_ids"]
+                    availability_profile(selected, source_id) for source_id in panel["source_ids"]
                 ],
                 "pairwise": pair,
                 "cofailure": cofailure(selected, panel["cofailure_source_ids"]),
@@ -331,7 +324,10 @@ def _write_tables(root: Path, data: Dict[str, Any]) -> List[Path]:
             row["causal_interpretation"] = item["causal_interpretation"]
             utilization_rows.append(row)
         final = panel["final_outcomes"]
-        final_row = {**identity, **{key: value for key, value in final.items() if key != "intervals_exact_95"}}
+        final_row = {
+            **identity,
+            **{key: value for key, value in final.items() if key != "intervals_exact_95"},
+        }
         for field in ("survival_rate", "conditional_accuracy", "end_to_end_accuracy"):
             final_row.update(_flat_interval(final, field, field))
         final_rows.append(final_row)
@@ -374,9 +370,9 @@ def _svg_document(title: str, description: str, width: int, height: int, body: s
         'aria-labelledby="title description" viewBox="0 0 %d %d">'
         '<title id="title">%s</title><desc id="description">%s</desc>'
         '<rect width="100%%" height="100%%" fill="white"/>'
-        '<style>text{font-family:Arial,sans-serif;fill:#1f2937}.axis{stroke:#9ca3af;stroke-width:1}'
-        '.grid{stroke:#e5e7eb;stroke-width:1}.label{font-size:12px}.small{font-size:10px;fill:#4b5563}'
-        '.title{font-size:18px;font-weight:700}</style>%s</svg>'
+        "<style>text{font-family:Arial,sans-serif;fill:#1f2937}.axis{stroke:#9ca3af;stroke-width:1}"
+        ".grid{stroke:#e5e7eb;stroke-width:1}.label{font-size:12px}.small{font-size:10px;fill:#4b5563}"
+        ".title{font-size:18px;font-weight:700}</style>%s</svg>"
         % (width, height, html.escape(title), html.escape(description), body)
     )
 
@@ -387,8 +383,13 @@ def _axis(left: int, right: int, y: int, *, low: float = 0.0, high: float = 1.0)
         fraction = index / 4
         x = left + fraction * (right - left)
         value = low + fraction * (high - low)
-        parts.append('<line class="grid" x1="%.1f" y1="%d" x2="%.1f" y2="%d"/>' % (x, y - 5, x, y + 5))
-        parts.append('<text class="small" x="%.1f" y="%d" text-anchor="middle">%.2g</text>' % (x, y + 18, value))
+        parts.append(
+            '<line class="grid" x1="%.1f" y1="%d" x2="%.1f" y2="%d"/>' % (x, y - 5, x, y + 5)
+        )
+        parts.append(
+            '<text class="small" x="%.1f" y="%d" text-anchor="middle">%.2g</text>'
+            % (x, y + 18, value)
+        )
     return "".join(parts)
 
 
@@ -399,10 +400,18 @@ def _availability_svg(data: Dict[str, Any]) -> str:
     left, right = 300, 1060
     body = ['<text class="title" x="24" y="30">Availability before dependence</text>']
     body.append(_axis(left, right, 62))
-    legend = [("eligible", _COLORS[0]), ("called", _COLORS[1]), ("produced", _COLORS[2]), ("binary scorable", _COLORS[3])]
+    legend = [
+        ("eligible", _COLORS[0]),
+        ("called", _COLORS[1]),
+        ("produced", _COLORS[2]),
+        ("binary scorable", _COLORS[3]),
+    ]
     for index, (label, color) in enumerate(legend):
         x = 310 + index * 175
-        body.append('<circle cx="%d" cy="92" r="5" fill="%s"/><text class="small" x="%d" y="96">%s</text>' % (x, color, x + 10, label))
+        body.append(
+            '<circle cx="%d" cy="92" r="5" fill="%s"/><text class="small" x="%d" y="96">%s</text>'
+            % (x, color, x + 10, label)
+        )
     for row_index, (panel, item) in enumerate(rows):
         y = 118 + row_index * row_height
         registered = item["registered_episodes"]
@@ -424,8 +433,14 @@ def _availability_svg(data: Dict[str, Any]) -> str:
             if interval[0] is not None and interval[1] is not None:
                 low_x = left + float(interval[0]) * (right - left)
                 high_x = left + float(interval[1]) * (right - left)
-                body.append('<line x1="%.1f" y1="%d" x2="%.1f" y2="%d" stroke="%s" stroke-width="2" opacity="0.55"/>' % (low_x, point_y, high_x, point_y, _COLORS[point_index]))
-            body.append('<circle cx="%.1f" cy="%d" r="5" fill="%s"><title>%d/%d = %.3f</title></circle>' % (x, point_y, _COLORS[point_index], count, registered, rate))
+                body.append(
+                    '<line x1="%.1f" y1="%d" x2="%.1f" y2="%d" stroke="%s" stroke-width="2" opacity="0.55"/>'
+                    % (low_x, point_y, high_x, point_y, _COLORS[point_index])
+                )
+            body.append(
+                '<circle cx="%.1f" cy="%d" r="5" fill="%s"><title>%d/%d = %.3f</title></circle>'
+                % (x, point_y, _COLORS[point_index], count, registered, rate)
+            )
     return _svg_document(
         "Availability before dependence",
         "Eligible, called, produced, and binary-scorable episode proportions by preregistered panel and source.",
@@ -436,16 +451,32 @@ def _availability_svg(data: Dict[str, Any]) -> str:
 
 
 def _point_interval(
-    body: List[str], value: Any, interval: Sequence[Any], left: int, right: int, y: int, low: float, high: float, color: str
+    body: List[str],
+    value: Any,
+    interval: Sequence[Any],
+    left: int,
+    right: int,
+    y: int,
+    low: float,
+    high: float,
+    color: str,
 ) -> None:
     if value is None:
         body.append('<text class="small" x="%d" y="%d">NA</text>' % (left, y + 4))
         return
+
     def scale(item: Any) -> float:
         return left + (float(item) - low) / (high - low) * (right - left)
+
     if len(interval) == 2 and interval[0] is not None and interval[1] is not None:
-        body.append('<line x1="%.1f" y1="%d" x2="%.1f" y2="%d" stroke="%s" stroke-width="3"/>' % (scale(interval[0]), y, scale(interval[1]), y, color))
-    body.append('<circle cx="%.1f" cy="%d" r="6" fill="%s"><title>%.4f</title></circle>' % (scale(value), y, color, float(value)))
+        body.append(
+            '<line x1="%.1f" y1="%d" x2="%.1f" y2="%d" stroke="%s" stroke-width="3"/>'
+            % (scale(interval[0]), y, scale(interval[1]), y, color)
+        )
+    body.append(
+        '<circle cx="%.1f" cy="%d" r="6" fill="%s"><title>%.4f</title></circle>'
+        % (scale(value), y, color, float(value))
+    )
 
 
 def _dependence_svg(data: Dict[str, Any]) -> str:
@@ -465,10 +496,36 @@ def _dependence_svg(data: Dict[str, Any]) -> str:
         pair = panel["pairwise"]
         beta = panel["cofailure"]
         suffix = " †" if pair["precision_flag"] == "imprecise" else ""
-        body.append('<text class="label" x="24" y="%d">%s%s</text>' % (y + 4, html.escape(panel["panel_id"]), suffix))
-        _point_interval(body, pair["phi"], pair["phi_bootstrap_95"], phi_left, phi_right, y, -1.0, 1.0, _COLORS[0])
-        _point_interval(body, beta["complete_case_beta"], beta["complete_case_beta_exact_95"], beta_left, beta_right, y, 0.0, 1.0, _COLORS[1])
-    body.append('<text class="small" x="24" y="%d">† complete cases below registered minimum; value retained and marked imprecise.</text>' % (height - 12))
+        body.append(
+            '<text class="label" x="24" y="%d">%s%s</text>'
+            % (y + 4, html.escape(panel["panel_id"]), suffix)
+        )
+        _point_interval(
+            body,
+            pair["phi"],
+            pair["phi_bootstrap_95"],
+            phi_left,
+            phi_right,
+            y,
+            -1.0,
+            1.0,
+            _COLORS[0],
+        )
+        _point_interval(
+            body,
+            beta["complete_case_beta"],
+            beta["complete_case_beta_exact_95"],
+            beta_left,
+            beta_right,
+            y,
+            0.0,
+            1.0,
+            _COLORS[1],
+        )
+    body.append(
+        '<text class="small" x="24" y="%d">† complete cases below registered minimum; value retained and marked imprecise.</text>'
+        % (height - 12)
+    )
     return _svg_document(
         "Error dependence and joint-failure tail",
         "Pairwise phi and directly computed all-source all-wrong beta with uncertainty intervals.",
@@ -479,9 +536,7 @@ def _dependence_svg(data: Dict[str, Any]) -> str:
 
 
 def _transition_svg(data: Dict[str, Any]) -> str:
-    panels = [
-        panel for panel in data["panels"] if panel["transition"] or panel["utilization"]
-    ]
+    panels = [panel for panel in data["panels"] if panel["transition"] or panel["utilization"]]
     width, row_height = 1120, 42
     height = 150 + row_height * max(1, len(panels))
     left, right = 300, 1060
@@ -500,19 +555,29 @@ def _transition_svg(data: Dict[str, Any]) -> str:
     for index, (label, _, _) in enumerate(fields):
         x = 310 + (index % 3) * 245
         legend_y = 91 + (index // 3) * 24
-        body.append('<circle cx="%d" cy="%d" r="5" fill="%s"/><text class="small" x="%d" y="%d">%s</text>' % (x, legend_y, _COLORS[index], x + 10, legend_y + 4, label))
+        body.append(
+            '<circle cx="%d" cy="%d" r="5" fill="%s"/><text class="small" x="%d" y="%d">%s</text>'
+            % (x, legend_y, _COLORS[index], x + 10, legend_y + 4, label)
+        )
     if not panels:
-        body.append('<text class="label" x="24" y="136">No directed transition or utilization registered.</text>')
+        body.append(
+            '<text class="label" x="24" y="136">No directed transition or utilization registered.</text>'
+        )
     for row_index, panel in enumerate(panels):
         y = 140 + row_index * row_height
-        body.append('<text class="label" x="24" y="%d">%s</text>' % (y + 4, html.escape(panel["panel_id"])))
+        body.append(
+            '<text class="label" x="24" y="%d">%s</text>' % (y + 4, html.escape(panel["panel_id"]))
+        )
         for point_index, (_, block, field) in enumerate(fields):
             item = panel[block]
             value = None if item is None else item[field]
             if value is None:
                 continue
             x = left + float(value) * (right - left)
-            body.append('<circle cx="%.1f" cy="%d" r="5" fill="%s"><title>%s = %.4f</title></circle>' % (x, y + point_index * 4 - 6, _COLORS[point_index], field, float(value)))
+            body.append(
+                '<circle cx="%.1f" cy="%d" r="5" fill="%s"><title>%s = %.4f</title></circle>'
+                % (x, y + point_index * 4 - 6, _COLORS[point_index], field, float(value))
+            )
     return _svg_document(
         "Repair, harm, and utilization",
         "Descriptive repair and harm rates plus direct checker adoption and a separately labelled exact-text proxy.",

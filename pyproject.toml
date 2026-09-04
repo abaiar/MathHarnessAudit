@@ -4,13 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "math-harness-audit"
-version = "0.1.0"
+version = "0.2.0"
 description = "Outcome-linked evidence auditing for mathematical reasoning agents"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE", "Licence.txt"]
-authors = [{name = "MathHarnessAudit contributors"}]
+authors = [
+  {name = "Jianshuo Zhao", email = "934508623@qq.com"},
+  {name = "Weiqing Yan", email = "wqyan@tju.edu.cn"},
+]
+maintainers = [{name = "Weiqing Yan", email = "wqyan@tju.edu.cn"}]
 keywords = [
   "mathematical reasoning",
   "LLM agents",
@@ -57,6 +61,7 @@ Homepage = "https://github.com/abaiar/MathHarnessAudit"
 Repository = "https://github.com/abaiar/MathHarnessAudit"
 Issues = "https://github.com/abaiar/MathHarnessAudit/issues"
 Documentation = "https://github.com/abaiar/MathHarnessAudit/tree/main/docs"
+Changelog = "https://github.com/abaiar/MathHarnessAudit/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]

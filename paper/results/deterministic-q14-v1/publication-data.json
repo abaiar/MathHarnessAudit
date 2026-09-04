@@ -1,0 +1,31 @@
+{
+  "format": "mathaudit-qualification-publication-data-v0.1",
+  "tool_version": "0.2.0",
+  "source_plan_sha256": "c246d426ca8b06e01546d9c3d276c29b1ae81de682bdf33cfaa7edb1573b1c18",
+  "analysis_config_raw_sha256": "bacb9aa4cc0d28311829bc9b8ed20a206b19ca6aca6eaef25907bb4f2b15a549",
+  "label_variants": [
+    "deterministic"
+  ],
+  "analysis_inputs": [
+    {
+      "label_variant": "deterministic",
+      "analysis_sha256": "58c50ea66e549767589857ec3839c977b95bf0fca33d67d72b4404e8d292256a",
+      "raw_sha256": "bcbc7b21981273d0268f54e0811617ff4b4a026794ba349071dd74b8a853c904"
+    }
+  ],
+  "table_row_counts": {
+    "availability": 86,
+    "cost": 86,
+    "exact_pairwise": 12,
+    "source_type_pairwise": 36,
+    "cofailure": 4,
+    "transitions": 4,
+    "utilization": 4,
+    "text_repetition": 2,
+    "effective_support": 6,
+    "final_outcomes": 6
+  },
+  "primary_figure_label_variant": "deterministic",
+  "system_ranking_computed": false,
+  "data_sha256": "23f2bcf307c7b4a4fa60a9cc0b215a91d82619db1d60ac558d2f4d80788a3e2a"
+}

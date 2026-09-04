@@ -1,8 +1,9 @@
 # Compatibility and deprecation policy
 
-MathHarnessAudit is currently preparing its v1.0 release. The canonical episode
-contract is frozen as Schema v1.0, while historical v0.1 episodes remain readable
-through an explicit lossless migration. Qualification formats keep their
+MathHarnessAudit package v0.2.0 implements the canonical episode contract frozen
+as Schema v1.0, while historical Schema v0.1 episodes remain readable through an
+explicit lossless migration. Package and schema versions are independent:
+qualification formats keep their
 original version identifiers because they are immutable run provenance rather
 than aliases for a new contract.
 
@@ -23,7 +24,8 @@ and internal intermediate dictionaries are not compatibility promises.
 
 ## Version rules
 
-- Package releases follow semantic versioning after 1.0.
+- Package releases use semantic versioning; pre-1.0 releases may still refine
+  public APIs, subject to the explicit deprecation rules below.
 - Every adapter has an independent version recorded in each episode.
 - A Schema changes incompatibly only under a new schema/format version; an old
   file is never silently reinterpreted under new semantics.
@@ -34,15 +36,15 @@ and internal intermediate dictionaries are not compatibility promises.
 - Metric-definition changes require a result-manifest version bump and regenerated
   reports; a report hash from the older definition remains historical evidence.
 
-## Deprecation after v1.0
+## Deprecation policy
 
 A public CLI option or Python symbol will normally be announced for at least one
 minor release before removal. A deprecated reader remains available long enough
 to export the prior format to canonical JSON. Security, privacy or scientifically
 invalid behavior may be disabled immediately and will be documented as such.
 
-The v1.0 candidate includes an explicit canonical episode migration and tests
+The package includes an explicit canonical Schema v1.0 migration and tests
 that cover every public v0.1 fixture. The machine-readable strategy record is
 `schemas/mathaudit-v1-compatibility.json`; migration instructions are in
-`docs/migrating_to_v1.md`. Final compatibility claims still require repeating
-these tests on the immutable release commit.
+`docs/migrating_to_v1.md`. Release-specific compatibility claims require
+repeating these tests on the immutable release commit.

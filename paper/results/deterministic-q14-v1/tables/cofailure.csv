@@ -1,0 +1,5 @@
+label_variant,panel_id,system_id,stratum,episode_count,result_complete_all_wrong,result_complete_case_beta,result_complete_case_beta_exact_95_high,result_complete_case_beta_exact_95_low,result_complete_cases,result_operational_no_correct_support,result_operational_no_correct_support_rate,result_registered_episodes,result_source_ids,set_id
+deterministic,mathrouter-standard,mathrouter,standard,25,0,,,,0,7,0.28,25,"[""hermes_reasoner"", ""deep_reasoner"", ""python_executor""]",reasoner-deep-python
+deterministic,mathrouter-hard,mathrouter,hard_gt_5,25,0,,,,0,22,0.88,25,"[""hermes_reasoner"", ""deep_reasoner"", ""python_executor""]",reasoner-deep-python
+deterministic,icma-standard,icma,standard,25,0,0.0,0.24705263800047092,0.0,13,3,0.12,25,"[""reasoner"", ""validator"", ""python_executor""]",reasoner-validator-python
+deterministic,icma-hard,icma,hard_gt_5,25,1,0.25,0.8058795503167565,0.006309463209709865,4,19,0.76,25,"[""reasoner"", ""validator"", ""python_executor""]",reasoner-validator-python

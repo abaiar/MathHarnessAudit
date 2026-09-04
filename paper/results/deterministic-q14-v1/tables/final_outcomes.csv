@@ -1,0 +1,7 @@
+label_variant,panel_id,system_id,stratum,episode_count,binary_scorable_finals,conditional_accuracy,correct_finals,end_to_end_accuracy,incorrect_finals,intervals_exact_95_conditional_accuracy_high,intervals_exact_95_conditional_accuracy_low,intervals_exact_95_end_to_end_accuracy_high,intervals_exact_95_end_to_end_accuracy_low,intervals_exact_95_survival_rate_high,intervals_exact_95_survival_rate_low,produced_finals,registered_episodes,survival_rate
+deterministic,mathrouter-standard,mathrouter,standard,25,16,1.0,16,0.64,0,1.0,0.7940927857921772,0.8202831794163445,0.42520634955384945,1.0,0.8628148284692875,25,25,1.0
+deterministic,mathrouter-hard,mathrouter,hard_gt_5,25,4,1.0,4,0.16,0,1.0,0.3976353643835253,0.3608284544592721,0.04537945237170958,1.0,0.8628148284692875,25,25,1.0
+deterministic,icma-standard,icma,standard,25,19,0.9473684210526315,18,0.72,1,0.9986683711958205,0.7397193458047858,0.8792833114959334,0.5061231781937445,1.0,0.8628148284692875,25,25,1.0
+deterministic,icma-hard,icma,hard_gt_5,25,6,0.6666666666666666,4,0.16,2,0.9567281317072583,0.22277809550351213,0.3608284544592721,0.04537945237170958,1.0,0.8628148284692875,25,25,1.0
+deterministic,mathgoal-standard,mathgoal,standard,25,21,1.0,21,0.84,0,1.0,0.8389023847809204,0.9546205476282904,0.6391715455407279,1.0,0.8628148284692875,25,25,1.0
+deterministic,mathgoal-hard,mathgoal,hard_gt_5,25,8,0.875,7,0.28,1,0.9968402764687481,0.47349032912479344,0.49387682180625553,0.12071668850406657,0.9901604099812025,0.7396941578947858,23,25,0.92

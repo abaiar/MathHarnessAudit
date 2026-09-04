@@ -1,0 +1,97 @@
+{
+  "format": "mathaudit-qualification-publication-manifest-v0.1",
+  "tool_version": "0.2.0",
+  "source_plan_sha256": "c246d426ca8b06e01546d9c3d276c29b1ae81de682bdf33cfaa7edb1573b1c18",
+  "analysis_config_raw_sha256": "bacb9aa4cc0d28311829bc9b8ed20a206b19ca6aca6eaef25907bb4f2b15a549",
+  "label_variants": [
+    "deterministic"
+  ],
+  "analysis_inputs": [
+    {
+      "label_variant": "deterministic",
+      "analysis_sha256": "58c50ea66e549767589857ec3839c977b95bf0fca33d67d72b4404e8d292256a",
+      "raw_sha256": "bcbc7b21981273d0268f54e0811617ff4b4a026794ba349071dd74b8a853c904"
+    }
+  ],
+  "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
+  "artifacts": [
+    {
+      "relative_path": "figures/availability.svg",
+      "sha256": "55109451c0e3637cdfe5ea941ebc76e52344ec7d6404be3da1a48947720e4de4"
+    },
+    {
+      "relative_path": "figures/availability.svg.manifest.json",
+      "sha256": "d8e633b222250deafeb3ef36d721e5d94dc6b341d22f4b1fcc1dc6f79934bc70"
+    },
+    {
+      "relative_path": "figures/dependence.svg",
+      "sha256": "92f06948cfb783ee40ae59bb713acc298e656bd957ebc36032a93303040ca940"
+    },
+    {
+      "relative_path": "figures/dependence.svg.manifest.json",
+      "sha256": "f5926e0c39308c26de3aa3d51c3617717399077802453f1b372e79971ba9f3b2"
+    },
+    {
+      "relative_path": "figures/repair_harm.svg",
+      "sha256": "fe37f784fdcff78b9646befebb45ec84f202a96a9857fee61bc1944f21824624"
+    },
+    {
+      "relative_path": "figures/repair_harm.svg.manifest.json",
+      "sha256": "66e700424366d5219d0c4904915b22efadc1683352c99fe2bdc87c6c61ca7aa0"
+    },
+    {
+      "relative_path": "figures/repetition.svg",
+      "sha256": "28517fc3153463d85a6f249a79ea641e7b5e19ba197f89a87b4129f3edeb68b8"
+    },
+    {
+      "relative_path": "figures/repetition.svg.manifest.json",
+      "sha256": "04744f0b9fcd06ae488b2033671d84e44f1ff6379e91ca3027ac393f8adb22e0"
+    },
+    {
+      "relative_path": "publication-data.json",
+      "sha256": "1df7cd4ca97e6c1005040292c6cd5fb70d10283e2487cec102377a60fa35f2dc"
+    },
+    {
+      "relative_path": "tables/availability.csv",
+      "sha256": "f79e0cfb2f7b0888b1b599cb5a95c3247e27bd9b18ab0ace39c207ee1a43fd6d"
+    },
+    {
+      "relative_path": "tables/cofailure.csv",
+      "sha256": "3aa6ee46bd79036c29446cc28064005d7cbea9a8503119fbf677781b0aa16e4f"
+    },
+    {
+      "relative_path": "tables/cost.csv",
+      "sha256": "67a54099eb04e057e3e7611aee3c77ddc41408e8b949fb6f78af58064f9775dc"
+    },
+    {
+      "relative_path": "tables/effective_support.csv",
+      "sha256": "76ea14aff2a44acfea2ead9d26c9f4d82c013fb835dc3777e7fb11ef6496f600"
+    },
+    {
+      "relative_path": "tables/exact_pairwise.csv",
+      "sha256": "e8f944ed4ff838e33e8e884053d4800ee799609b7c264a66e39aa915bff752de"
+    },
+    {
+      "relative_path": "tables/final_outcomes.csv",
+      "sha256": "5f56b0552d49ac99c1d89a32290b3055d2934a9a6127f565d8642e9e524108db"
+    },
+    {
+      "relative_path": "tables/source_type_pairwise.csv",
+      "sha256": "26b7d7ab368560318f16d360e3ea7f1ab3508208b582eed8dc70d177781af7da"
+    },
+    {
+      "relative_path": "tables/text_repetition.csv",
+      "sha256": "ddafe1182c48391a1566c9d439b3420675b58350d5d7970cdc92cac61a4ac31a"
+    },
+    {
+      "relative_path": "tables/transitions.csv",
+      "sha256": "7c0441c37bcc10b45b3d76ade49185b24bfb7f34f56802fcf4a2f952984002ee"
+    },
+    {
+      "relative_path": "tables/utilization.csv",
+      "sha256": "db52405853d50af646c6e8942778390ee2df15f7bc63c1ca6c6e15c90bf8dbf0"
+    }
+  ],
+  "system_ranking_computed": false,
+  "manifest_sha256": "4f071ef3632db2a834beb2a16bcf5c68dcc53ec6b37ff820526d55f579fa36c3"
+}

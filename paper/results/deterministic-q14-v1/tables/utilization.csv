@@ -1,0 +1,5 @@
+label_variant,panel_id,system_id,stratum,episode_count,causal_interpretation,checker,counts_binary_disagreements,counts_proxy_comparable,counts_selection_not_observable,direct_checker_adoption_rate,intervals_exact_95_direct_checker_adoption_rate_high,intervals_exact_95_direct_checker_adoption_rate_low,intervals_exact_95_proxy_final_exact_match_rate_high,intervals_exact_95_proxy_final_exact_match_rate_low,proxy_final_exact_match_rate,proxy_is_direct_utilization,upstream
+deterministic,mathrouter-standard,mathrouter,standard,25,False,python_executor,,,,,,,,,,False,hermes_reasoner
+deterministic,mathrouter-hard,mathrouter,hard_gt_5,25,False,python_executor,,,,,,,,,,False,hermes_reasoner
+deterministic,icma-standard,icma,standard,25,False,python_executor,1,1,1,,,,0.975,0.0,0.0,False,reasoner
+deterministic,icma-hard,icma,hard_gt_5,25,False,python_executor,,,,,,,,,,False,reasoner

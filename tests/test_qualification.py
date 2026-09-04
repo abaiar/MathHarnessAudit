@@ -150,7 +150,9 @@ def test_skip_boundary_authorization_defers_one_replacement_slot():
     assert qualification_authorization_issues(payload) == []
     assert verify_qualification_authorization(payload)["episode_cap"] == 68
     payload["continuation"]["deferred_replacement_count"] = 0
-    assert any("defer exactly one" in issue for issue in qualification_authorization_issues(payload))
+    assert any(
+        "defer exactly one" in issue for issue in qualification_authorization_issues(payload)
+    )
 
 
 def test_pending_or_incomplete_record_cannot_authorize_compute():
@@ -480,9 +482,7 @@ def test_full_provider_free_preflight_passes_then_detects_lock_drift(tmp_path, m
     ):
         assert generated_runtime[key] == expected_runtime[key]
     with pytest.raises(FileExistsError):
-        prepare_qualification_run_manifests(
-            config_path, authorization_path, tmp_path / "runs"
-        )
+        prepare_qualification_run_manifests(config_path, authorization_path, tmp_path / "runs")
     report = run_qualification_preflight(config_path, environment={})
     assert report["ready"] is True, report
     assert report["fail_count"] == 0

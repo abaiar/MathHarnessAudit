@@ -9,6 +9,7 @@
 /ecrc-procs/
 /elsarticle/
 /math_goal.pdf
+/softwarex-osp-template.tex
 
 # Large or private research inputs
 /Omni-Math.jsonl
@@ -27,6 +28,7 @@ tests/test_phase6_calibration_coordination.py
 tests/test_qualification_runners.py
 tests/test_budget_gateway.py
 /*.pdf
+/paper/*.pdf
 /*.jsonl
 
 # Python

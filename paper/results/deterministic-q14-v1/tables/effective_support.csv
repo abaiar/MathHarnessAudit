@@ -1,0 +1,7 @@
+label_variant,panel_id,system_id,stratum,episode_count,binary_source_count_maximum,binary_source_count_median,binary_source_count_minimum,curve,model_based_not_literal_votes,rho_proxy,source_type
+deterministic,mathrouter-standard,mathrouter,standard,25,2,1,0,[],True,,llm
+deterministic,mathrouter-hard,mathrouter,hard_gt_5,25,1,0,0,[],True,,llm
+deterministic,icma-standard,icma,standard,25,2,2,0,[],True,,llm
+deterministic,icma-hard,icma,hard_gt_5,25,2,0,0,"[{""effective_support"": 1.0, ""k"": 1}, {""effective_support"": 1.0, ""k"": 2}]",True,1.0,llm
+deterministic,mathgoal-standard,mathgoal,standard,25,6,5,0,"[{""effective_support"": 1.0, ""k"": 1}, {""effective_support"": 2.012288916172214, ""k"": 2}, {""effective_support"": 3.0370946751935857, ""k"": 3}, {""effective_support"": 4.074650875383047, ""k"": 4}, {""effective_support"": 5.125196964219603, ""k"": 5}, {""effective_support"": 6.188978422569842, ""k"": 6}]",True,-0.006106934284361996,llm
+deterministic,mathgoal-hard,mathgoal,hard_gt_5,25,6,0,0,"[{""effective_support"": 1.0, ""k"": 1}, {""effective_support"": 1.3818181818181818, ""k"": 2}, {""effective_support"": 1.5833333333333333, ""k"": 3}, {""effective_support"": 1.7078651685393258, ""k"": 4}, {""effective_support"": 1.792452830188679, ""k"": 5}, {""effective_support"": 1.8536585365853655, ""k"": 6}]",True,0.44736842105263164,llm

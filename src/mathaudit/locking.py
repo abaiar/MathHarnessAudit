@@ -21,9 +21,7 @@ def _lock_windows(handle: BinaryIO, deadline: float) -> None:
             return
         except OSError:
             if time.monotonic() >= deadline:
-                raise TimeoutError(
-                    "timed out acquiring qualification artifact lock"
-                ) from None
+                raise TimeoutError("timed out acquiring qualification artifact lock") from None
             time.sleep(0.025)
 
 

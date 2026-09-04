@@ -1,0 +1,5 @@
+label_variant,panel_id,system_id,stratum,episode_count,causal_interpretation,checker,counts_harm_opportunity,counts_upstream_correct_checker_scorable,counts_upstream_wrong_checker_scorable,harm_opportunity_rate,harm_realization_rate,intervals_exact_95_harm_opportunity_rate_high,intervals_exact_95_harm_opportunity_rate_low,intervals_exact_95_harm_realization_rate_high,intervals_exact_95_harm_realization_rate_low,intervals_exact_95_repair_opportunity_rate_high,intervals_exact_95_repair_opportunity_rate_low,intervals_exact_95_repair_realization_rate_high,intervals_exact_95_repair_realization_rate_low,repair_opportunity_rate,repair_realization_rate,upstream
+deterministic,mathrouter-standard,mathrouter,standard,25,False,python_executor,,,,,,,,,,,,,,,,hermes_reasoner
+deterministic,mathrouter-hard,mathrouter,hard_gt_5,25,False,python_executor,,,,,,,,,,,,,,,,hermes_reasoner
+deterministic,icma-standard,icma,standard,25,False,python_executor,1,13,,0.07692307692307693,0.0,0.3602974352678775,0.001945628497346748,0.975,0.0,,,,,,,reasoner
+deterministic,icma-hard,icma,hard_gt_5,25,False,python_executor,,3,1,0.0,,0.7075982261787133,0.0,,,0.975,0.0,,,0.0,,reasoner

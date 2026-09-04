@@ -27,7 +27,10 @@ def iter_payloads(
 ) -> Iterator[Tuple[Dict[str, Any], str]]:
     if path.is_dir():
         selected = pattern or "*.json"
-        for child in sorted(path.glob(selected), key=lambda item: item.name):
+        matches = sorted(path.glob(selected), key=lambda item: item.name)
+        if not matches:
+            raise ValueError("input directory %s contains no files matching %r" % (path, selected))
+        for child in matches:
             for payload, locator in iter_payloads(child):
                 yield payload, locator
         return
@@ -121,7 +124,9 @@ def load_problem_manifest(
             gold=gold,
             domain=domain,
             difficulty=None if record.get("difficulty") is None else str(record.get("difficulty")),
-            answer_type=None if record.get("answer_type") is None else str(record.get("answer_type")),
+            answer_type=None
+            if record.get("answer_type") is None
+            else str(record.get("answer_type")),
             solver_visible_metadata=metadata,
         )
     return contexts

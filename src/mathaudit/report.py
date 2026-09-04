@@ -59,8 +59,12 @@ def build_audit_bundle(
         )
         for source_a, source_b in selected_pairs
     ]
-    transitions = [transition_metrics(episodes, source_a, source_b) for source_a, source_b in selected_pairs]
-    utilization = [conflict_adoption(episodes, source_a, source_b) for source_a, source_b in selected_pairs]
+    transitions = [
+        transition_metrics(episodes, source_a, source_b) for source_a, source_b in selected_pairs
+    ]
+    utilization = [
+        conflict_adoption(episodes, source_a, source_b) for source_a, source_b in selected_pairs
+    ]
     provenance = [provenance_support(episode) for episode in episodes]
     return {
         "format": "mathaudit-report-v0.1",
@@ -167,7 +171,9 @@ def render_html(bundle: Dict[str, Any]) -> str:
                 metrics["latency_s"]["n"],
             ]
         )
-    limitations = "".join("<li>%s</li>" % html.escape(value) for value in bundle["interpretation_limits"])
+    limitations = "".join(
+        "<li>%s</li>" % html.escape(value) for value in bundle["interpretation_limits"]
+    )
     cofailure_bundle = bundle.get("cofailure") or {}
     cofailure_text = _format_rate(cofailure_bundle.get("complete_case_beta"))
     operational_text = _format_rate(cofailure_bundle.get("operational_no_correct_support_rate"))
@@ -223,11 +229,55 @@ def render_html(bundle: Dict[str, Any]) -> str:
         len(bundle["source_ids"]),
         cofailure_text,
         operational_text,
-        _table(["Source", "Episodes", "Produced", "Binary scorable", "Conditional correctness", "Operational support"], availability_rows),
-        _table(["Source A", "Source B", "Complete cases", "Phi", "Joint error", "Both wrong"], pairwise_rows),
-        _table(["Upstream", "Checker", "Repair opportunity", "Repair realization", "Harm opportunity", "Harm realization"], transition_rows),
-        _table(["Upstream", "Checker", "Disagreements", "Directly observable", "Direct checker adoption", "Final exact-match proxy"], utilization_rows),
-        _table(["Source", "Median calls", "Median tokens", "Median latency s", "n calls", "n tokens", "n latency"], cost_rows),
+        _table(
+            [
+                "Source",
+                "Episodes",
+                "Produced",
+                "Binary scorable",
+                "Conditional correctness",
+                "Operational support",
+            ],
+            availability_rows,
+        ),
+        _table(
+            ["Source A", "Source B", "Complete cases", "Phi", "Joint error", "Both wrong"],
+            pairwise_rows,
+        ),
+        _table(
+            [
+                "Upstream",
+                "Checker",
+                "Repair opportunity",
+                "Repair realization",
+                "Harm opportunity",
+                "Harm realization",
+            ],
+            transition_rows,
+        ),
+        _table(
+            [
+                "Upstream",
+                "Checker",
+                "Disagreements",
+                "Directly observable",
+                "Direct checker adoption",
+                "Final exact-match proxy",
+            ],
+            utilization_rows,
+        ),
+        _table(
+            [
+                "Source",
+                "Median calls",
+                "Median tokens",
+                "Median latency s",
+                "n calls",
+                "n tokens",
+                "n latency",
+            ],
+            cost_rows,
+        ),
         limitations,
         html.escape(str(bundle["tool_version"])),
     )

@@ -24,7 +24,12 @@ from mathaudit.qualification_composite import (
     assemble_qualification_lineage_composite,
     assemble_qualification_replacement_composite,
 )
-from mathaudit.qualification_publication import write_qualification_publication_bundle
+from mathaudit.qualification_publication import (
+    reproduce_and_compare_qualification_publication,
+    verify_public_analysis_release,
+    verify_qualification_publication_bundle,
+    write_qualification_publication_bundle,
+)
 from mathaudit.qualification_scoring import (
     freeze_qualification_adjudication,
     prepare_qualification_adjudication,
@@ -107,8 +112,7 @@ def _continuation_state(plan):
         "status": "completed",
         "current_episodes": [],
         "episodes": [
-            {"sequence": entry["sequence"], "status": "completed"}
-            for entry in plan["entries"]
+            {"sequence": entry["sequence"], "status": "completed"} for entry in plan["entries"]
         ],
     }
     state["state_sha256"] = sha256_json(state)
@@ -144,9 +148,7 @@ def _lineage_state(plan, completed_start, completed_end, failed_boundary=None):
 
 
 def _lineage_continuation_plan(source_plan, source_state, restart, authorization_id):
-    root_entries = [
-        entry for entry in source_plan["entries"] if entry["sequence"] >= restart
-    ]
+    root_entries = [entry for entry in source_plan["entries"] if entry["sequence"] >= restart]
     plan = {
         "format": "mathaudit-qualification-execution-plan-v0.2",
         "authorization_id": authorization_id,
@@ -179,9 +181,7 @@ def _episodes(entries, episode_factory, run_id):
                             "stratum": entry["stratum"],
                         }
                     ),
-                    "system": base.system.model_copy(
-                        update={"system_id": entry["system_id"]}
-                    ),
+                    "system": base.system.model_copy(update={"system_id": entry["system_id"]}),
                     "run": base.run.model_copy(update={"run_id": run_id}),
                     "labels": [],
                 }
@@ -194,9 +194,7 @@ def _write_closeout(root, authorization_id, plan_sha256, episodes):
     root.mkdir(parents=True)
     manifest_rows = []
     for system_id in ("mathrouter", "icma", "mathgoal"):
-        system_episodes = [
-            episode for episode in episodes if episode.system.system_id == system_id
-        ]
+        system_episodes = [episode for episode in episodes if episode.system.system_id == system_id]
         canonical_path = root / system_id / "canonical.jsonl"
         write_episodes(canonical_path, system_episodes)
         run_manifest = {
@@ -234,9 +232,7 @@ def _write_closeout(root, authorization_id, plan_sha256, episodes):
         "contains_prompt_or_response_text": False,
     }
     closeout["closeout_sha256"] = sha256_json(closeout)
-    (root / "closeout-manifest.json").write_text(
-        json.dumps(closeout), encoding="utf-8"
-    )
+    (root / "closeout-manifest.json").write_text(json.dumps(closeout), encoding="utf-8")
 
 
 def _complete_agreeing_rater(path, annotator):
@@ -318,9 +314,7 @@ def test_composite_assembles_exact_150_outcome_blind_traces(tmp_path, episode_fa
     assert list(Draft202012Validator(schema).iter_errors(manifest)) == []
 
     scoring_output = tmp_path / "scoring"
-    scoring = score_qualification_composite(
-        composite_dir=output, output_dir=scoring_output
-    )
+    scoring = score_qualification_composite(composite_dir=output, output_dir=scoring_output)
     assert scoring["episode_count"] == 150
     assert scoring["correctness_labels_computed"] is True
     assert sum(scoring["label_counts"].values()) > 150
@@ -368,8 +362,7 @@ def test_composite_assembles_exact_150_outcome_blind_traces(tmp_path, episode_fa
     assert len(analysis["panels"]) == 6
     assert analysis["system_ranking_computed"] is False
     assert {
-        item["provenance_relation"]
-        for item in analysis["panels"][0]["source_type_pairwise"]
+        item["provenance_relation"] for item in analysis["panels"][0]["source_type_pairwise"]
     } == {"all", "same", "different"}
     analysis_schema = json.loads(
         (
@@ -391,9 +384,7 @@ def test_composite_assembles_exact_150_outcome_blind_traces(tmp_path, episode_fa
     )
     assert (
         list(
-            Draft202012Validator(adjudication_input_schema).iter_errors(
-                adjudication_input_manifest
-            )
+            Draft202012Validator(adjudication_input_schema).iter_errors(adjudication_input_manifest)
         )
         == []
     )
@@ -440,11 +431,7 @@ def test_composite_assembles_exact_150_outcome_blind_traces(tmp_path, episode_fa
         ).read_text(encoding="utf-8")
     )
     assert (
-        list(
-            Draft202012Validator(adjudicated_scoring_schema).iter_errors(
-                adjudicated_scoring
-            )
-        )
+        list(Draft202012Validator(adjudicated_scoring_schema).iter_errors(adjudicated_scoring))
         == []
     )
     adjudicated_analysis_path = tmp_path / "analysis-adjudicated.json"
@@ -454,12 +441,7 @@ def test_composite_assembles_exact_150_outcome_blind_traces(tmp_path, episode_fa
         output_path=adjudicated_analysis_path,
     )
     assert adjudicated_analysis["label_variant"] == "adjudicated"
-    assert (
-        list(
-            Draft202012Validator(analysis_schema).iter_errors(adjudicated_analysis)
-        )
-        == []
-    )
+    assert list(Draft202012Validator(analysis_schema).iter_errors(adjudicated_analysis)) == []
 
     with pytest.raises(ValueError, match="guide identity differs"):
         freeze_qualification_adjudication(
@@ -486,11 +468,9 @@ def test_composite_assembles_exact_150_outcome_blind_traces(tmp_path, episode_fa
     mutated_manifest_path = mutated / "manifest.json"
     mutated_manifest = json.loads(mutated_manifest_path.read_text(encoding="utf-8"))
     mutated_manifest.pop("manifest_sha256")
-    next(
-        row
-        for row in mutated_manifest["artifacts"]
-        if row["path"] == "episodes.jsonl"
-    )["sha256"] = _file_sha256(mutated_path)
+    next(row for row in mutated_manifest["artifacts"] if row["path"] == "episodes.jsonl")[
+        "sha256"
+    ] = _file_sha256(mutated_path)
     mutated_manifest["manifest_sha256"] = sha256_json(mutated_manifest)
     mutated_manifest_path.write_text(json.dumps(mutated_manifest), encoding="utf-8")
     with pytest.raises(ValueError, match="non-label episode content"):
@@ -535,6 +515,47 @@ def test_composite_assembles_exact_150_outcome_blind_traces(tmp_path, episode_fa
         ).read_text(encoding="utf-8")
     )
     assert list(Draft202012Validator(data_schema).iter_errors(publication_data)) == []
+    verified = verify_qualification_publication_bundle(
+        bundle_dir=publication_dir,
+        analysis_paths=[analysis_path, adjudicated_analysis_path],
+    )
+    assert verified["status"] == "passed"
+    assert verified["artifact_count"] == 19
+    reproduced = reproduce_and_compare_qualification_publication(
+        analysis_paths=[analysis_path, adjudicated_analysis_path],
+        reference_dir=publication_dir,
+    )
+    assert reproduced["byte_identical"] is True
+
+    public_analysis = verify_public_analysis_release(analysis_path)
+    assert public_analysis["contains_prompt_or_response_text"] is False
+    assert public_analysis["reexecution_boundary"] == (
+        "aggregate-analysis-to-publication-artifacts"
+    )
+
+    drift = publication_dir / "unregistered.txt"
+    drift.write_text("drift", encoding="utf-8")
+    with pytest.raises(ValueError, match="unregistered"):
+        verify_qualification_publication_bundle(bundle_dir=publication_dir)
+    drift.unlink()
+
+    unsafe_analysis = copy.deepcopy(analysis)
+    unsafe_analysis["gold"] = "private answer"
+    unsafe_analysis.pop("analysis_sha256")
+    unsafe_analysis["analysis_sha256"] = sha256_json(unsafe_analysis)
+    unsafe_analysis_path = tmp_path / "unsafe-analysis.json"
+    unsafe_analysis_path.write_text(json.dumps(unsafe_analysis), encoding="utf-8")
+    with pytest.raises(ValueError, match="non-public key"):
+        verify_public_analysis_release(unsafe_analysis_path)
+
+    unsafe_analysis = copy.deepcopy(analysis)
+    unsafe_analysis["provider_request_id"] = "req-private-linkage"
+    unsafe_analysis["working_directory"] = "/home/researcher/private-run"
+    unsafe_analysis.pop("analysis_sha256")
+    unsafe_analysis["analysis_sha256"] = sha256_json(unsafe_analysis)
+    unsafe_analysis_path.write_text(json.dumps(unsafe_analysis), encoding="utf-8")
+    with pytest.raises(ValueError, match="non-public key.*local absolute path"):
+        verify_public_analysis_release(unsafe_analysis_path)
 
     mutated_analysis_path = tmp_path / "mutated-analysis.json"
     mutated_analysis = copy.deepcopy(adjudicated_analysis)
@@ -550,13 +571,9 @@ def test_composite_assembles_exact_150_outcome_blind_traces(tmp_path, episode_fa
 def _write_lineage_fixture(tmp_path, episode_factory):
     root_plan = _source_plan()
     first_state = _lineage_state(root_plan, 0, 10, failed_boundary=11)
-    second_plan = _lineage_continuation_plan(
-        root_plan, first_state, 11, "fixture-q6"
-    )
+    second_plan = _lineage_continuation_plan(root_plan, first_state, 11, "fixture-q6")
     second_state = _lineage_state(second_plan, 11, 26, failed_boundary=27)
-    third_plan = _lineage_continuation_plan(
-        second_plan, second_state, 27, "fixture-q7"
-    )
+    third_plan = _lineage_continuation_plan(second_plan, second_state, 27, "fixture-q7")
     third_state = _lineage_state(third_plan, 27, 149)
     plans = [root_plan, second_plan, third_plan]
     states = [first_state, second_state, third_state]
@@ -564,17 +581,13 @@ def _write_lineage_fixture(tmp_path, episode_factory):
     state_paths = []
     closeout_dirs = []
     ranges = [(0, 10), (11, 26), (27, 149)]
-    for position, (plan, state, (start, end)) in enumerate(
-        zip(plans, states, ranges, strict=True)
-    ):
+    for position, (plan, state, (start, end)) in enumerate(zip(plans, states, ranges, strict=True)):
         plan_path = tmp_path / ("plan-%d.json" % position)
         state_path = tmp_path / ("state-%d.json" % position)
         plan_path.write_text(json.dumps(plan), encoding="utf-8")
         state_path.write_text(json.dumps(state), encoding="utf-8")
         closeout = tmp_path / ("closeout-%d" % position)
-        entries = [
-            entry for entry in root_plan["entries"] if start <= entry["sequence"] <= end
-        ]
+        entries = [entry for entry in root_plan["entries"] if start <= entry["sequence"] <= end]
         _write_closeout(
             closeout,
             plan["authorization_id"],
@@ -625,9 +638,7 @@ def test_lineage_composite_assembles_three_segments_and_remains_scoreable(
     assert scoring["episode_count"] == 150
 
 
-def test_lineage_composite_preserves_zero_complete_failed_segment(
-    tmp_path, episode_factory
-):
+def test_lineage_composite_preserves_zero_complete_failed_segment(tmp_path, episode_factory):
     root_plan = _source_plan()
     q5_state = _lineage_state(root_plan, 0, 10, failed_boundary=11)
     q6_plan = _lineage_continuation_plan(root_plan, q5_state, 11, "fixture-q6")
@@ -643,19 +654,13 @@ def test_lineage_composite_preserves_zero_complete_failed_segment(
     plan_paths = []
     state_paths = []
     closeout_dirs = []
-    for position, (plan, state, (start, end)) in enumerate(
-        zip(plans, states, ranges, strict=True)
-    ):
+    for position, (plan, state, (start, end)) in enumerate(zip(plans, states, ranges, strict=True)):
         plan_path = tmp_path / ("zero-plan-%d.json" % position)
         state_path = tmp_path / ("zero-state-%d.json" % position)
         plan_path.write_text(json.dumps(plan), encoding="utf-8")
         state_path.write_text(json.dumps(state), encoding="utf-8")
         closeout = tmp_path / ("zero-closeout-%d" % position)
-        entries = [
-            entry
-            for entry in root_plan["entries"]
-            if start <= entry["sequence"] <= end
-        ]
+        entries = [entry for entry in root_plan["entries"] if start <= entry["sequence"] <= end]
         _write_closeout(
             closeout,
             plan["authorization_id"],
@@ -716,9 +721,7 @@ def test_lineage_composite_rejects_provenance_tamper_and_missing_sequence(
     missing_state_path = tmp_path / "missing-state.json"
     missing_state_path.write_text(json.dumps(missing_state), encoding="utf-8")
     relinked_plan = json.loads(plan_paths[2].read_text(encoding="utf-8"))
-    relinked_plan["continuation"]["source_state_sha256"] = missing_state[
-        "state_sha256"
-    ]
+    relinked_plan["continuation"]["source_state_sha256"] = missing_state["state_sha256"]
     relinked_plan.pop("plan_sha256")
     relinked_plan["plan_sha256"] = sha256_json(relinked_plan)
     relinked_plan_path = tmp_path / "relinked-plan.json"
@@ -741,9 +744,7 @@ def test_lineage_composite_rejects_replayed_boundary_and_completed_failure(
     duplicate_plan = json.loads(plan_paths[2].read_text(encoding="utf-8"))
     duplicate_plan["continuation"]["completed_prefix_episode_count"] = 11
     duplicate_plan["continuation"]["restart_sequence"] = 11
-    duplicate_plan["entries"] = json.loads(
-        plan_paths[1].read_text(encoding="utf-8")
-    )["entries"]
+    duplicate_plan["entries"] = json.loads(plan_paths[1].read_text(encoding="utf-8"))["entries"]
     duplicate_plan.pop("plan_sha256")
     duplicate_plan["plan_sha256"] = sha256_json(duplicate_plan)
     duplicate_plan_path = tmp_path / "duplicate-plan.json"
@@ -762,13 +763,9 @@ def test_lineage_composite_rejects_replayed_boundary_and_completed_failure(
     completed_boundary.pop("state_sha256")
     completed_boundary["state_sha256"] = sha256_json(completed_boundary)
     completed_boundary_path = tmp_path / "completed-boundary-state.json"
-    completed_boundary_path.write_text(
-        json.dumps(completed_boundary), encoding="utf-8"
-    )
+    completed_boundary_path.write_text(json.dumps(completed_boundary), encoding="utf-8")
     relinked_plan = json.loads(plan_paths[2].read_text(encoding="utf-8"))
-    relinked_plan["continuation"]["source_state_sha256"] = completed_boundary[
-        "state_sha256"
-    ]
+    relinked_plan["continuation"]["source_state_sha256"] = completed_boundary["state_sha256"]
     relinked_plan.pop("plan_sha256")
     relinked_plan["plan_sha256"] = sha256_json(relinked_plan)
     relinked_plan_path = tmp_path / "completed-boundary-plan.json"
@@ -873,10 +870,9 @@ def test_replacement_composite_overlays_one_missing_slot_and_validates_v03(
         )
     )
     index_schema = json.loads(
-        (
-            root
-            / "schemas/mathaudit-qualification-composite-index-v0.3.schema.json"
-        ).read_text(encoding="utf-8")
+        (root / "schemas/mathaudit-qualification-composite-index-v0.3.schema.json").read_text(
+            encoding="utf-8"
+        )
     )
 
     assert manifest["replacement"]["sequences"] == [149]

@@ -50,9 +50,7 @@ def test_forecast_scales_and_usage_adjusts_without_outcomes(tmp_path):
     assert forecast["scenarios"]["M"]["total_system_episodes"] == 600
     assert forecast["scenarios"]["M"]["totals"]["projected_request_count"] == 1200
     assert (
-        forecast["scenarios"]["M"]["systems"]["mathrouter"][
-            "projected_observed_token_point"
-        ]
+        forecast["scenarios"]["M"]["systems"]["mathrouter"]["projected_observed_token_point"]
         == 20000
     )
     assert forecast["scenarios"]["L"]["totals"]["projected_reserved_token_upper"] == 1200000

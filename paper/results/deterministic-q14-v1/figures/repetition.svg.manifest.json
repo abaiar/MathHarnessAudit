@@ -1,0 +1,16 @@
+{
+  "format": "mathaudit-qualification-figure-manifest-v0.1",
+  "tool_version": "0.2.0",
+  "source_plan_sha256": "c246d426ca8b06e01546d9c3d276c29b1ae81de682bdf33cfaa7edb1573b1c18",
+  "analysis_inputs": [
+    {
+      "label_variant": "deterministic",
+      "analysis_sha256": "58c50ea66e549767589857ec3839c977b95bf0fca33d67d72b4404e8d292256a",
+      "raw_sha256": "bcbc7b21981273d0268f54e0811617ff4b4a026794ba349071dd74b8a853c904"
+    }
+  ],
+  "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
+  "output_relative_path": "figures/repetition.svg",
+  "output_sha256": "28517fc3153463d85a6f249a79ea641e7b5e19ba197f89a87b4129f3edeb68b8",
+  "manifest_sha256": "79c00d36b08a57ba9c3bb63e4a7613ecda251bf8c1ce4760a488f3fc2dc82d46"
+}

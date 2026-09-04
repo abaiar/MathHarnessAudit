@@ -198,7 +198,8 @@ def verify_qualification_execution_plan(
         observed = copy.deepcopy(plan)
         observed.pop("plan_sha256", None)
         legacy_match = (
-            plan.get("format") in {
+            plan.get("format")
+            in {
                 "mathaudit-qualification-execution-plan-v0.2",
                 "mathaudit-qualification-execution-plan-v0.3",
                 "mathaudit-qualification-execution-plan-v0.4",
@@ -346,16 +347,12 @@ def compile_qualification_continuation_plan(
         )
         if not prefix_valid:
             raise ValueError(
-                "source state completed prefix is invalid at sequence %d"
-                % expected.get("sequence")
+                "source state completed prefix is invalid at sequence %d" % expected.get("sequence")
             )
     failed_position = relative_restart - 1 if skip_failed_boundary else relative_restart
     failed = source_episodes[failed_position]
     expected_failed_sequence = restart - 1 if skip_failed_boundary else restart
-    if (
-        failed.get("sequence") != expected_failed_sequence
-        or failed.get("status") == "completed"
-    ):
+    if failed.get("sequence") != expected_failed_sequence or failed.get("status") == "completed":
         raise ValueError("source state restart boundary is not a failed episode")
 
     systems = authorization.get("systems")
@@ -491,9 +488,7 @@ def compile_qualification_replacement_plan(
         raise ValueError("replacement provenance is required")
     if replacement.get("source_schedule_plan_sha256") != source_plan.get("plan_sha256"):
         raise ValueError("replacement source schedule plan mismatch")
-    if replacement.get("source_inventory_sha256") != replacement_inventory.get(
-        "inventory_sha256"
-    ):
+    if replacement.get("source_inventory_sha256") != replacement_inventory.get("inventory_sha256"):
         raise ValueError("replacement inventory mismatch")
     lineage = replacement_inventory.get("lineage_states")
     source_run_id = replacement.get("source_run_id") or "q11"

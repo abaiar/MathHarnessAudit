@@ -179,9 +179,7 @@ def _continuation_authorization(source_plan, source_state, status="pending", res
 
 def test_continuation_plan_reruns_failed_boundary_and_preserves_suffix():
     bundle = _bundle()
-    source_plan = compile_qualification_execution_plan(
-        bundle, _authorization(status="authorized")
-    )
+    source_plan = compile_qualification_execution_plan(bundle, _authorization(status="authorized"))
     source_state = _stopped_source_state(source_plan)
     authorization = _continuation_authorization(source_plan, source_state)
     plan = compile_qualification_continuation_plan(
@@ -246,9 +244,7 @@ def test_continuation_plan_reruns_failed_boundary_and_preserves_suffix():
 
 def test_continuation_plan_rejects_tampered_source_state():
     bundle = _bundle()
-    source_plan = compile_qualification_execution_plan(
-        bundle, _authorization(status="authorized")
-    )
+    source_plan = compile_qualification_execution_plan(bundle, _authorization(status="authorized"))
     source_state = _stopped_source_state(source_plan)
     authorization = _continuation_authorization(source_plan, source_state)
     source_state["episodes"][0]["status"] = "runner_or_provider_failure"
@@ -263,9 +259,7 @@ def test_continuation_plan_rejects_tampered_source_state():
 
 def test_skip_boundary_continuation_defers_failed_slot_and_compiles_only_unattempted_suffix():
     bundle = _bundle()
-    source_plan = compile_qualification_execution_plan(
-        bundle, _authorization(status="authorized")
-    )
+    source_plan = compile_qualification_execution_plan(bundle, _authorization(status="authorized"))
     source_state = _stopped_source_state(source_plan, restart=81)
     suffix = [entry for entry in source_plan["entries"] if entry["sequence"] >= 82]
     counts = {
@@ -331,9 +325,7 @@ def test_skip_boundary_continuation_defers_failed_slot_and_compiles_only_unattem
 
 def test_nested_continuation_reruns_second_failed_boundary_without_sequence_drift():
     bundle = _bundle()
-    full_plan = compile_qualification_execution_plan(
-        bundle, _authorization(status="authorized")
-    )
+    full_plan = compile_qualification_execution_plan(bundle, _authorization(status="authorized"))
     first_state = _stopped_source_state(full_plan, restart=11)
     first_authorization = _continuation_authorization(
         full_plan, first_state, status="authorized", restart=11
@@ -356,12 +348,12 @@ def test_nested_continuation_reruns_second_failed_boundary_without_sequence_drif
     )
 
     assert second_plan["episode_count"] == 123
-    assert [entry["sequence"] for entry in second_plan["entries"]] == list(
-        range(27, 150)
-    )
-    assert {
-        item["system_id"]: item["episode_count"] for item in second_plan["systems"]
-    } == {"mathrouter": 41, "icma": 41, "mathgoal": 41}
+    assert [entry["sequence"] for entry in second_plan["entries"]] == list(range(27, 150))
+    assert {item["system_id"]: item["episode_count"] for item in second_plan["systems"]} == {
+        "mathrouter": 41,
+        "icma": 41,
+        "mathgoal": 41,
+    }
     summary = verify_qualification_execution_plan(
         second_plan,
         bundle,
@@ -401,7 +393,9 @@ def _replacement_fixture(bundle, source_plan):
     }
     inventory["inventory_sha256"] = sha256_json(inventory)
     counts = {
-        system_id: sum(source_plan["entries"][sequence]["system_id"] == system_id for sequence in sequences)
+        system_id: sum(
+            source_plan["entries"][sequence]["system_id"] == system_id for sequence in sequences
+        )
         for system_id in ("mathrouter", "icma", "mathgoal")
     }
     authorization = {
@@ -434,9 +428,7 @@ def _replacement_fixture(bundle, source_plan):
 
 def test_replacement_plan_compiles_only_the_frozen_missing_sequence_set():
     bundle = _bundle()
-    source_plan = compile_qualification_execution_plan(
-        bundle, _authorization(status="authorized")
-    )
+    source_plan = compile_qualification_execution_plan(bundle, _authorization(status="authorized"))
     authorization, inventory, sequences = _replacement_fixture(bundle, source_plan)
     plan = compile_qualification_replacement_plan(
         bundle,
@@ -474,16 +466,12 @@ def test_replacement_plan_compiles_only_the_frozen_missing_sequence_set():
 
 def test_replacement_plan_rejects_inventory_or_schedule_drift():
     bundle = _bundle()
-    source_plan = compile_qualification_execution_plan(
-        bundle, _authorization(status="authorized")
-    )
+    source_plan = compile_qualification_execution_plan(bundle, _authorization(status="authorized"))
     authorization, inventory, _ = _replacement_fixture(bundle, source_plan)
     inventory["missing_slots"][0]["idx"] += 1
     inventory.pop("inventory_sha256")
     inventory["inventory_sha256"] = sha256_json(inventory)
-    authorization["replacement"]["source_inventory_sha256"] = inventory[
-        "inventory_sha256"
-    ]
+    authorization["replacement"]["source_inventory_sha256"] = inventory["inventory_sha256"]
     with pytest.raises(ValueError, match="does not match the frozen schedule"):
         compile_qualification_replacement_plan(
             bundle,

@@ -2,6 +2,25 @@
 
 All notable changes to MathHarnessAudit will be documented here.
 
+## 0.2.0 - unreleased submission candidate
+
+- Added a public, text-free frozen analysis snapshot and a documented clean
+  reproduction path for all reference-audit CSV tables and SVG figures.
+- Added release-boundary validation that rejects raw prompt/answer fields,
+  request identifiers, secret-shaped values, and local absolute paths from an
+  aggregate analysis export.
+- Added publication-bundle verification and byte-for-byte regeneration checks
+  for tables, figures, sidecars, input identities, and self-hashed manifests.
+- Added a machine-checkable claim ledger linking manuscript numbers to frozen
+  analysis rows and generated artifacts.
+- Clarified the episode-balanced source-type dependence estimator, missingness
+  denominators, precision flag, and aggregate-only re-execution boundary.
+- Removed unresolved human-rating and participant-reuse results from the
+  submission evidence base; retained them privately as non-paper-eligible
+  research records pending external governance resolution.
+- Aligned package metadata, README, CI, manuscript, and source release around a
+  single v0.2.0 release candidate.
+
 ## 0.1.0 - 2026-09-01
 
 - Embedded all 41 public JSON Schemas inside the wheel, added deterministic

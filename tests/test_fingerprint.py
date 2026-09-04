@@ -29,9 +29,9 @@ def test_source_fingerprint_is_explicit_locale_free_and_verifiable(tmp_path):
         "z.txt",
         "中文/证据.txt",
     ]
-    assert verify_source_fingerprint(root, manifest)["manifest_sha256"] == manifest[
-        "manifest_sha256"
-    ]
+    assert (
+        verify_source_fingerprint(root, manifest)["manifest_sha256"] == manifest["manifest_sha256"]
+    )
 
 
 def test_source_fingerprint_detects_tampering_and_extra_files(tmp_path):
@@ -54,9 +54,7 @@ def test_source_fingerprint_exclusions_and_self_hash(tmp_path):
     root.mkdir()
     (root / "keep.py").write_text("keep", encoding="utf-8")
     (root / "runtime.lock").write_text("generated", encoding="utf-8")
-    manifest = fingerprint_source_tree(
-        root, system_id="fixture", excluded_paths=["runtime.lock"]
-    )
+    manifest = fingerprint_source_tree(root, system_id="fixture", excluded_paths=["runtime.lock"])
     assert manifest["file_count"] == 1
     altered = json.loads(json.dumps(manifest))
     altered["system_id"] = "changed"

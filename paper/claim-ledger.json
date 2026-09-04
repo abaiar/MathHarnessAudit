@@ -1,0 +1,61 @@
+{
+  "format": "mathaudit-paper-claim-ledger-v0.2",
+  "analysis_sha256": "58c50ea66e549767589857ec3839c977b95bf0fca33d67d72b4404e8d292256a",
+  "manuscript": "paper/softwarex.tex",
+  "claims": [
+    {
+      "claim_id": "dependence-mathgoal-standard-llm-llm",
+      "source": "tables/source_type_pairwise.csv",
+      "where": {"label_variant": "deterministic", "panel_id": "mathgoal-standard", "source_type_a": "llm", "source_type_b": "llm", "provenance_relation": "all"},
+      "expected": {"episodes_with_pairs": 22, "pair_observations": 182, "phi_episode_balanced": -0.006106934284361996, "phi_cluster_bootstrap_95_low": -0.025004395690303865, "phi_cluster_bootstrap_95_high": -0.006106934284361995, "precision_flag": "adequate"}
+    },
+    {
+      "claim_id": "dependence-mathgoal-standard-llm-python",
+      "source": "tables/source_type_pairwise.csv",
+      "where": {"label_variant": "deterministic", "panel_id": "mathgoal-standard", "source_type_a": "llm", "source_type_b": "python", "provenance_relation": "all"},
+      "expected": {"episodes_with_pairs": 16, "pair_observations": 249, "phi_episode_balanced": 0.25924212183361234, "phi_cluster_bootstrap_95_low": 0.18816667761480327, "phi_cluster_bootstrap_95_high": 0.39735970711951313, "precision_flag": "imprecise"}
+    },
+    {
+      "claim_id": "dependence-icma-standard-llm-python",
+      "source": "tables/source_type_pairwise.csv",
+      "where": {"label_variant": "deterministic", "panel_id": "icma-standard", "source_type_a": "llm", "source_type_b": "python", "provenance_relation": "all"},
+      "expected": {"episodes_with_pairs": 14, "pair_observations": 27, "phi_episode_balanced": 0.6793662204867574, "phi_cluster_bootstrap_95_low": 0.43852900965351466, "phi_cluster_bootstrap_95_high": 1.0, "precision_flag": "imprecise"}
+    },
+    {
+      "claim_id": "cofailure-mathrouter",
+      "source": "tables/cofailure.csv",
+      "where": {"label_variant": "deterministic", "system_id": "mathrouter"},
+      "expected_rows": [
+        {"panel_id": "mathrouter-standard", "result_complete_cases": 0, "result_operational_no_correct_support": 7, "result_registered_episodes": 25},
+        {"panel_id": "mathrouter-hard", "result_complete_cases": 0, "result_operational_no_correct_support": 22, "result_registered_episodes": 25}
+      ]
+    },
+    {
+      "claim_id": "cofailure-icma",
+      "source": "tables/cofailure.csv",
+      "where": {"label_variant": "deterministic", "system_id": "icma"},
+      "expected_rows": [
+        {"panel_id": "icma-standard", "result_complete_cases": 13, "result_complete_all_wrong": 0, "result_complete_case_beta_exact_95_low": 0.0, "result_complete_case_beta_exact_95_high": 0.24705263800047092},
+        {"panel_id": "icma-hard", "result_complete_cases": 4, "result_complete_all_wrong": 1, "result_complete_case_beta_exact_95_low": 0.006309463209709865, "result_complete_case_beta_exact_95_high": 0.8058795503167565}
+      ]
+    },
+    {
+      "claim_id": "transitions-icma-sparse",
+      "source": "tables/transitions.csv",
+      "where": {"label_variant": "deterministic", "system_id": "icma"},
+      "expected_rows": [
+        {"panel_id": "icma-standard", "counts_upstream_correct_checker_scorable": 13, "counts_harm_opportunity": 1, "harm_realization_rate": 0.0},
+        {"panel_id": "icma-hard", "counts_upstream_wrong_checker_scorable": 1, "repair_opportunity_rate": 0.0}
+      ]
+    },
+    {
+      "claim_id": "repetition-icma",
+      "source": "tables/text_repetition.csv",
+      "where": {"label_variant": "deterministic", "system_id": "icma"},
+      "expected_rows": [
+        {"panel_id": "icma-standard", "counts_text_comparable": 24, "counts_exact_text_repeat": 23, "exact_text_repeat_rate": 0.9583333333333334, "intervals_exact_95_exact_text_repeat_rate_low": 0.7887983165430269, "intervals_exact_95_exact_text_repeat_rate_high": 0.9989456475545303},
+        {"panel_id": "icma-hard", "counts_text_comparable": 23, "counts_exact_text_repeat": 19, "exact_text_repeat_rate": 0.8260869565217391, "intervals_exact_95_exact_text_repeat_rate_low": 0.6121881100452025, "intervals_exact_95_exact_text_repeat_rate_high": 0.9504923546942066}
+      ]
+    }
+  ]
+}

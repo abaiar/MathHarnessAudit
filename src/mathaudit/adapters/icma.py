@@ -43,7 +43,9 @@ class ICMAAdapter:
     }
 
     def can_handle(self, payload: Dict[str, Any]) -> bool:
-        steps = {str(item.get("step")) for item in payload.get("trace", []) if isinstance(item, dict)}
+        steps = {
+            str(item.get("step")) for item in payload.get("trace", []) if isinstance(item, dict)
+        }
         return "validation" in steps and "reasoning" in steps and "trace" in payload
 
     def convert(
@@ -106,7 +108,10 @@ class ICMAAdapter:
                     text=answer,
                     success=True,
                     kind=EvidenceKind.candidate_answer,
-                    metadata={"attempts": raw.get("attempts"), "steps_count": raw.get("steps_count")},
+                    metadata={
+                        "attempts": raw.get("attempts"),
+                        "steps_count": raw.get("steps_count"),
+                    },
                 )
                 if evidence_id:
                     stage_evidence[step] = evidence_id
@@ -167,7 +172,9 @@ class ICMAAdapter:
                         decision_type=DecisionType.validation,
                         stage=step,
                         sequence=sequence,
-                        status=DecisionStatus.completed if evidence_id else DecisionStatus.not_observable,
+                        status=DecisionStatus.completed
+                        if evidence_id
+                        else DecisionStatus.not_observable,
                         input_evidence_ids=inputs,
                         candidate_evidence_ids=inputs,
                         selected_evidence_ids=[],
@@ -200,7 +207,9 @@ class ICMAAdapter:
             if step == "semantic_arbitration":
                 candidates = list(stage_evidence.values())
                 status_raw = str(raw.get("status") or "").lower()
-                status = DecisionStatus.skipped if status_raw == "skipped" else DecisionStatus.completed
+                status = (
+                    DecisionStatus.skipped if status_raw == "skipped" else DecisionStatus.completed
+                )
                 decisions.append(
                     Decision(
                         decision_id="decision:semantic_arbitration",

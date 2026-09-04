@@ -84,9 +84,7 @@ def initialize_budget_ledger(authorization: Dict[str, Any]) -> Dict[str, Any]:
     return _with_hash(ledger)
 
 
-def verify_budget_ledger(
-    ledger: Dict[str, Any], authorization: Dict[str, Any]
-) -> Dict[str, Any]:
+def verify_budget_ledger(ledger: Dict[str, Any], authorization: Dict[str, Any]) -> Dict[str, Any]:
     """Verify self-hash, internal sums, authorization identity, and hard caps."""
 
     verify_qualification_authorization(authorization)
@@ -105,7 +103,11 @@ def verify_budget_ledger(
     requests = ledger.get("requests")
     episodes = ledger.get("episodes")
     systems = ledger.get("systems")
-    if not isinstance(requests, list) or not isinstance(episodes, list) or not isinstance(systems, dict):
+    if (
+        not isinstance(requests, list)
+        or not isinstance(episodes, list)
+        or not isinstance(systems, dict)
+    ):
         raise ValueError("budget ledger collections are malformed")
     expected_ids = {item["system_id"] for item in authorization["systems"]}
     if set(systems) != expected_ids:
@@ -117,9 +119,7 @@ def verify_budget_ledger(
         totals = systems[system_id]
         if totals.get("request_count") != len(request_rows):
             raise ValueError("budget ledger request-count mismatch")
-        usage_rows = [
-            item for item in request_rows if "observed_total_tokens" in item
-        ]
+        usage_rows = [item for item in request_rows if "observed_total_tokens" in item]
         if totals.get("observed_usage_request_count") != len(usage_rows):
             raise ValueError("budget ledger observed-usage-count mismatch")
         for field in (
@@ -177,9 +177,7 @@ def verify_budget_ledger(
     ):
         if total.get(field) != sum(int(item[field]) for item in requests):
             raise ValueError("budget ledger total token sum mismatch")
-    total_money = sum(
-        (_money(item["reserved_monetary_cny"]) for item in requests), Decimal("0")
-    )
+    total_money = sum((_money(item["reserved_monetary_cny"]) for item in requests), Decimal("0"))
     total_wall = sum(float(item["wall_time_s"]) for item in episodes)
     if len(episodes) > authorization["total_budget"]["episode_cap"]:
         raise ValueError("budget ledger exceeds total episode cap")
@@ -208,12 +206,8 @@ def verify_budget_ledger(
     }
 
 
-def _system_authorization(
-    authorization: Dict[str, Any], system_id: str
-) -> Dict[str, Any]:
-    matches = [
-        item for item in authorization["systems"] if item.get("system_id") == system_id
-    ]
+def _system_authorization(authorization: Dict[str, Any], system_id: str) -> Dict[str, Any]:
+    matches = [item for item in authorization["systems"] if item.get("system_id") == system_id]
     if len(matches) != 1:
         raise ValueError("system is not uniquely authorized: %s" % system_id)
     return matches[0]
@@ -290,23 +284,19 @@ def reserve_request(
     updated.pop("ledger_sha256", None)
     system_totals = updated["systems"][system_id]
     total_totals = updated["totals"]
-    new_system_tokens = system_totals["reserved_token_upper"] + reservation[
-        "reserved_token_upper"
-    ]
-    new_total_tokens = total_totals["reserved_token_upper"] + reservation[
-        "reserved_token_upper"
-    ]
+    new_system_tokens = system_totals["reserved_token_upper"] + reservation["reserved_token_upper"]
+    new_total_tokens = total_totals["reserved_token_upper"] + reservation["reserved_token_upper"]
     if new_system_tokens > system_auth["token_cap"]:
         raise ValueError("system token hard cap would be exceeded")
     if new_total_tokens > authorization["total_budget"]["token_cap"]:
         raise ValueError("total token hard cap would be exceeded")
 
-    system_money = _money(system_totals["reserved_monetary_cny"]) + reservation[
-        "reserved_monetary_cny"
-    ]
-    total_money = _money(total_totals["reserved_monetary_cny"]) + reservation[
-        "reserved_monetary_cny"
-    ]
+    system_money = (
+        _money(system_totals["reserved_monetary_cny"]) + reservation["reserved_monetary_cny"]
+    )
+    total_money = (
+        _money(total_totals["reserved_monetary_cny"]) + reservation["reserved_monetary_cny"]
+    )
     if system_money > _money(system_auth["monetary_cap"]):
         raise ValueError("system monetary hard cap would be exceeded")
     if total_money > _money(authorization["total_budget"]["monetary_cap"]):
@@ -333,9 +323,7 @@ def reserve_request(
             "reserved_input_token_upper": reservation["reserved_input_token_upper"],
             "reserved_output_token_upper": reservation["reserved_output_token_upper"],
             "reserved_token_upper": reservation["reserved_token_upper"],
-            "reserved_monetary_cny": _money_text(
-                reservation["reserved_monetary_cny"]
-            ),
+            "reserved_monetary_cny": _money_text(reservation["reserved_monetary_cny"]),
             "status": "reserved",
         }
     )
@@ -391,8 +379,7 @@ def finalize_request(
             if not isinstance(value, int) or isinstance(value, bool) or value < 0:
                 raise ValueError("observed token usage must be nonnegative integers")
         if observed_usage["observed_total_tokens"] < (
-            observed_usage["observed_input_tokens"]
-            + observed_usage["observed_output_tokens"]
+            observed_usage["observed_input_tokens"] + observed_usage["observed_output_tokens"]
         ):
             raise ValueError("observed total tokens are smaller than input plus output")
         request.update(observed_usage)
@@ -416,14 +403,16 @@ def record_episode_wall_time(
 
     verify_qualification_authorization(authorization)
     _verify_hash(ledger)
-    if not isinstance(wall_time_s, (int, float)) or isinstance(wall_time_s, bool) or wall_time_s < 0:
+    if (
+        not isinstance(wall_time_s, (int, float))
+        or isinstance(wall_time_s, bool)
+        or wall_time_s < 0
+    ):
         raise ValueError("episode wall_time_s must be nonnegative")
     if not episode_id or any(item["episode_id"] == episode_id for item in ledger["episodes"]):
         raise ValueError("episode_id must be nonempty and unique")
     system_auth = _system_authorization(authorization, system_id)
-    system_episode_count = sum(
-        item.get("system_id") == system_id for item in ledger["episodes"]
-    )
+    system_episode_count = sum(item.get("system_id") == system_id for item in ledger["episodes"])
     if system_episode_count + 1 > system_auth["episode_cap"]:
         raise ValueError("system episode hard cap would be exceeded")
     if len(ledger["episodes"]) + 1 > authorization["total_budget"]["episode_cap"]:

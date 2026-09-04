@@ -43,13 +43,11 @@ class Adapter(Protocol):
     name: str
     version: str
 
-    def can_handle(self, payload: Dict[str, Any]) -> bool:
-        ...
+    def can_handle(self, payload: Dict[str, Any]) -> bool: ...
 
     def convert(
         self,
         payload: Dict[str, Any],
         problem: ProblemContext,
         run: RunContext,
-    ) -> Episode:
-        ...
+    ) -> Episode: ...
