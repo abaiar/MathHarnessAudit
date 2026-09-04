@@ -6,11 +6,11 @@
     {
       "label_variant": "deterministic",
       "analysis_sha256": "58c50ea66e549767589857ec3839c977b95bf0fca33d67d72b4404e8d292256a",
-      "raw_sha256": "bcbc7b21981273d0268f54e0811617ff4b4a026794ba349071dd74b8a853c904"
+      "raw_sha256": "bf44ed7c457512a79498c162533a4834f975bac67c199d0b3391fa3817192c6b"
     }
   ],
   "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
   "output_relative_path": "figures/dependence.svg",
   "output_sha256": "87ec2285f4cbdbd624a6109aa63a7b5a9c2c91523d47f9e8ba0ca489a9788797",
-  "manifest_sha256": "7151c614b863992ad023780e25c324fcd1a110801d3f5622a670e28a89ad80e8"
+  "manifest_sha256": "2beba58ec3c59dd0d9a116980d063ff5503e107c7fcc9cd9698adda9dcaa0aab"
 }

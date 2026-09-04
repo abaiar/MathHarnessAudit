@@ -10,7 +10,7 @@
     {
       "label_variant": "deterministic",
       "analysis_sha256": "58c50ea66e549767589857ec3839c977b95bf0fca33d67d72b4404e8d292256a",
-      "raw_sha256": "bcbc7b21981273d0268f54e0811617ff4b4a026794ba349071dd74b8a853c904"
+      "raw_sha256": "bf44ed7c457512a79498c162533a4834f975bac67c199d0b3391fa3817192c6b"
     }
   ],
   "table_row_counts": {
@@ -27,5 +27,5 @@
   },
   "primary_figure_label_variant": "deterministic",
   "system_ranking_computed": false,
-  "data_sha256": "23f2bcf307c7b4a4fa60a9cc0b215a91d82619db1d60ac558d2f4d80788a3e2a"
+  "data_sha256": "944c58b33a71b48a503f2da64aad2f856e09bf071ba6032f2d991c3baf59ba85"
 }
