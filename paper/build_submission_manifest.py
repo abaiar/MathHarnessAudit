@@ -34,9 +34,35 @@ EXCLUDED_RELATIVE_PATHS = {
     "tests/test_phase6_calibration_coordination.py",
     "tests/test_qualification_runners.py",
 }
+TEXT_SUFFIXES = {
+    ".bib",
+    ".c",
+    ".cff",
+    ".cfg",
+    ".csv",
+    ".ini",
+    ".json",
+    ".jsonl",
+    ".md",
+    ".py",
+    ".ps1",
+    ".rst",
+    ".sh",
+    ".tex",
+    ".toml",
+    ".tsv",
+    ".txt",
+    ".yml",
+    ".yaml",
+    ".svg",
+}
 
 
 def sha256(path: Path) -> str:
+    """Hash canonical text bytes and raw bytes for binary artifacts."""
+    if path.suffix.lower() in TEXT_SUFFIXES:
+        data = path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+        return hashlib.sha256(data).hexdigest()
     digest = hashlib.sha256()
     with path.open("rb") as handle:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
@@ -78,7 +104,7 @@ def payload() -> dict[str, Any]:
         "format": "mathaudit-softwarex-submission-source-manifest-v1",
         "candidate_version": "0.2.0",
         "release_status": "local-candidate; public tag and archival DOI not asserted",
-        "scope": "Public software, tests, documentation, and aggregate paper reproduction inputs",
+        "scope": "Public software, tests, documentation, and aggregate paper reproduction inputs; text hashes normalize CRLF to LF",
         "file_count": len(files),
         "files": files,
     }
