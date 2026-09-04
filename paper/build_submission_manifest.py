@@ -70,6 +70,13 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def canonical_size(path: Path) -> int:
+    """Return the byte size under the same text-normalization rule."""
+    if path.suffix.lower() in TEXT_SUFFIXES:
+        return len(path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n"))
+    return path.stat().st_size
+
+
 def source_paths() -> list[Path]:
     paths = [ROOT / name for name in ROOT_FILES]
     for directory in ROOT_DIRS:
@@ -95,7 +102,7 @@ def payload() -> dict[str, Any]:
     files = [
         {
             "path": path.relative_to(ROOT).as_posix(),
-            "bytes": path.stat().st_size,
+            "bytes": canonical_size(path),
             "sha256": sha256(path),
         }
         for path in source_paths()

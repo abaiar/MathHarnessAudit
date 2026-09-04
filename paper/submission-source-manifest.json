@@ -137,8 +137,8 @@
     },
     {
       "path": "paper/build_submission_manifest.py",
-      "bytes": 4709,
-      "sha256": "d1bdfe16ac1c9735a90430865ac8ebbf026c2182a3286875886e295c1eaa58ea"
+      "bytes": 4982,
+      "sha256": "e8d40f9a438480fe4bfd324114d8ce6e360b48999ff56e8e1281385868590099"
     },
     {
       "path": "paper/citation-audit.md",
@@ -322,17 +322,17 @@
     },
     {
       "path": "schemas/mathaudit-compute-authorization-v0.3.schema.json",
-      "bytes": 9584,
+      "bytes": 9177,
       "sha256": "6b10fbde5d267d5c5395a2f00520d8679bb6a3de584448788ef250ba1fda6c34"
     },
     {
       "path": "schemas/mathaudit-compute-authorization-v0.4.schema.json",
-      "bytes": 9853,
+      "bytes": 9438,
       "sha256": "0d5fd609c995b4053043ebb57b167711905c2da0f707b4fdc9a207e186a8af5f"
     },
     {
       "path": "schemas/mathaudit-compute-authorization-v0.5.schema.json",
-      "bytes": 11348,
+      "bytes": 10927,
       "sha256": "ce2bdf99c3f2b5b0c0f2a465037dc99da5f60b3eda66365a113401bd25dd1317"
     },
     {
@@ -417,17 +417,17 @@
     },
     {
       "path": "schemas/mathaudit-qualification-execution-plan-v0.3.schema.json",
-      "bytes": 5850,
+      "bytes": 5609,
       "sha256": "b90b351face49b486b2f767b621a7fb84378a11eb9b20a50f518d19e3893387a"
     },
     {
       "path": "schemas/mathaudit-qualification-execution-plan-v0.4.schema.json",
-      "bytes": 5850,
+      "bytes": 5609,
       "sha256": "47a27c161782d36eac2dd817af8f6373d98a9c76142618448a1609e953c65c7a"
     },
     {
       "path": "schemas/mathaudit-qualification-execution-plan-v0.5.schema.json",
-      "bytes": 6721,
+      "bytes": 6452,
       "sha256": "1d7cdcaada8ad55e8abf66d6eeee6f8702c070edd7d7f55843e53aad0c789432"
     },
     {
@@ -492,7 +492,7 @@
     },
     {
       "path": "schemas/mathaudit-run-manifest-replacement-v0.1.schema.json",
-      "bytes": 10408,
+      "bytes": 9944,
       "sha256": "9ec3dd6700974162f568f5dd32fed1b18619b655cb2dcd0b0427c959638066b6"
     },
     {
@@ -712,17 +712,17 @@
     },
     {
       "path": "src/mathaudit/schemas/mathaudit-compute-authorization-v0.3.schema.json",
-      "bytes": 9584,
+      "bytes": 9177,
       "sha256": "6b10fbde5d267d5c5395a2f00520d8679bb6a3de584448788ef250ba1fda6c34"
     },
     {
       "path": "src/mathaudit/schemas/mathaudit-compute-authorization-v0.4.schema.json",
-      "bytes": 9853,
+      "bytes": 9438,
       "sha256": "0d5fd609c995b4053043ebb57b167711905c2da0f707b4fdc9a207e186a8af5f"
     },
     {
       "path": "src/mathaudit/schemas/mathaudit-compute-authorization-v0.5.schema.json",
-      "bytes": 11348,
+      "bytes": 10927,
       "sha256": "ce2bdf99c3f2b5b0c0f2a465037dc99da5f60b3eda66365a113401bd25dd1317"
     },
     {
@@ -807,17 +807,17 @@
     },
     {
       "path": "src/mathaudit/schemas/mathaudit-qualification-execution-plan-v0.3.schema.json",
-      "bytes": 5850,
+      "bytes": 5609,
       "sha256": "b90b351face49b486b2f767b621a7fb84378a11eb9b20a50f518d19e3893387a"
     },
     {
       "path": "src/mathaudit/schemas/mathaudit-qualification-execution-plan-v0.4.schema.json",
-      "bytes": 5850,
+      "bytes": 5609,
       "sha256": "47a27c161782d36eac2dd817af8f6373d98a9c76142618448a1609e953c65c7a"
     },
     {
       "path": "src/mathaudit/schemas/mathaudit-qualification-execution-plan-v0.5.schema.json",
-      "bytes": 6721,
+      "bytes": 6452,
       "sha256": "1d7cdcaada8ad55e8abf66d6eeee6f8702c070edd7d7f55843e53aad0c789432"
     },
     {
@@ -882,7 +882,7 @@
     },
     {
       "path": "src/mathaudit/schemas/mathaudit-run-manifest-replacement-v0.1.schema.json",
-      "bytes": 10408,
+      "bytes": 9944,
       "sha256": "9ec3dd6700974162f568f5dd32fed1b18619b655cb2dcd0b0427c959638066b6"
     },
     {
@@ -1046,5 +1046,5 @@
       "sha256": "3e1792434d7ec50fa03ffe9bf6a219505b15fee77f26dd0fea3d12e012356b87"
     }
   ],
-  "self_sha256": "2988b9bd9e2931dd74a785b6a4acc6a9f9dd1b37a2f5fead4c6f721f87ec33a6"
+  "self_sha256": "90012e43353fae133baac2569cbf65c9a9c8a66d069bf11cfcd1a692175b5339"
 }
