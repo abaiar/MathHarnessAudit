@@ -192,53 +192,53 @@
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/availability.svg",
-      "bytes": 35752,
-      "sha256": "55109451c0e3637cdfe5ea941ebc76e52344ec7d6404be3da1a48947720e4de4"
+      "bytes": 35751,
+      "sha256": "523edfcacb96ad41559b6fe551d86f659c3ddcfd626f7e37ea55e3fe4c158083"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/availability.svg.manifest.json",
-      "bytes": 802,
-      "sha256": "d8e633b222250deafeb3ef36d721e5d94dc6b341d22f4b1fcc1dc6f79934bc70"
+      "bytes": 786,
+      "sha256": "507df7232e3dd806a8cea7f9e16339f659d3687d04980d1b86c5b91e237040c9"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/dependence.svg",
-      "bytes": 3411,
-      "sha256": "92f06948cfb783ee40ae59bb713acc298e656bd957ebc36032a93303040ca940"
+      "bytes": 3410,
+      "sha256": "87ec2285f4cbdbd624a6109aa63a7b5a9c2c91523d47f9e8ba0ca489a9788797"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/dependence.svg.manifest.json",
-      "bytes": 800,
-      "sha256": "f5926e0c39308c26de3aa3d51c3617717399077802453f1b372e79971ba9f3b2"
+      "bytes": 784,
+      "sha256": "1e6267c0e9e3f7764dee8f4bec0a3f4175203611f5e931b6f4e5688ab36e79bc"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/repair_harm.svg",
-      "bytes": 1950,
-      "sha256": "fe37f784fdcff78b9646befebb45ec84f202a96a9857fee61bc1944f21824624"
+      "bytes": 1949,
+      "sha256": "592d7eff281c0f6fc5b41e1fff79d1c9e42ac26bea4d7aef8e492f27b7331d53"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/repair_harm.svg.manifest.json",
-      "bytes": 801,
-      "sha256": "66e700424366d5219d0c4904915b22efadc1683352c99fe2bdc87c6c61ca7aa0"
+      "bytes": 785,
+      "sha256": "031daba41be7b4ddb0ae0640020b61ce1cf638e4a9c9b1c5f9665b8ed38a1149"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/repetition.svg",
-      "bytes": 2379,
-      "sha256": "28517fc3153463d85a6f249a79ea641e7b5e19ba197f89a87b4129f3edeb68b8"
+      "bytes": 2378,
+      "sha256": "e528ae84af3fa3fb33f372775314a79e27ffd21613c74b76132f206e6b61b71d"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/repetition.svg.manifest.json",
-      "bytes": 800,
-      "sha256": "04744f0b9fcd06ae488b2033671d84e44f1ff6379e91ca3027ac393f8adb22e0"
+      "bytes": 784,
+      "sha256": "623cb8e55b2e72ba5c541fe1f0dbf28ca3d1f4d3ceef5c4042a62e4e852417c7"
     },
     {
       "path": "paper/results/deterministic-q14-v1/publication-data.json",
-      "bytes": 1062,
-      "sha256": "1df7cd4ca97e6c1005040292c6cd5fb70d10283e2487cec102377a60fa35f2dc"
+      "bytes": 1031,
+      "sha256": "2204a3a5f2eba19fdcac270e8f9f470d0eed4c6df3b981ec5951e69eeed8d19d"
     },
     {
       "path": "paper/results/deterministic-q14-v1/publication-manifest.json",
-      "bytes": 3784,
-      "sha256": "c9442c5203141b2af3afa1e12ccb4ced26993d38003c6250f6cd3a4bf45a6ec2"
+      "bytes": 3687,
+      "sha256": "a5d28578689805487460a855e7eb2f8ecd6f22849ca311c471e3461627b161c4"
     },
     {
       "path": "paper/results/deterministic-q14-v1/tables/availability.csv",
@@ -577,8 +577,8 @@
     },
     {
       "path": "src/mathaudit/cli.py",
-      "bytes": 45743,
-      "sha256": "1b0cc35ec46ad8e0c3c3efc6d2e471736f2d65148b146743d811b0df2c7765d0"
+      "bytes": 45935,
+      "sha256": "1e3e94021a574e06f1311ed666a84f479fe38ce38b50a935864818eb7f788b73"
     },
     {
       "path": "src/mathaudit/coverage.py",
@@ -672,8 +672,8 @@
     },
     {
       "path": "src/mathaudit/qualification_publication.py",
-      "bytes": 29315,
-      "sha256": "4e845d734973e208c61d456e36628b3d0304c89c7f41da072919722d7fcb327c"
+      "bytes": 29458,
+      "sha256": "60fcf1a2efc325870d078d416269045e56e82b2ffc6be246137c15708712474b"
     },
     {
       "path": "src/mathaudit/qualification_scoring.py",
@@ -1046,5 +1046,5 @@
       "sha256": "3e1792434d7ec50fa03ffe9bf6a219505b15fee77f26dd0fea3d12e012356b87"
     }
   ],
-  "self_sha256": "196f83aa38fbe61e487bea62513b4203f623235ac08a3e44766810cc2c8943d2"
+  "self_sha256": "9fdeb4ee2f915d255d5cb632d852bd3190d3d7d1e9f09c878ba1d84c325d6194"
 }

@@ -11,6 +11,6 @@
   ],
   "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
   "output_relative_path": "figures/dependence.svg",
-  "output_sha256": "92f06948cfb783ee40ae59bb713acc298e656bd957ebc36032a93303040ca940",
-  "manifest_sha256": "43b071291c906602246ad591168fc37f52856e56b49355fe1c198eb77c1be89e"
+  "output_sha256": "87ec2285f4cbdbd624a6109aa63a7b5a9c2c91523d47f9e8ba0ca489a9788797",
+  "manifest_sha256": "7151c614b863992ad023780e25c324fcd1a110801d3f5622a670e28a89ad80e8"
 }

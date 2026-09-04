@@ -11,6 +11,6 @@
   ],
   "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
   "output_relative_path": "figures/repetition.svg",
-  "output_sha256": "28517fc3153463d85a6f249a79ea641e7b5e19ba197f89a87b4129f3edeb68b8",
-  "manifest_sha256": "79c00d36b08a57ba9c3bb63e4a7613ecda251bf8c1ce4760a488f3fc2dc82d46"
+  "output_sha256": "e528ae84af3fa3fb33f372775314a79e27ffd21613c74b76132f206e6b61b71d",
+  "manifest_sha256": "c88c03edf683fed8c6b458d7e92823d11a7a91e04da5ea894c8ed408bc43d4d0"
 }

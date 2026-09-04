@@ -396,6 +396,12 @@ def _write_csv(path: Path, rows: Sequence[Dict[str, Any]]) -> None:
         writer.writerows(rows)
 
 
+def _write_utf8(path: Path, text: str) -> None:
+    """Write deterministic UTF-8 bytes with LF newlines on every platform."""
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(text)
+
+
 def _svg(title: str, description: str, width: int, height: int, body: str) -> str:
     return (
         '<svg xmlns="http://www.w3.org/2000/svg" role="img" '
@@ -646,7 +652,7 @@ def write_qualification_publication_bundle(
     for name, content in figures.items():
         path = output_dir / "figures" / name
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content + "\n", encoding="utf-8")
+        _write_utf8(path, content + "\n")
         figure_paths.append(path)
     data = {
         "format": DATA_FORMAT,
@@ -663,7 +669,7 @@ def write_qualification_publication_bundle(
     }
     data["data_sha256"] = sha256_json(data)
     data_path = output_dir / "publication-data.json"
-    data_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    _write_utf8(data_path, json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     command = "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR"
     sidecars: List[Path] = []
     for figure in figure_paths:
@@ -678,9 +684,7 @@ def write_qualification_publication_bundle(
             "output_sha256": file_sha256(figure),
         }
         payload["manifest_sha256"] = sha256_json(payload)
-        sidecar.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-        )
+        _write_utf8(sidecar, json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
         sidecars.append(sidecar)
     artifacts = [data_path, *table_paths, *figure_paths, *sidecars]
     manifest = {
@@ -701,7 +705,8 @@ def write_qualification_publication_bundle(
         "system_ranking_computed": False,
     }
     manifest["manifest_sha256"] = sha256_json(manifest)
-    (output_dir / "publication-manifest.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    _write_utf8(
+        output_dir / "publication-manifest.json",
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
     )
     return manifest

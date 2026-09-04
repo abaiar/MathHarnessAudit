@@ -11,6 +11,6 @@
   ],
   "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
   "output_relative_path": "figures/repair_harm.svg",
-  "output_sha256": "fe37f784fdcff78b9646befebb45ec84f202a96a9857fee61bc1944f21824624",
-  "manifest_sha256": "63a747434dce9ce479a3d4d479a88844b4fcd906d05094097d97693f33ee5c8a"
+  "output_sha256": "592d7eff281c0f6fc5b41e1fff79d1c9e42ac26bea4d7aef8e492f27b7331d53",
+  "manifest_sha256": "60985600bfa78d426bef339e02936fb98ea31ca524ef6cde53a419470b62391e"
 }

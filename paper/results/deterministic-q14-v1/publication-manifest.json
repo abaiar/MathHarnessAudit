@@ -17,39 +17,39 @@
   "artifacts": [
     {
       "relative_path": "figures/availability.svg",
-      "sha256": "55109451c0e3637cdfe5ea941ebc76e52344ec7d6404be3da1a48947720e4de4"
+      "sha256": "523edfcacb96ad41559b6fe551d86f659c3ddcfd626f7e37ea55e3fe4c158083"
     },
     {
       "relative_path": "figures/availability.svg.manifest.json",
-      "sha256": "d8e633b222250deafeb3ef36d721e5d94dc6b341d22f4b1fcc1dc6f79934bc70"
+      "sha256": "507df7232e3dd806a8cea7f9e16339f659d3687d04980d1b86c5b91e237040c9"
     },
     {
       "relative_path": "figures/dependence.svg",
-      "sha256": "92f06948cfb783ee40ae59bb713acc298e656bd957ebc36032a93303040ca940"
+      "sha256": "87ec2285f4cbdbd624a6109aa63a7b5a9c2c91523d47f9e8ba0ca489a9788797"
     },
     {
       "relative_path": "figures/dependence.svg.manifest.json",
-      "sha256": "f5926e0c39308c26de3aa3d51c3617717399077802453f1b372e79971ba9f3b2"
+      "sha256": "1e6267c0e9e3f7764dee8f4bec0a3f4175203611f5e931b6f4e5688ab36e79bc"
     },
     {
       "relative_path": "figures/repair_harm.svg",
-      "sha256": "fe37f784fdcff78b9646befebb45ec84f202a96a9857fee61bc1944f21824624"
+      "sha256": "592d7eff281c0f6fc5b41e1fff79d1c9e42ac26bea4d7aef8e492f27b7331d53"
     },
     {
       "relative_path": "figures/repair_harm.svg.manifest.json",
-      "sha256": "66e700424366d5219d0c4904915b22efadc1683352c99fe2bdc87c6c61ca7aa0"
+      "sha256": "031daba41be7b4ddb0ae0640020b61ce1cf638e4a9c9b1c5f9665b8ed38a1149"
     },
     {
       "relative_path": "figures/repetition.svg",
-      "sha256": "28517fc3153463d85a6f249a79ea641e7b5e19ba197f89a87b4129f3edeb68b8"
+      "sha256": "e528ae84af3fa3fb33f372775314a79e27ffd21613c74b76132f206e6b61b71d"
     },
     {
       "relative_path": "figures/repetition.svg.manifest.json",
-      "sha256": "04744f0b9fcd06ae488b2033671d84e44f1ff6379e91ca3027ac393f8adb22e0"
+      "sha256": "623cb8e55b2e72ba5c541fe1f0dbf28ca3d1f4d3ceef5c4042a62e4e852417c7"
     },
     {
       "relative_path": "publication-data.json",
-      "sha256": "1df7cd4ca97e6c1005040292c6cd5fb70d10283e2487cec102377a60fa35f2dc"
+      "sha256": "2204a3a5f2eba19fdcac270e8f9f470d0eed4c6df3b981ec5951e69eeed8d19d"
     },
     {
       "relative_path": "tables/availability.csv",
@@ -93,5 +93,5 @@
     }
   ],
   "system_ranking_computed": false,
-  "manifest_sha256": "4f071ef3632db2a834beb2a16bcf5c68dcc53ec6b37ff820526d55f579fa36c3"
+  "manifest_sha256": "11d2da2fc70f6de2ae58bc41b415ee1532873eb58831693273396ea52da82da1"
 }
