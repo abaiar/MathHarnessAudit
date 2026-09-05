@@ -34,7 +34,7 @@ passed and the authors approve the exact uploaded files.
 - Files: `src/mathaudit/metrics.py`, `src/mathaudit/publication.py`,
   `src/mathaudit/qualification_publication.py`,
   `src/mathaudit/qualification_analysis.py`, `docs/statistical_contract.md`,
-  `tests/test_metrics.py`.
+  `tests/test_metrics.py`, `tests/test_qualification_composite.py`.
 - Verification: targeted tests cover partially undefined, entirely undefined,
   zero-request, and deterministic-repeat cases. The full suite passes.
 
@@ -45,6 +45,8 @@ passed and the authors approve the exact uploaded files.
 - Fix: the 150-episode aggregate snapshot was regenerated with the corrected
   statistic, the full publication bundle was regenerated, and the claim ledger
   was rebound to the new analysis hash and bootstrap defined/undefined counts.
+  Analysis JSON is written with explicit LF newlines so its raw input hash and
+  publication manifest are stable across Windows and Linux checkouts.
 - Files: `paper/data/analysis-deterministic-q14-v1.json`,
   `paper/results/deterministic-q14-v1/`, `paper/claim-ledger.json`,
   `paper/verify_claims.py`, `paper/softwarex.tex`.

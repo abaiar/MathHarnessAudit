@@ -345,7 +345,6 @@ def build_qualification_analysis(
     }
     result["analysis_sha256"] = sha256_json(result)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    with output_path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     return result

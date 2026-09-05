@@ -208,7 +208,7 @@
     {
       "path": "paper/results/deterministic-q14-v1/figures/availability.svg.manifest.json",
       "bytes": 786,
-      "sha256": "1d5ec59ea9a46c23cacfb77bb46b1b490c07af15535ea67c8b25fb71da613ca9"
+      "sha256": "4ccc8137685c42c9635697f7e427b01c9baf0b66e9b46b947a0a24561d616731"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/dependence.svg",
@@ -218,7 +218,7 @@
     {
       "path": "paper/results/deterministic-q14-v1/figures/dependence.svg.manifest.json",
       "bytes": 784,
-      "sha256": "310259936a41d01465db60b70a383592b37144739af1284b8afa17a41eed501f"
+      "sha256": "8144e3ed02c2ca60f71c846d6c5246b46c2eac28c013343dc83120c00ac123f7"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/repair_harm.svg",
@@ -228,7 +228,7 @@
     {
       "path": "paper/results/deterministic-q14-v1/figures/repair_harm.svg.manifest.json",
       "bytes": 785,
-      "sha256": "6920349aeddc8967357b7f7c6ffea989d4d5ddda7cdc56e5dc8c2a8df98e6761"
+      "sha256": "6dde974c839e59d382dceb2f0cc6cec73c498d4f5f02a4c853adcfb7ddee4f58"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/repetition.svg",
@@ -238,17 +238,17 @@
     {
       "path": "paper/results/deterministic-q14-v1/figures/repetition.svg.manifest.json",
       "bytes": 784,
-      "sha256": "9aa540714121287edeb2c67d6ab35e7807e68cbcab9110c42b6159afa4031de5"
+      "sha256": "ccc5f69352f7e21e48a6cfe420d008a47df72bf49810ddfc5153867864756d39"
     },
     {
       "path": "paper/results/deterministic-q14-v1/publication-data.json",
       "bytes": 1031,
-      "sha256": "284087000da1985d9ea859dd65c2c03dbe113b374611253a1d54dab3fa37f3f2"
+      "sha256": "d8ba29cc93d79c11ccfbec082a700b89d8dd60f7d30c3fc93ca2e07ac2b7faeb"
     },
     {
       "path": "paper/results/deterministic-q14-v1/publication-manifest.json",
       "bytes": 3687,
-      "sha256": "fef7acb6e2a046c805e8e5fa2c7cabd62b88e0aca6a0580bd818c0163f94a9fb"
+      "sha256": "964a7d3c1555904442f143aa9fea1430fb1e2cda15fa93ad8aedd0a7ba540cc5"
     },
     {
       "path": "paper/results/deterministic-q14-v1/tables/availability.csv",
@@ -337,8 +337,8 @@
     },
     {
       "path": "paper/submission-readiness-audit.md",
-      "bytes": 9067,
-      "sha256": "90d39003aed22a839dcda8957a5206203e4e542ca267d8886e470430d910e069"
+      "bytes": 9257,
+      "sha256": "3a3b2d961529470f1888645a3018e6d4e290df94285841de07e815c9f0745359"
     },
     {
       "path": "paper/verify_claims.py",
@@ -692,8 +692,8 @@
     },
     {
       "path": "src/mathaudit/qualification_analysis.py",
-      "bytes": 14462,
-      "sha256": "d0e6a647b3d4a8bd5e34106de964f234a7961f980fe2dacf78e3a002b2d88a05"
+      "bytes": 14498,
+      "sha256": "718c92151deebe8f669fa63363e4d2ff6853baf7a7e27145f02932db4d68a0cc"
     },
     {
       "path": "src/mathaudit/qualification_closeout.py",
@@ -1037,8 +1037,8 @@
     },
     {
       "path": "tests/test_qualification_composite.py",
-      "bytes": 37467,
-      "sha256": "f92e459547e3daa90877bd7c162ce5341d66b1fbcc1dbcbff2f62f5564856869"
+      "bytes": 37520,
+      "sha256": "a4a588ba92cda97aa9c61b007f41ddbfa25e27320539c4f1770829504f5cd172"
     },
     {
       "path": "tests/test_qualification_forecast.py",
@@ -1086,5 +1086,5 @@
       "sha256": "35f3744696b029d498b8010d74fa2915e8ff7479bb736a9acd12e39c5b8fef30"
     }
   ],
-  "self_sha256": "41c547330d16c1b33eaa69eb469affe8ca82964db888bef8ad34258f99f03931"
+  "self_sha256": "65716b49fdc4664673803d108c14cd9af0abe7613619032303dc9fc980c2e935"
 }

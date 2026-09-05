@@ -10,7 +10,7 @@
     {
       "label_variant": "deterministic",
       "analysis_sha256": "26e5c3035f289cc79378bd6feb19d3b34a3058f0f48f8b153b89950bc73ba5dd",
-      "raw_sha256": "9581464e59990d340b5de4023792bfa3aa48cdcabc839b2f9bf4bc648aa13334"
+      "raw_sha256": "3c597e82d03d0c9a7a12ef8ebda4675d367a57fe9b95f205bedebf9b65e557e2"
     }
   ],
   "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
@@ -21,7 +21,7 @@
     },
     {
       "relative_path": "figures/availability.svg.manifest.json",
-      "sha256": "1d5ec59ea9a46c23cacfb77bb46b1b490c07af15535ea67c8b25fb71da613ca9"
+      "sha256": "4ccc8137685c42c9635697f7e427b01c9baf0b66e9b46b947a0a24561d616731"
     },
     {
       "relative_path": "figures/dependence.svg",
@@ -29,7 +29,7 @@
     },
     {
       "relative_path": "figures/dependence.svg.manifest.json",
-      "sha256": "310259936a41d01465db60b70a383592b37144739af1284b8afa17a41eed501f"
+      "sha256": "8144e3ed02c2ca60f71c846d6c5246b46c2eac28c013343dc83120c00ac123f7"
     },
     {
       "relative_path": "figures/repair_harm.svg",
@@ -37,7 +37,7 @@
     },
     {
       "relative_path": "figures/repair_harm.svg.manifest.json",
-      "sha256": "6920349aeddc8967357b7f7c6ffea989d4d5ddda7cdc56e5dc8c2a8df98e6761"
+      "sha256": "6dde974c839e59d382dceb2f0cc6cec73c498d4f5f02a4c853adcfb7ddee4f58"
     },
     {
       "relative_path": "figures/repetition.svg",
@@ -45,11 +45,11 @@
     },
     {
       "relative_path": "figures/repetition.svg.manifest.json",
-      "sha256": "9aa540714121287edeb2c67d6ab35e7807e68cbcab9110c42b6159afa4031de5"
+      "sha256": "ccc5f69352f7e21e48a6cfe420d008a47df72bf49810ddfc5153867864756d39"
     },
     {
       "relative_path": "publication-data.json",
-      "sha256": "284087000da1985d9ea859dd65c2c03dbe113b374611253a1d54dab3fa37f3f2"
+      "sha256": "d8ba29cc93d79c11ccfbec082a700b89d8dd60f7d30c3fc93ca2e07ac2b7faeb"
     },
     {
       "relative_path": "tables/availability.csv",
@@ -93,5 +93,5 @@
     }
   ],
   "system_ranking_computed": false,
-  "manifest_sha256": "a949a0ab6531d8fba50e4fd2e476dabab281160934d2a13d0da60844643c10fe"
+  "manifest_sha256": "3177d14f4d289a4b7686016ab637753ecafbf25ffc044155ee66c11f08823925"
 }

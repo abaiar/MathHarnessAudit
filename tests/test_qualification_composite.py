@@ -357,6 +357,7 @@ def test_composite_assembles_exact_150_outcome_blind_traces(tmp_path, episode_fa
         config_path=config_path,
         output_path=analysis_path,
     )
+    assert b"\r\n" not in analysis_path.read_bytes()
     assert analysis["episode_count"] == 150
     assert analysis["label_variant"] == "deterministic"
     assert len(analysis["panels"]) == 6
