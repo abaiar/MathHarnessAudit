@@ -30,6 +30,13 @@ EXCLUDED_NAMES = {
     MANIFEST.name,
     "MathHarnessAudit_SoftwareX_v0.2.0.pdf",
     "MathHarnessAudit_SoftwareX_v0.2.1.pdf",
+    "softwarex.aux",
+    "softwarex.bbl",
+    "softwarex.blg",
+    "softwarex.log",
+    "softwarex.out",
+    "softwarex.pdf",
+    "softwarex.spl",
 }
 EXCLUDED_RELATIVE_PATHS = {
     "paper/figures/fig1_architecture_v2.html",

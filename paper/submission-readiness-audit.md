@@ -113,7 +113,9 @@ passed and the authors approve the exact uploaded files.
 - Fix: the source manifest hashes the public software, tests, documentation, and
   paper inputs after normalizing text line endings. A deterministic archive
   builder refuses a stale manifest and bundles the exact sources, manifest, and
-  compiled PDF under a fixed archive root and timestamp.
+  compiled PDF under a fixed archive root and timestamp. LaTeX intermediates and
+  the locally compiled convenience PDF are explicitly excluded from source-input
+  discovery, so a clean checkout and an authoring workspace have the same scope.
 - Files: `paper/build_submission_manifest.py`,
   `paper/build_submission_archive.py`, `paper/README.md`.
 - Verification: manifest verification rejects any later source drift; ZIP CRC

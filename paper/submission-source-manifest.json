@@ -3,7 +3,7 @@
   "candidate_version": "0.2.1",
   "release_status": "immutable GitHub tag/release v0.2.1; archival DOI not asserted",
   "scope": "Public software, tests, documentation, and aggregate paper reproduction inputs; text hashes normalize CRLF to LF",
-  "file_count": 216,
+  "file_count": 210,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -147,8 +147,8 @@
     },
     {
       "path": "paper/build_submission_manifest.py",
-      "bytes": 5140,
-      "sha256": "c96e594ef801403d0e4a40f4ce02c2d1d58059ef6f16e1d65fed6a6f82744d57"
+      "bytes": 5287,
+      "sha256": "c10477acf8a8ba35e4eb3dec874be4c6b6d38f33e6dc124d222c2df4eb505a58"
     },
     {
       "path": "paper/citation-audit.md",
@@ -301,44 +301,14 @@
       "sha256": "c7ac8915a44ff66298bbaf176be1b2eb987470d55c95d370f1a99a7bbb53600c"
     },
     {
-      "path": "paper/softwarex.aux",
-      "bytes": 7274,
-      "sha256": "024453f25628af691b689282b06a1895bc1cac5284f060c094bf442f84fde768"
-    },
-    {
-      "path": "paper/softwarex.bbl",
-      "bytes": 5337,
-      "sha256": "00a39a68be13fe30de8fca20be14199540266d0c64344ff76460a9d42b7b3be5"
-    },
-    {
-      "path": "paper/softwarex.blg",
-      "bytes": 211,
-      "sha256": "4db5c59a259e7761c8795f94c020f7e8eb90c5d2ec95689f5fd4eb72288e8465"
-    },
-    {
-      "path": "paper/softwarex.log",
-      "bytes": 14364,
-      "sha256": "4491997f7effd44a194afa5d3838b509049dbbd89dc69f55acf0a71b7507224a"
-    },
-    {
-      "path": "paper/softwarex.out",
-      "bytes": 1845,
-      "sha256": "f60170e8203829e2386b25408f4f4290ef02713f36ae99d7a99dbdb255ec68f1"
-    },
-    {
-      "path": "paper/softwarex.pdf",
-      "bytes": 340818,
-      "sha256": "d0d82239c075e4e281d0f275e0d4e9791af868c83b65ec59235a067b3c72ddbc"
-    },
-    {
       "path": "paper/softwarex.tex",
       "bytes": 28970,
       "sha256": "3a0b1b442b37c9453dda0ec1f224c1e3ea0a6fb919f8d39477df38e080c28a53"
     },
     {
       "path": "paper/submission-readiness-audit.md",
-      "bytes": 9257,
-      "sha256": "3a3b2d961529470f1888645a3018e6d4e290df94285841de07e815c9f0745359"
+      "bytes": 9443,
+      "sha256": "ea5836414166080e93d0abd7928324b51b3e20551f2add0ae636b8d183dfeb34"
     },
     {
       "path": "paper/verify_claims.py",
@@ -1086,5 +1056,5 @@
       "sha256": "35f3744696b029d498b8010d74fa2915e8ff7479bb736a9acd12e39c5b8fef30"
     }
   ],
-  "self_sha256": "65716b49fdc4664673803d108c14cd9af0abe7613619032303dc9fc980c2e935"
+  "self_sha256": "2ca1f4aa8286b183cb6a419b2903e8086b1ce02e666bafa94d80e0dae3d02da4"
 }
