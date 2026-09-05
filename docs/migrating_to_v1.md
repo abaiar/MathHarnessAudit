@@ -1,6 +1,6 @@
 # Migrating canonical episodes to v1.0
 
-MathHarnessAudit package v0.2.0 uses canonical episode Schema v1.0, which freezes
+MathHarnessAudit package v0.2.1 uses canonical episode Schema v1.0, which freezes
 the field meanings exercised by the reference audit. Historical Schema v0.1
 episode files remain readable. They are never silently relabelled: migration is
 an explicit, lossless operation.

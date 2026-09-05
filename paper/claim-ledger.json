@@ -1,25 +1,25 @@
 {
   "format": "mathaudit-paper-claim-ledger-v0.2",
-  "analysis_sha256": "58c50ea66e549767589857ec3839c977b95bf0fca33d67d72b4404e8d292256a",
+  "analysis_sha256": "26e5c3035f289cc79378bd6feb19d3b34a3058f0f48f8b153b89950bc73ba5dd",
   "manuscript": "paper/softwarex.tex",
   "claims": [
     {
       "claim_id": "dependence-mathgoal-standard-llm-llm",
       "source": "tables/source_type_pairwise.csv",
       "where": {"label_variant": "deterministic", "panel_id": "mathgoal-standard", "source_type_a": "llm", "source_type_b": "llm", "provenance_relation": "all"},
-      "expected": {"episodes_with_pairs": 22, "pair_observations": 182, "phi_episode_balanced": -0.006106934284361996, "phi_cluster_bootstrap_95_low": -0.025004395690303865, "phi_cluster_bootstrap_95_high": -0.006106934284361995, "precision_flag": "adequate"}
+      "expected": {"episodes_with_pairs": 22, "pair_observations": 182, "phi_episode_balanced": -0.006106934284361996, "phi_cluster_bootstrap_summary_requested_replicates": 10000, "phi_cluster_bootstrap_summary_defined_replicates": 6439, "phi_cluster_bootstrap_summary_undefined_replicates": 3561, "phi_cluster_bootstrap_summary_defined_fraction": 0.6439, "phi_cluster_bootstrap_summary_percentile_range_defined_95_low": -0.025004395690303865, "phi_cluster_bootstrap_summary_percentile_range_defined_95_high": -0.006106934284361995, "phi_cluster_bootstrap_summary_interval_status": "conditional_on_defined_replicates", "phi_cluster_bootstrap_summary_nominal_coverage_established": false, "precision_flag": "adequate"}
     },
     {
       "claim_id": "dependence-mathgoal-standard-llm-python",
       "source": "tables/source_type_pairwise.csv",
       "where": {"label_variant": "deterministic", "panel_id": "mathgoal-standard", "source_type_a": "llm", "source_type_b": "python", "provenance_relation": "all"},
-      "expected": {"episodes_with_pairs": 16, "pair_observations": 249, "phi_episode_balanced": 0.25924212183361234, "phi_cluster_bootstrap_95_low": 0.18816667761480327, "phi_cluster_bootstrap_95_high": 0.39735970711951313, "precision_flag": "imprecise"}
+      "expected": {"episodes_with_pairs": 16, "pair_observations": 249, "phi_episode_balanced": 0.25924212183361234, "phi_cluster_bootstrap_summary_requested_replicates": 10000, "phi_cluster_bootstrap_summary_defined_replicates": 6465, "phi_cluster_bootstrap_summary_undefined_replicates": 3535, "phi_cluster_bootstrap_summary_defined_fraction": 0.6465, "phi_cluster_bootstrap_summary_percentile_range_defined_95_low": 0.18816667761480327, "phi_cluster_bootstrap_summary_percentile_range_defined_95_high": 0.39735970711951313, "phi_cluster_bootstrap_summary_interval_status": "conditional_on_defined_replicates", "phi_cluster_bootstrap_summary_nominal_coverage_established": false, "precision_flag": "imprecise"}
     },
     {
       "claim_id": "dependence-icma-standard-llm-python",
       "source": "tables/source_type_pairwise.csv",
       "where": {"label_variant": "deterministic", "panel_id": "icma-standard", "source_type_a": "llm", "source_type_b": "python", "provenance_relation": "all"},
-      "expected": {"episodes_with_pairs": 14, "pair_observations": 27, "phi_episode_balanced": 0.6793662204867574, "phi_cluster_bootstrap_95_low": 0.43852900965351466, "phi_cluster_bootstrap_95_high": 1.0, "precision_flag": "imprecise"}
+      "expected": {"episodes_with_pairs": 14, "pair_observations": 27, "phi_episode_balanced": 0.6793662204867574, "phi_cluster_bootstrap_summary_requested_replicates": 10000, "phi_cluster_bootstrap_summary_defined_replicates": 6486, "phi_cluster_bootstrap_summary_undefined_replicates": 3514, "phi_cluster_bootstrap_summary_defined_fraction": 0.6486, "phi_cluster_bootstrap_summary_percentile_range_defined_95_low": 0.43852900965351466, "phi_cluster_bootstrap_summary_percentile_range_defined_95_high": 1.0, "phi_cluster_bootstrap_summary_interval_status": "conditional_on_defined_replicates", "phi_cluster_bootstrap_summary_nominal_coverage_established": false, "precision_flag": "imprecise"}
     },
     {
       "claim_id": "cofailure-mathrouter",

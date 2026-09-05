@@ -256,11 +256,56 @@ def _mutual_information(cells: Tuple[int, int, int, int]) -> Optional[float]:
     return value
 
 
+def _bootstrap_phi_summary(values: Sequence[float], *, requested: int) -> Dict[str, Any]:
+    """Describe a percentile bootstrap without hiding undefined phi draws.
+
+    Phi is undefined whenever either binary marginal has zero variance.  Small
+    or sparse resamples can therefore yield no finite statistic even when the
+    statistic is defined in the observed sample.  The percentile range below is
+    explicitly conditional on the subset of resamples with defined phi; it is
+    not presented as an unconditional coverage guarantee.
+    """
+
+    defined = len(values)
+    undefined = max(requested - defined, 0)
+    if requested <= 0:
+        interval = [None, None]
+        status = "not_requested"
+        conditioning = None
+        fraction = None
+    elif not values:
+        interval = [None, None]
+        status = "unavailable_no_defined_replicates"
+        conditioning = "defined_phi_replicates_only"
+        fraction = 0.0
+    else:
+        low, high = np.quantile(values, [0.025, 0.975])
+        interval = [float(low), float(high)]
+        fraction = defined / requested
+        if undefined:
+            status = "conditional_on_defined_replicates"
+            conditioning = "defined_phi_replicates_only"
+        else:
+            status = "all_replicates_defined"
+            conditioning = "all_requested_replicates"
+    return {
+        "requested_replicates": requested,
+        "defined_replicates": defined,
+        "undefined_replicates": undefined,
+        "defined_fraction": fraction,
+        "percentile_range_defined_95": interval,
+        "interval_status": status,
+        "conditioning": conditioning,
+        "quantiles": [0.025, 0.975],
+        "nominal_coverage_established": False,
+    }
+
+
 def _bootstrap_phi(
     rows: Sequence[Tuple[bool, bool]], *, replicates: int, seed: int
-) -> Tuple[Optional[float], Optional[float]]:
+) -> Dict[str, Any]:
     if len(rows) < 2 or replicates <= 0:
-        return None, None
+        return _bootstrap_phi_summary([], requested=replicates)
     rng = np.random.default_rng(seed)
     values: List[float] = []
     rows_array = np.asarray(rows, dtype=bool)
@@ -277,10 +322,7 @@ def _bootstrap_phi(
         value = _phi(cells)
         if value is not None:
             values.append(value)
-    if not values:
-        return None, None
-    low, high = np.quantile(values, [0.025, 0.975])
-    return float(low), float(high)
+    return _bootstrap_phi_summary(values, requested=replicates)
 
 
 def pairwise_dependence(
@@ -307,7 +349,7 @@ def pairwise_dependence(
     both_wrong = sum(a and b for a, b in rows)
     cells = (both_correct, a_correct_b_wrong, a_wrong_b_correct, both_wrong)
     phi = _phi(cells)
-    low, high = _bootstrap_phi(rows, replicates=bootstrap_replicates, seed=seed)
+    bootstrap = _bootstrap_phi(rows, replicates=bootstrap_replicates, seed=seed)
     corrected = [value + 0.5 for value in cells]
     odds_ratio = (corrected[0] * corrected[3]) / (corrected[1] * corrected[2])
     a_errors = a_wrong_b_correct + both_wrong
@@ -323,7 +365,8 @@ def pairwise_dependence(
             "both_wrong": both_wrong,
         },
         "phi": phi,
-        "phi_bootstrap_95": [low, high],
+        "phi_bootstrap_95": bootstrap["percentile_range_defined_95"],
+        "phi_bootstrap_summary": bootstrap,
         "joint_error_probability": (both_wrong / len(rows)) if rows else None,
         "p_b_wrong_given_a_wrong": (both_wrong / a_errors) if a_errors else None,
         "p_a_wrong_given_b_wrong": (both_wrong / b_errors) if b_errors else None,
@@ -388,9 +431,9 @@ def _cluster_bootstrap_episode_balanced_phi(
     *,
     replicates: int,
     seed: int,
-) -> Tuple[Optional[float], Optional[float]]:
+) -> Dict[str, Any]:
     if len(episode_cells) < 2 or replicates <= 0:
-        return None, None
+        return _bootstrap_phi_summary([], requested=replicates)
     proportions = np.asarray(
         [np.asarray(cells, dtype=float) / sum(cells) for cells in episode_cells],
         dtype=float,
@@ -402,10 +445,7 @@ def _cluster_bootstrap_episode_balanced_phi(
         value = _phi(tuple(float(item) for item in sample.mean(axis=0)))
         if value is not None:
             values.append(value)
-    if not values:
-        return None, None
-    low, high = np.quantile(values, [0.025, 0.975])
-    return float(low), float(high)
+    return _bootstrap_phi_summary(values, requested=replicates)
 
 
 def source_type_dependence(
@@ -452,7 +492,7 @@ def source_type_dependence(
         if episode_cells
         else None
     )
-    low, high = _cluster_bootstrap_episode_balanced_phi(
+    bootstrap = _cluster_bootstrap_episode_balanced_phi(
         episode_cells, replicates=bootstrap_replicates, seed=seed
     )
     return {
@@ -479,7 +519,8 @@ def source_type_dependence(
             "both_wrong": pooled[3],
         },
         "phi_episode_balanced": _phi(balanced) if balanced is not None else None,
-        "phi_cluster_bootstrap_95": [low, high],
+        "phi_cluster_bootstrap_95": bootstrap["percentile_range_defined_95"],
+        "phi_cluster_bootstrap_summary": bootstrap,
         "phi_pair_weighted_sensitivity": _phi(pooled),
         "joint_error_probability_episode_balanced": (balanced[3] if balanced is not None else None),
         "unit_of_inference": "episode",

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "math-harness-audit"
-version = "0.2.0"
+version = "0.2.1"
 description = "Outcome-linked evidence auditing for mathematical reasoning agents"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -60,8 +60,8 @@ mathaudit = "mathaudit.cli:app"
 Homepage = "https://github.com/abaiar/MathHarnessAudit"
 Repository = "https://github.com/abaiar/MathHarnessAudit"
 Issues = "https://github.com/abaiar/MathHarnessAudit/issues"
-Documentation = "https://github.com/abaiar/MathHarnessAudit/tree/main/docs"
-Changelog = "https://github.com/abaiar/MathHarnessAudit/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/abaiar/MathHarnessAudit/tree/v0.2.1/docs"
+Changelog = "https://github.com/abaiar/MathHarnessAudit/blob/v0.2.1/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]

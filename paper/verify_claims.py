@@ -20,7 +20,13 @@ def _matches(row: dict[str, str], where: dict[str, str]) -> bool:
 
 
 def _assert_value(observed: str, expected: Any, label: str) -> None:
-    if isinstance(expected, (int, float)) and not isinstance(expected, bool):
+    if isinstance(expected, bool):
+        normalized = observed.strip().lower()
+        if normalized not in {"true", "false"}:
+            raise AssertionError(f"{label}: expected a boolean, observed {observed!r}")
+        if (normalized == "true") is not expected:
+            raise AssertionError(f"{label}: expected {expected!r}, observed {observed!r}")
+    elif isinstance(expected, (int, float)):
         if observed == "":
             raise AssertionError(f"{label}: missing numeric value")
         actual = float(observed)

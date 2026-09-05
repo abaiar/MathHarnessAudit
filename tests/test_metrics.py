@@ -192,6 +192,65 @@ def test_bootstrap_is_reproducible(episode_factory):
     first = pairwise_dependence(episodes, "a", "b", bootstrap_replicates=200, seed=17)
     second = pairwise_dependence(episodes, "a", "b", bootstrap_replicates=200, seed=17)
     assert first["phi_bootstrap_95"] == second["phi_bootstrap_95"]
+    assert first["phi_bootstrap_summary"] == second["phi_bootstrap_summary"]
+
+
+def test_bootstrap_reports_undefined_phi_resamples(episode_factory):
+    episodes = [
+        episode_factory(0, True, True, True),
+        episode_factory(1, False, False, False),
+    ]
+    result = pairwise_dependence(episodes, "a", "b", bootstrap_replicates=200, seed=17)
+    summary = result["phi_bootstrap_summary"]
+    assert summary["requested_replicates"] == 200
+    assert 0 < summary["defined_replicates"] < 200
+    assert summary["undefined_replicates"] == 200 - summary["defined_replicates"]
+    assert summary["defined_fraction"] == summary["defined_replicates"] / 200
+    assert summary["interval_status"] == "conditional_on_defined_replicates"
+    assert summary["conditioning"] == "defined_phi_replicates_only"
+    assert summary["nominal_coverage_established"] is False
+    assert result["phi_bootstrap_95"] == summary["percentile_range_defined_95"]
+
+
+def test_source_type_bootstrap_reports_all_undefined_resamples(episode_factory):
+    episodes = [
+        episode_factory(0, True, True, True),
+        episode_factory(1, True, True, True),
+    ]
+    result = source_type_dependence(
+        episodes,
+        SourceType.llm,
+        SourceType.python,
+        bootstrap_replicates=50,
+        seed=8,
+    )
+    summary = result["phi_cluster_bootstrap_summary"]
+    assert result["phi_episode_balanced"] is None
+    assert result["phi_cluster_bootstrap_95"] == [None, None]
+    assert summary == {
+        "requested_replicates": 50,
+        "defined_replicates": 0,
+        "undefined_replicates": 50,
+        "defined_fraction": 0.0,
+        "percentile_range_defined_95": [None, None],
+        "interval_status": "unavailable_no_defined_replicates",
+        "conditioning": "defined_phi_replicates_only",
+        "quantiles": [0.025, 0.975],
+        "nominal_coverage_established": False,
+    }
+
+
+def test_zero_bootstrap_replicates_are_explicitly_not_requested(episode_factory):
+    result = pairwise_dependence(
+        [episode_factory(0, True, False, True)],
+        "a",
+        "b",
+        bootstrap_replicates=0,
+    )
+    summary = result["phi_bootstrap_summary"]
+    assert summary["requested_replicates"] == 0
+    assert summary["defined_fraction"] is None
+    assert summary["interval_status"] == "not_requested"
 
 
 def test_cofailure_reports_complete_and_operational_rates(episode_factory):

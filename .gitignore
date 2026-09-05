@@ -29,6 +29,12 @@ tests/test_qualification_runners.py
 tests/test_budget_gateway.py
 /*.pdf
 /paper/*.pdf
+/paper/*.aux
+/paper/*.bbl
+/paper/*.blg
+/paper/*.log
+/paper/*.out
+/paper/submission/
 /*.jsonl
 
 # Python

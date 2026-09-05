@@ -20,9 +20,9 @@ cells precise or causal.
 
 | Finding | Estimand and observed value | Interval / denominator | Assessment |
 |---|---|---|---|
-| MathGoal-standard LLM--LLM dependence | Episode-balanced phi = -0.0061 | 22 informative episodes; 182 pairs; cluster-bootstrap 95% interval [-0.0250, -0.0061] | Adequate only under the registered 20-episode precision flag; not evidence of a universal zero correlation |
-| MathGoal-standard LLM--Python dependence | Episode-balanced phi = 0.2592 | 16 informative episodes; 249 pairs; interval [0.1882, 0.3974] | Imprecise by the registered episode threshold |
-| ICMA-standard LLM--Python dependence | Episode-balanced phi = 0.6794 | 14 informative episodes; 27 pairs; interval [0.4385, 1.0000] | Imprecise and compatible with a wide range of strong associations |
+| MathGoal-standard LLM--LLM dependence | Episode-balanced phi = -0.0061 | 22 informative episodes; 182 pairs; 6,439/10,000 bootstrap draws defined; conditional 2.5--97.5 percentile range [-0.0250, -0.0061] | Adequate only under the registered 20-episode precision flag; the range has no asserted nominal coverage and is not evidence of a universal zero correlation |
+| MathGoal-standard LLM--Python dependence | Episode-balanced phi = 0.2592 | 16 informative episodes; 249 pairs; 6,465/10,000 draws defined; conditional range [0.1882, 0.3974] | Imprecise by the registered episode threshold; the 3,535 undefined draws remain reported |
+| ICMA-standard LLM--Python dependence | Episode-balanced phi = 0.6794 | 14 informative episodes; 27 pairs; 6,486/10,000 draws defined; conditional range [0.4385, 1.0000] | Imprecise and compatible with a wide range of strong associations; the 3,514 undefined draws remain reported |
 | MathRouter operational no-correct-support | 7/25 standard; 22/25 hard | Registered-episode denominator | Descriptive operational availability/outcome measure, not an all-sources-wrong probability |
 | ICMA complete-case all-wrong | 0/13 standard; 1/4 hard | Exact 95% intervals [0, 0.2471] and [0.0063, 0.8059] | Hard-panel estimate is extremely uncertain |
 | ICMA exact text repetition | 23/24 standard; 19/23 hard | Exact 95% intervals [0.7888, 0.9989] and [0.6122, 0.9505] | Clear exact-string redundancy; not semantic equivalence or correctness |
@@ -35,8 +35,11 @@ tables.
 ## Assumptions and warnings
 
 - Bootstrap resampling is clustered by episode and retains within-episode
-  source dependence. It quantifies sampling variability under the observed
-  episode distribution; it does not correct selective tool invocation.
+  source dependence. Every output records requested, defined, and undefined
+  replicate counts. Because the displayed percentile range conditions on draws
+  where phi is defined, it is an instability diagnostic rather than an
+  unconditional confidence interval with established 95% coverage. Resampling
+  does not correct selective tool invocation.
 - Source-type phi uses equal episode weight after within-episode normalization.
   Pooled pair counts are a sensitivity view only.
 - The 20-episode rule is a preregistered reporting flag, not a guarantee of

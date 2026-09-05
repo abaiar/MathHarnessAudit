@@ -13,6 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "paper" / "submission-source-manifest.json"
 ROOT_FILES = (
+    ".gitignore",
     ".github/workflows/ci.yml",
     "CHANGELOG.md",
     "CITATION.cff",
@@ -28,8 +29,11 @@ EXCLUDED_PARTS = {"__pycache__", "build", "submission"}
 EXCLUDED_NAMES = {
     MANIFEST.name,
     "MathHarnessAudit_SoftwareX_v0.2.0.pdf",
+    "MathHarnessAudit_SoftwareX_v0.2.1.pdf",
 }
 EXCLUDED_RELATIVE_PATHS = {
+    "paper/figures/fig1_architecture_v2.html",
+    "paper/figures/fig2_workflow_v2.html",
     "tests/test_budget_gateway.py",
     "tests/test_phase6_calibration_coordination.py",
     "tests/test_qualification_runners.py",
@@ -109,8 +113,8 @@ def payload() -> dict[str, Any]:
     ]
     result: dict[str, Any] = {
         "format": "mathaudit-softwarex-submission-source-manifest-v1",
-        "candidate_version": "0.2.0",
-        "release_status": "local-candidate; public tag and archival DOI not asserted",
+        "candidate_version": "0.2.1",
+        "release_status": "immutable GitHub tag/release v0.2.1; archival DOI not asserted",
         "scope": "Public software, tests, documentation, and aggregate paper reproduction inputs; text hashes normalize CRLF to LF",
         "file_count": len(files),
         "files": files,

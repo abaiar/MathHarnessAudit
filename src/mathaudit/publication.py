@@ -277,6 +277,18 @@ def _write_tables(root: Path, data: Dict[str, Any]) -> List[Path]:
                 "phi": pair["phi"],
                 "phi_low": pair["phi_bootstrap_95"][0],
                 "phi_high": pair["phi_bootstrap_95"][1],
+                "phi_bootstrap_requested_replicates": pair["phi_bootstrap_summary"][
+                    "requested_replicates"
+                ],
+                "phi_bootstrap_defined_replicates": pair["phi_bootstrap_summary"][
+                    "defined_replicates"
+                ],
+                "phi_bootstrap_undefined_replicates": pair["phi_bootstrap_summary"][
+                    "undefined_replicates"
+                ],
+                "phi_bootstrap_defined_fraction": pair["phi_bootstrap_summary"]["defined_fraction"],
+                "phi_bootstrap_interval_status": pair["phi_bootstrap_summary"]["interval_status"],
+                "phi_bootstrap_conditioning": pair["phi_bootstrap_summary"]["conditioning"],
                 "joint_error_probability": pair["joint_error_probability"],
                 "odds_ratio_haldane": pair["odds_ratio_haldane"],
                 "mutual_information_nats": pair["mutual_information_nats"],
@@ -486,7 +498,8 @@ def _dependence_svg(data: Dict[str, Any]) -> str:
     beta_left, beta_right = 830, 1130
     body = [
         '<text class="title" x="24" y="30">Error dependence and joint-failure tail</text>',
-        '<text class="label" x="%d" y="52">phi (bootstrap 95%%)</text>' % phi_left,
+        '<text class="label" x="%d" y="52">phi (defined-resample 2.5--97.5%% range)</text>'
+        % phi_left,
         '<text class="label" x="%d" y="52">all-wrong beta (exact 95%%)</text>' % beta_left,
         _axis(phi_left, phi_right, 70, low=-1.0, high=1.0),
         _axis(beta_left, beta_right, 70),
@@ -528,7 +541,7 @@ def _dependence_svg(data: Dict[str, Any]) -> str:
     )
     return _svg_document(
         "Error dependence and joint-failure tail",
-        "Pairwise phi and directly computed all-source all-wrong beta with uncertainty intervals.",
+        "Pairwise phi with a percentile range conditional on defined bootstrap draws, and directly computed all-source all-wrong beta with an exact interval.",
         width,
         height,
         "".join(body),

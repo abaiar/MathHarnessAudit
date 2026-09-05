@@ -502,7 +502,7 @@ def _dependence_figure(analyses: Dict[str, Dict[str, Any]]) -> str:
         '<text class="title" x="20" y="28">Episode-balanced error dependence</text>',
         '<line x1="20" y1="50" x2="52" y2="50" stroke="#0072B2" stroke-width="3"/>'
         '<circle cx="36" cy="50" r="5" fill="#D55E00"/>'
-        '<text class="small" x="62" y="53">phi and cluster-bootstrap 95% interval</text>',
+        '<text class="small" x="62" y="53">phi and defined-resample 2.5--97.5% range</text>',
         _axis(left, right, 52, -1.0, 1.0),
     ]
     for index, (panel, item) in enumerate(rows):
@@ -525,7 +525,7 @@ def _dependence_figure(analyses: Dict[str, Dict[str, Any]]) -> str:
             body.append('<circle cx="%.1f" cy="%d" r="5" fill="#D55E00"/>' % (x, y))
     return _svg(
         "Episode-balanced error dependence",
-        "Primary source-type phi with episode-cluster bootstrap intervals; all-provenance facet only.",
+        "Primary source-type phi with percentile ranges conditional on defined episode-cluster bootstrap draws; all-provenance facet only.",
         width,
         height,
         "".join(body),

@@ -683,6 +683,23 @@
             null,
             null
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": 0.0,
           "p_b_wrong_given_a_wrong": 0.0,
           "p_a_wrong_given_b_wrong": null,
@@ -706,6 +723,23 @@
             null,
             null
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": null,
           "p_b_wrong_given_a_wrong": null,
           "p_a_wrong_given_b_wrong": null,
@@ -729,6 +763,23 @@
             null,
             null
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": null,
           "p_b_wrong_given_a_wrong": null,
           "p_a_wrong_given_b_wrong": null,
@@ -763,6 +814,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -789,6 +857,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -820,6 +905,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -846,6 +948,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -872,6 +991,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -898,6 +1034,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -1700,6 +1853,23 @@
             null,
             null
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": null,
           "p_b_wrong_given_a_wrong": null,
           "p_a_wrong_given_b_wrong": null,
@@ -1723,6 +1893,23 @@
             null,
             null
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": null,
           "p_b_wrong_given_a_wrong": null,
           "p_a_wrong_given_b_wrong": null,
@@ -1746,6 +1933,23 @@
             null,
             null
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": null,
           "p_b_wrong_given_a_wrong": null,
           "p_a_wrong_given_b_wrong": null,
@@ -1775,6 +1979,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -1801,6 +2022,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -1827,6 +2065,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -1853,6 +2108,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -1879,6 +2151,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -1905,6 +2194,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -2570,6 +2876,23 @@
             null,
             null
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": 0.0,
           "p_b_wrong_given_a_wrong": null,
           "p_a_wrong_given_b_wrong": null,
@@ -2593,6 +2916,23 @@
             null,
             null
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": 0.0,
           "p_b_wrong_given_a_wrong": null,
           "p_a_wrong_given_b_wrong": 0.0,
@@ -2616,6 +2956,23 @@
             0.43852900965351466,
             1.0
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6486,
+            "undefined_replicates": 3514,
+            "defined_fraction": 0.6486,
+            "percentile_range_defined_95": [
+              0.43852900965351466,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": 0.07142857142857142,
           "p_b_wrong_given_a_wrong": 1.0,
           "p_a_wrong_given_b_wrong": 0.5,
@@ -2650,6 +3007,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -2681,6 +3055,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -2707,6 +3098,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -2738,6 +3146,23 @@
             0.43852900965351466,
             1.0
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6486,
+            "undefined_replicates": 3514,
+            "defined_fraction": 0.6486,
+            "percentile_range_defined_95": [
+              0.43852900965351466,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 0.554700196225229,
           "joint_error_probability_episode_balanced": 0.07142857142857142,
           "unit_of_inference": "episode",
@@ -2769,6 +3194,23 @@
             0.43852900965351466,
             1.0
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6486,
+            "undefined_replicates": 3514,
+            "defined_fraction": 0.6486,
+            "percentile_range_defined_95": [
+              0.43852900965351466,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 0.554700196225229,
           "joint_error_probability_episode_balanced": 0.07142857142857142,
           "unit_of_inference": "episode",
@@ -2795,6 +3237,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -3500,6 +3959,23 @@
             1.0,
             1.0
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6805,
+            "undefined_replicates": 3195,
+            "defined_fraction": 0.6805,
+            "percentile_range_defined_95": [
+              1.0,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": 0.25,
           "p_b_wrong_given_a_wrong": 1.0,
           "p_a_wrong_given_b_wrong": 1.0,
@@ -3523,6 +3999,23 @@
             1.0,
             1.0
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6805,
+            "undefined_replicates": 3195,
+            "defined_fraction": 0.6805,
+            "percentile_range_defined_95": [
+              1.0,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": 0.25,
           "p_b_wrong_given_a_wrong": 1.0,
           "p_a_wrong_given_b_wrong": 1.0,
@@ -3546,6 +4039,23 @@
             1.0,
             1.0
           ],
+          "phi_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 9070,
+            "undefined_replicates": 930,
+            "defined_fraction": 0.907,
+            "percentile_range_defined_95": [
+              1.0,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "joint_error_probability": 0.3333333333333333,
           "p_b_wrong_given_a_wrong": 1.0,
           "p_a_wrong_given_b_wrong": 1.0,
@@ -3580,6 +4090,23 @@
             1.0,
             1.0
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6805,
+            "undefined_replicates": 3195,
+            "defined_fraction": 0.6805,
+            "percentile_range_defined_95": [
+              1.0,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 1.0,
           "joint_error_probability_episode_balanced": 0.25,
           "unit_of_inference": "episode",
@@ -3611,6 +4138,23 @@
             1.0,
             1.0
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6805,
+            "undefined_replicates": 3195,
+            "defined_fraction": 0.6805,
+            "percentile_range_defined_95": [
+              1.0,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 1.0,
           "joint_error_probability_episode_balanced": 0.25,
           "unit_of_inference": "episode",
@@ -3637,6 +4181,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -3668,6 +4229,23 @@
             1.0,
             1.0
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 9070,
+            "undefined_replicates": 930,
+            "defined_fraction": 0.907,
+            "percentile_range_defined_95": [
+              1.0,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 1.0,
           "joint_error_probability_episode_balanced": 0.3333333333333333,
           "unit_of_inference": "episode",
@@ -3699,6 +4277,23 @@
             1.0,
             1.0
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 9070,
+            "undefined_replicates": 930,
+            "defined_fraction": 0.907,
+            "percentile_range_defined_95": [
+              1.0,
+              1.0
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 1.0,
           "joint_error_probability_episode_balanced": 0.3333333333333333,
           "unit_of_inference": "episode",
@@ -3725,6 +4320,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -8344,6 +8956,23 @@
             -0.025004395690303865,
             -0.006106934284361995
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6439,
+            "undefined_replicates": 3561,
+            "defined_fraction": 0.6439,
+            "percentile_range_defined_95": [
+              -0.025004395690303865,
+              -0.006106934284361995
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": -0.011142450337147508,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -8375,6 +9004,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -8406,6 +9052,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -8437,6 +9100,23 @@
             0.18816667761480327,
             0.39735970711951313
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6465,
+            "undefined_replicates": 3535,
+            "defined_fraction": 0.6465,
+            "percentile_range_defined_95": [
+              0.18816667761480327,
+              0.39735970711951313
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 0.3166559690105764,
           "joint_error_probability_episode_balanced": 0.010416666666666666,
           "unit_of_inference": "episode",
@@ -8468,6 +9148,23 @@
             0.23106504147329038,
             0.4879500364742666
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6465,
+            "undefined_replicates": 3535,
+            "defined_fraction": 0.6465,
+            "percentile_range_defined_95": [
+              0.23106504147329038,
+              0.4879500364742666
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 0.3563483225498992,
           "joint_error_probability_episode_balanced": 0.015625,
           "unit_of_inference": "episode",
@@ -8499,6 +9196,23 @@
             0.17407765595569785,
             0.36760731104690386
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6465,
+            "undefined_replicates": 3535,
+            "defined_fraction": 0.6465,
+            "percentile_range_defined_95": [
+              0.17407765595569785,
+              0.36760731104690386
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 0.3010398644698074,
           "joint_error_probability_episode_balanced": 0.008928571428571428,
           "unit_of_inference": "episode",
@@ -13030,6 +13744,23 @@
             0.30000000000000004,
             0.44736842105263164
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6553,
+            "undefined_replicates": 3447,
+            "defined_fraction": 0.6553,
+            "percentile_range_defined_95": [
+              0.30000000000000004,
+              0.44736842105263164
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 0.4714285714285714,
           "joint_error_probability_episode_balanced": 0.047619047619047616,
           "unit_of_inference": "episode",
@@ -13056,6 +13787,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": null,
           "unit_of_inference": "episode",
@@ -13087,6 +13835,23 @@
             0.30000000000000004,
             0.44736842105263164
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 6553,
+            "undefined_replicates": 3447,
+            "defined_fraction": 0.6553,
+            "percentile_range_defined_95": [
+              0.30000000000000004,
+              0.44736842105263164
+            ],
+            "interval_status": "conditional_on_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": 0.4714285714285714,
           "joint_error_probability_episode_balanced": 0.047619047619047616,
           "unit_of_inference": "episode",
@@ -13118,6 +13883,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -13149,6 +13931,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -13180,6 +13979,23 @@
             null,
             null
           ],
+          "phi_cluster_bootstrap_summary": {
+            "requested_replicates": 10000,
+            "defined_replicates": 0,
+            "undefined_replicates": 10000,
+            "defined_fraction": 0.0,
+            "percentile_range_defined_95": [
+              null,
+              null
+            ],
+            "interval_status": "unavailable_no_defined_replicates",
+            "conditioning": "defined_phi_replicates_only",
+            "quantiles": [
+              0.025,
+              0.975
+            ],
+            "nominal_coverage_established": false
+          },
           "phi_pair_weighted_sensitivity": null,
           "joint_error_probability_episode_balanced": 0.0,
           "unit_of_inference": "episode",
@@ -13265,11 +14081,12 @@
   "system_ranking_computed": false,
   "interpretation_limits": [
     "Source-type phi is episode-balanced and cluster-bootstrapped; pair-weighted phi is sensitivity only.",
+    "Phi bootstrap outputs expose requested, defined and undefined replicates; percentile ranges are conditional on defined phi draws and do not establish nominal coverage.",
     "Source-type pairs are split into all, same-provenance and different-provenance estimates.",
     "Effective support is an equicorrelation model summary, not a literal vote count.",
     "Repair, harm and utilization are descriptive because source invocation is selective.",
     "Exact text repetition is not semantic equivalence or correctness.",
     "No cross-panel pooling or system ranking is implicit."
   ],
-  "analysis_sha256": "58c50ea66e549767589857ec3839c977b95bf0fca33d67d72b4404e8d292256a"
+  "analysis_sha256": "26e5c3035f289cc79378bd6feb19d3b34a3058f0f48f8b153b89950bc73ba5dd"
 }

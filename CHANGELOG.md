@@ -2,7 +2,20 @@
 
 All notable changes to MathHarnessAudit will be documented here.
 
-## 0.2.0 - unreleased submission candidate
+## 0.2.1 - 2026-09-05
+
+- Exposed requested, defined, and undefined phi-bootstrap replicate counts and
+  labelled percentile ranges as conditional on defined resamples.
+- Added regression tests for zero-variance and partially undefined bootstrap
+  distributions without changing the frozen episodes, labels, or registered
+  system-by-stratum panels.
+- Regenerated the public aggregate analysis, publication tables, figures,
+  manifests, claim ledger, and SoftwareX manuscript from the same 150 episodes.
+- Bound paper metadata, documentation, distributions, and reproduction checks
+  to the immutable v0.2.1 release rather than the superseded v0.2.0 candidate.
+- Improved manuscript figure legibility, table layout, and link rendering.
+
+## 0.2.0 - 2026-09-04
 
 - Added a public, text-free frozen analysis snapshot and a documented clean
   reproduction path for all reference-audit CSV tables and SVG figures.
@@ -19,7 +32,8 @@ All notable changes to MathHarnessAudit will be documented here.
   submission evidence base; retained them privately as non-paper-eligible
   research records pending external governance resolution.
 - Aligned package metadata, README, CI, manuscript, and source release around a
-  single v0.2.0 release candidate.
+  single v0.2.0 release candidate. The tag's Linux CI failure was corrected in
+  v0.2.1 rather than by rewriting the immutable v0.2.0 tag.
 
 ## 0.1.0 - 2026-09-01
 

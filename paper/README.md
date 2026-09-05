@@ -1,14 +1,16 @@
 # Paper reproduction bundle
 
 This directory is the public, provider-free reproduction surface for the
-SoftwareX submission candidate.
+SoftwareX submission candidate. Its frozen software target is
+[`v0.2.1`](https://github.com/abaiar/MathHarnessAudit/tree/v0.2.1).
 
 ## What can be reproduced
 
 `data/analysis-deterministic-q14-v1.json` is the frozen, self-hashed aggregate
 analysis for 150 complete episodes in six registered system-by-stratum panels.
 It contains panel-level source inventories, explicit denominators, contingency
-cells, intervals, cost summaries, transition counts, utilization summaries,
+cells, conditional bootstrap percentile ranges with requested/defined/undefined
+replicate counts, cost summaries, transition counts, utilization summaries,
 repetition counts, and final-outcome summaries. It contains no benchmark text,
 prompt, response, reference answer, human rationale, credential, provider
 request identifier, or local absolute path.
@@ -28,6 +30,7 @@ mathaudit qualification-reproduce-check `
   --reference-dir paper/results/deterministic-q14-v1
 python paper/verify_claims.py
 python paper/build_submission_manifest.py
+python paper/build_submission_archive.py
 ```
 
 The second command verifies every registered artifact and its self-hashed
@@ -35,7 +38,9 @@ manifest. The third regenerates the full publication bundle in a temporary
 directory and requires byte identity with the committed reference. The fourth
 checks each registered numerical manuscript claim against exactly one CSV row
 and verifies that the corresponding claim marker exists in the LaTeX source.
-The final command rejects drift from the frozen public submission sources.
+The fifth command rejects drift from the frozen public submission sources. Once
+the manuscript PDF exists, the final command creates a deterministic ZIP that
+contains the exact frozen sources, source manifest, and compiled PDF.
 
 ## What cannot be reproduced from this public bundle
 
@@ -59,6 +64,7 @@ ambiguous record from being promoted into a scientific claim.
 - `results/`: generated CSV/SVG outputs and self-hashed manifests.
 - `claim-ledger.json`: expected values and row selectors for manuscript claims.
 - `verify_claims.py`: standard-library verifier for the claim ledger.
+- `build_submission_archive.py`: deterministic source-and-PDF ZIP builder.
 - `experiment-validation.md`: ARS experiment-agent validation, assumptions,
   11-fallacy scan, and the exact reproducibility boundary.
 - `softwarex.tex` and `references_final.bib`: SoftwareX OSP manuscript source.

@@ -335,6 +335,7 @@ def build_qualification_analysis(
         "system_ranking_computed": False,
         "interpretation_limits": [
             "Source-type phi is episode-balanced and cluster-bootstrapped; pair-weighted phi is sensitivity only.",
+            "Phi bootstrap outputs expose requested, defined and undefined replicates; percentile ranges are conditional on defined phi draws and do not establish nominal coverage.",
             "Source-type pairs are split into all, same-provenance and different-provenance estimates.",
             "Effective support is an equicorrelation model summary, not a literal vote count.",
             "Repair, harm and utilization are descriptive because source invocation is selective.",

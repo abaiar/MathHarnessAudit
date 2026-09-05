@@ -1,16 +1,16 @@
 {
   "format": "mathaudit-qualification-figure-manifest-v0.1",
-  "tool_version": "0.2.0",
+  "tool_version": "0.2.1",
   "source_plan_sha256": "c246d426ca8b06e01546d9c3d276c29b1ae81de682bdf33cfaa7edb1573b1c18",
   "analysis_inputs": [
     {
       "label_variant": "deterministic",
-      "analysis_sha256": "58c50ea66e549767589857ec3839c977b95bf0fca33d67d72b4404e8d292256a",
-      "raw_sha256": "bf44ed7c457512a79498c162533a4834f975bac67c199d0b3391fa3817192c6b"
+      "analysis_sha256": "26e5c3035f289cc79378bd6feb19d3b34a3058f0f48f8b153b89950bc73ba5dd",
+      "raw_sha256": "9581464e59990d340b5de4023792bfa3aa48cdcabc839b2f9bf4bc648aa13334"
     }
   ],
   "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
   "output_relative_path": "figures/dependence.svg",
-  "output_sha256": "87ec2285f4cbdbd624a6109aa63a7b5a9c2c91523d47f9e8ba0ca489a9788797",
-  "manifest_sha256": "2beba58ec3c59dd0d9a116980d063ff5503e107c7fcc9cd9698adda9dcaa0aab"
+  "output_sha256": "3f1196989ef04c0db46ab212b6207dee5fb0c8df062d295f10778a08c9ccd57e",
+  "manifest_sha256": "65e2b0a5083d8c561eb1156ad89db3f9fce9e5c590aa00672f4533a330fa559a"
 }

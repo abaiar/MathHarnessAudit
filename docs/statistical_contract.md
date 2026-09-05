@@ -1,8 +1,8 @@
 # Statistical contract
 
 This document fixes the estimands, denominators, missingness rules, and
-interpretive limits used by MathHarnessAudit v0.2.0. The frozen reference audit
-continues to use its preregistered v0.1 analysis configuration; v0.2.0 changes
+interpretive limits used by MathHarnessAudit v0.2.1. The frozen reference audit
+continues to use its preregistered v0.1 analysis configuration; v0.2.1 changes
 documentation and verification, not the observed outcomes or selection rules.
 
 ## Availability before correctness
@@ -34,7 +34,13 @@ sqrt((n00+n01)(n10+n11)(n00+n10)(n01+n11))
 ```
 
 Phi is `null` when either marginal has zero variance. Its bootstrap resamples
-complete-case episodes and therefore does not impute missing sources.
+complete-case episodes and therefore does not impute missing sources. Every
+bootstrap output reports the requested, defined, and undefined replicate counts
+and the defined fraction. When any resampled table has a zero-variance marginal,
+the reported 2.5--97.5% percentile range is conditional on the subset of
+resamples where phi is defined. It is not described as an unconditional 95%
+confidence interval or as having established nominal coverage. If no resample
+has defined phi, the range remains `null`.
 
 ## Source-type dependence
 
@@ -47,7 +53,9 @@ is episode-balanced:
 3. divide each cell by the episode's number of eligible pairs;
 4. average the four proportions over episodes that contain at least one pair;
 5. compute phi from the four averaged proportions;
-6. obtain the 95% interval by resampling episodes and repeating steps 4--5.
+6. resample episodes and repeat steps 4--5;
+7. report the 2.5--97.5% percentile range among defined phi resamples together
+   with the requested, defined, and undefined replicate counts.
 
 Thus the primary four cells are proportions, not integer counts. Integer pooled
 pair cells and pair-weighted phi are emitted only as sensitivity summaries.
@@ -106,5 +114,7 @@ correlation. It is a model summary, not a literal number of independent votes.
 The reference audit is descriptive and reports all registered cells, including
 null and imprecise ones. It does not perform cross-panel pooling, system ranking,
 hypothesis testing, multiplicity-adjusted discovery, or architecture-causal
-inference. Bootstrap intervals describe sampling variability under the
-episode-resampling scheme; they do not repair selection bias or missingness.
+inference. Defined-resample bootstrap percentile ranges describe the observed
+resampling distribution only after exposing undefined replicates. They do not
+establish nominal coverage or repair selection bias, zero-variance instability,
+or missingness.
