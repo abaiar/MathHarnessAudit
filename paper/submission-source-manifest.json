@@ -1,7 +1,7 @@
 {
   "format": "mathaudit-softwarex-submission-source-manifest-v1",
-  "candidate_version": "0.2.1",
-  "release_status": "immutable GitHub tag/release v0.2.1; archival DOI not asserted",
+  "candidate_version": "0.2.2",
+  "release_status": "immutable GitHub tag/release v0.2.2; archival DOI not asserted",
   "scope": "Public software, tests, documentation, and aggregate paper reproduction inputs; text hashes normalize CRLF to LF",
   "file_count": 210,
   "files": [
@@ -12,18 +12,18 @@
     },
     {
       "path": ".gitignore",
-      "bytes": 873,
-      "sha256": "cd6f3275df68de6456ebae258f71e86176196bf2d53ffd8be6968d13170f83a7"
+      "bytes": 929,
+      "sha256": "49fa9567a6779db3096b8b6b76f08709ab09c31937375d2b3eb42d6046be7f44"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 4729,
-      "sha256": "eb6738f49c1944efd0e78e71a755fd058685ff1b254e6552fcff7744464a1949"
+      "bytes": 5144,
+      "sha256": "3f26f8a8b588b9d6b1a1ca32247d6636dc0fd1fdd5e0df38be34cbbd36a0d36e"
     },
     {
       "path": "CITATION.cff",
       "bytes": 830,
-      "sha256": "21659444a195253dc5311a2002b6f73e8df2424d4b12d28d8ad9e967b5d0ea77"
+      "sha256": "1b4134e0a8dd03211e653381dd1fa2534d1c11d823988318200cf220606c8f55"
     },
     {
       "path": "LICENSE",
@@ -43,17 +43,17 @@
     {
       "path": "README.md",
       "bytes": 7015,
-      "sha256": "3778fee2dd92685ba6cf183282548d4e42a1bca05af22fb2403862f212546189"
+      "sha256": "ca4091f5dd25f56112cde68e3277ccf10ffd15c47abc43122628f259b5622376"
     },
     {
       "path": "docs/compatibility.md",
       "bytes": 2570,
-      "sha256": "cef848a690cc38e5df1ad03c0bc366b47378c82085b76cd43cac571222386b4e"
+      "sha256": "e092c20a1ab2bd90c8944021b193a33cabad5e2619aec61d5f278b5cf89ead19"
     },
     {
       "path": "docs/migrating_to_v1.md",
       "bytes": 1511,
-      "sha256": "5949a89320b5b5867a934c31d971be0059cb9683433dba55d1a5aebf3cb633d8"
+      "sha256": "69690f7f8312b7761011773a7840564526d544eb80dcd37824b18f338dcce1bc"
     },
     {
       "path": "docs/related_work_matrix.md",
@@ -63,12 +63,12 @@
     {
       "path": "docs/research_governance.md",
       "bytes": 2458,
-      "sha256": "04500b47b12674ffe6bab8a3d88e047d4c0ec905b510e5c557662837834cde9c"
+      "sha256": "31452eb5c2d3d60d358ceb3b288f7726c026b3b691d7e2d51595fbf29c334bdf"
     },
     {
       "path": "docs/statistical_contract.md",
       "bytes": 5627,
-      "sha256": "9fc899218fd5cda318f2955f0fccb9ea6f7793b40feb4d15befdcc20481ae81d"
+      "sha256": "05dcc7e53239ce2270572569aa9d170f5066715b16f3b94ef29e981df2529cae"
     },
     {
       "path": "docs/troubleshooting.md",
@@ -138,17 +138,17 @@
     {
       "path": "paper/README.md",
       "bytes": 3709,
-      "sha256": "5e09382eaef1c6557d928aece39cce42c81df41f7e8408376e92f5e47ef9252d"
+      "sha256": "6742579aac783cb4f6ee9eef32e4ffcff1d716ee68d7969bdc56d2e7d2ddac6d"
     },
     {
       "path": "paper/build_submission_archive.py",
       "bytes": 2276,
-      "sha256": "894a511525a674e869e34b13b1e97f13b0cf6d3359347860e15401276939a3be"
+      "sha256": "7cc97e18898eb9a6fa3eff9efcfcbfc52dee737afb36d5123d54c5b9db9dad8e"
     },
     {
       "path": "paper/build_submission_manifest.py",
-      "bytes": 5287,
-      "sha256": "c10477acf8a8ba35e4eb3dec874be4c6b6d38f33e6dc124d222c2df4eb505a58"
+      "bytes": 5332,
+      "sha256": "1d015fc3faf959c02d1adf757212f492c5957967d848b77e8d9f3b65594e28a5"
     },
     {
       "path": "paper/citation-audit.md",
@@ -208,7 +208,7 @@
     {
       "path": "paper/results/deterministic-q14-v1/figures/availability.svg.manifest.json",
       "bytes": 786,
-      "sha256": "4ccc8137685c42c9635697f7e427b01c9baf0b66e9b46b947a0a24561d616731"
+      "sha256": "daf75b09951c0e20d7272db9515d18a3dda628319e060c6c1ae3d88744dcd0af"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/dependence.svg",
@@ -218,7 +218,7 @@
     {
       "path": "paper/results/deterministic-q14-v1/figures/dependence.svg.manifest.json",
       "bytes": 784,
-      "sha256": "8144e3ed02c2ca60f71c846d6c5246b46c2eac28c013343dc83120c00ac123f7"
+      "sha256": "00617e7cbf644a47ee9fb63c01b9a062a65bd0458fdf50abae077c50bc9bcb17"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/repair_harm.svg",
@@ -228,7 +228,7 @@
     {
       "path": "paper/results/deterministic-q14-v1/figures/repair_harm.svg.manifest.json",
       "bytes": 785,
-      "sha256": "6dde974c839e59d382dceb2f0cc6cec73c498d4f5f02a4c853adcfb7ddee4f58"
+      "sha256": "fee18c62f902cccd545f0aabe6e183ed0f1de8f3816b42c6d9775709998bd750"
     },
     {
       "path": "paper/results/deterministic-q14-v1/figures/repetition.svg",
@@ -238,17 +238,17 @@
     {
       "path": "paper/results/deterministic-q14-v1/figures/repetition.svg.manifest.json",
       "bytes": 784,
-      "sha256": "ccc5f69352f7e21e48a6cfe420d008a47df72bf49810ddfc5153867864756d39"
+      "sha256": "e2d2cf2114a7cbb017786b9103b27966337c2845bb388ccf50d6da8ce77d25dc"
     },
     {
       "path": "paper/results/deterministic-q14-v1/publication-data.json",
       "bytes": 1031,
-      "sha256": "d8ba29cc93d79c11ccfbec082a700b89d8dd60f7d30c3fc93ca2e07ac2b7faeb"
+      "sha256": "e8d98448e93cceb87477c8faca4459813ce1e0a2c1ea5f9cc632a1340614d139"
     },
     {
       "path": "paper/results/deterministic-q14-v1/publication-manifest.json",
       "bytes": 3687,
-      "sha256": "964a7d3c1555904442f143aa9fea1430fb1e2cda15fa93ad8aedd0a7ba540cc5"
+      "sha256": "7a0e7955c74f55f16fa95cd8c043b731e2e515552517e74bdb0b7e84ceb75259"
     },
     {
       "path": "paper/results/deterministic-q14-v1/tables/availability.csv",
@@ -302,13 +302,13 @@
     },
     {
       "path": "paper/softwarex.tex",
-      "bytes": 28970,
-      "sha256": "3a0b1b442b37c9453dda0ec1f224c1e3ea0a6fb919f8d39477df38e080c28a53"
+      "bytes": 28977,
+      "sha256": "068f8ebf851fd6b71ff4b6018cd390b93b91fee122dec4d1bee39add7a561dbe"
     },
     {
       "path": "paper/submission-readiness-audit.md",
-      "bytes": 9443,
-      "sha256": "ea5836414166080e93d0abd7928324b51b3e20551f2add0ae636b8d183dfeb34"
+      "bytes": 9710,
+      "sha256": "b6607f894df70f264c89b5757d0eb4a017a9f6ac488c06b893698fb8efc9057e"
     },
     {
       "path": "paper/verify_claims.py",
@@ -318,7 +318,7 @@
     {
       "path": "pyproject.toml",
       "bytes": 2100,
-      "sha256": "008414ae984f2ebbc4e9c40f1fc8906546a745f8199e9f919cbad2d7f3da96ec"
+      "sha256": "14fc2105bf1c5db6382e81c39e8151522a1e75d62211adb713557480294addd8"
     },
     {
       "path": "schemas/mathaudit-compute-authorization-v0.1.schema.json",
@@ -528,7 +528,7 @@
     {
       "path": "src/mathaudit/__init__.py",
       "bytes": 238,
-      "sha256": "0d2d6b9aded640a997ba727136c4521314b0b7d204dd8a0e9b659a14805accb8"
+      "sha256": "abb09abea95d279eebbbf145d1c92d1aa48ff2cf525cb7d48f8ecf784b8f5d76"
     },
     {
       "path": "src/mathaudit/__main__.py",
@@ -1053,8 +1053,8 @@
     {
       "path": "uv.lock",
       "bytes": 361055,
-      "sha256": "35f3744696b029d498b8010d74fa2915e8ff7479bb736a9acd12e39c5b8fef30"
+      "sha256": "ac71f1861126aa3eefdfb2da268990ee7cc5c0741a8e7c54fe60a5e14a6cea9b"
     }
   ],
-  "self_sha256": "2ca1f4aa8286b183cb6a419b2903e8086b1ce02e666bafa94d80e0dae3d02da4"
+  "self_sha256": "8ffa97e28f791b6c55647532183661d69f01e0cead964b29017ea4b788d9ad85"
 }

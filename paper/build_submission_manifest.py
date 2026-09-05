@@ -30,6 +30,7 @@ EXCLUDED_NAMES = {
     MANIFEST.name,
     "MathHarnessAudit_SoftwareX_v0.2.0.pdf",
     "MathHarnessAudit_SoftwareX_v0.2.1.pdf",
+    "MathHarnessAudit_SoftwareX_v0.2.2.pdf",
     "softwarex.aux",
     "softwarex.bbl",
     "softwarex.blg",
@@ -120,8 +121,8 @@ def payload() -> dict[str, Any]:
     ]
     result: dict[str, Any] = {
         "format": "mathaudit-softwarex-submission-source-manifest-v1",
-        "candidate_version": "0.2.1",
-        "release_status": "immutable GitHub tag/release v0.2.1; archival DOI not asserted",
+        "candidate_version": "0.2.2",
+        "release_status": "immutable GitHub tag/release v0.2.2; archival DOI not asserted",
         "scope": "Public software, tests, documentation, and aggregate paper reproduction inputs; text hashes normalize CRLF to LF",
         "file_count": len(files),
         "files": files,

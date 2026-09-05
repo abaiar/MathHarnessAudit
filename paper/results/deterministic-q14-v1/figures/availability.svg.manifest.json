@@ -1,6 +1,6 @@
 {
   "format": "mathaudit-qualification-figure-manifest-v0.1",
-  "tool_version": "0.2.1",
+  "tool_version": "0.2.2",
   "source_plan_sha256": "c246d426ca8b06e01546d9c3d276c29b1ae81de682bdf33cfaa7edb1573b1c18",
   "analysis_inputs": [
     {
@@ -12,5 +12,5 @@
   "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
   "output_relative_path": "figures/availability.svg",
   "output_sha256": "523edfcacb96ad41559b6fe551d86f659c3ddcfd626f7e37ea55e3fe4c158083",
-  "manifest_sha256": "ffbe297189ff7394ee3752218fc0382d93a0229896296a8e19a53f6e0e3d2c9e"
+  "manifest_sha256": "1c59a9bbe7ef3dc9c3c40548f4df9ed422eedff86a031dbac2e22b88b2e219cf"
 }

@@ -2,6 +2,14 @@
 
 All notable changes to MathHarnessAudit will be documented here.
 
+## 0.2.2 - 2026-09-05
+
+- Corrected the manuscript and readiness audit from 168 local tests to 150
+  publicly distributed tests. The additional 18 development-only private-runner
+  tests remain outside the public release and are not claimed as public tests.
+- Re-froze the SoftwareX candidate without rewriting the immutable v0.2.1 tag;
+  v0.2.1 is retained as provenance history and superseded for submission use.
+
 ## 0.2.1 - 2026-09-05
 
 - Exposed requested, defined, and undefined phi-bootstrap replicate counts and

@@ -1,4 +1,4 @@
-# Submission-readiness audit: MathHarnessAudit 0.2.1
+# Submission-readiness audit: MathHarnessAudit 0.2.2
 
 Audit date: 2026-09-05
 
@@ -11,7 +11,7 @@ and a manuscript marker or statement.
 ## Executive decision
 
 All internally remediable blockers identified in the repository review are
-closed in the 0.2.1 candidate. The most likely first-round editorial outcome is
+closed in the 0.2.2 candidate. The most likely first-round editorial outcome is
 **Minor Revision**, not direct acceptance. A **Major Revision** remains plausible
 if a reviewer requires redistributable row-level traces rather than accepting
 the explicitly limited aggregate-analysis-to-artifact reproduction boundary.
@@ -62,11 +62,12 @@ passed and the authors approve the exact uploaded files.
   damaged provenance.
 - Fix: the package, lock file, citation metadata, README, documentation,
   manuscript metadata C1/C2/C7, generated manifests, and distribution filenames
-  now target 0.2.1. The permanent code link is the immutable `v0.2.1` tree. The
-  0.2.0 history remains unchanged and is documented in the changelog.
+  now target 0.2.2. The permanent code link is the immutable `v0.2.2` tree. The
+  0.2.0 and 0.2.1 histories remain unchanged and are documented in the changelog;
+  0.2.1 is superseded because its manuscript called all 168 local tests public.
 - Files: `pyproject.toml`, `uv.lock`, `src/mathaudit/__init__.py`,
   `CITATION.cff`, `CHANGELOG.md`, `README.md`, `docs/`, `paper/softwarex.tex`.
-- Verification: package import and wheel metadata both report 0.2.1. The release
+- Verification: package import and wheel metadata both report 0.2.2. The release
   process publishes only after the exact tagged workflow passes.
 
 ### P1 — software quality and clean-install evidence
@@ -74,8 +75,11 @@ passed and the authors approve the exact uploaded files.
 - Fix: the public suite was expanded with bootstrap failure-mode tests; lint and
   formatting gates cover source, tests, examples, and paper utilities. Source
   and universal-wheel distributions build from the locked environment.
-- Verification: 168 tests pass; Ruff lint and format checks pass; a clean Python
-  3.12 environment installs the wheel, reports version 0.2.1, lists schemas, and
+- Verification: all 150 publicly distributed tests pass; 18 development-only
+  private-runner tests also pass locally but are excluded from the public
+  distribution and are not counted in the manuscript. Ruff lint and format
+  checks pass; a clean Python 3.12 environment installs the wheel, reports
+  version 0.2.2, lists schemas, and
   completes the provider-free fixture. Dependency audit reports no known
   vulnerability in third-party dependencies (the local project itself is not a
   PyPI-resolved dependency).

@@ -1,8 +1,8 @@
 # Statistical contract
 
 This document fixes the estimands, denominators, missingness rules, and
-interpretive limits used by MathHarnessAudit v0.2.1. The frozen reference audit
-continues to use its preregistered v0.1 analysis configuration; v0.2.1 changes
+interpretive limits used by MathHarnessAudit v0.2.2. The frozen reference audit
+continues to use its preregistered v0.1 analysis configuration; v0.2.2 changes
 documentation and verification, not the observed outcomes or selection rules.
 
 ## Availability before correctness

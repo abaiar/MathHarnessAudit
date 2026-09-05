@@ -1,6 +1,6 @@
 # Compatibility and deprecation policy
 
-MathHarnessAudit package v0.2.1 implements the canonical episode contract frozen
+MathHarnessAudit package v0.2.2 implements the canonical episode contract frozen
 as Schema v1.0, while historical Schema v0.1 episodes remain readable through an
 explicit lossless migration. Package and schema versions are independent:
 qualification formats keep their

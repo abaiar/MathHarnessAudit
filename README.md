@@ -10,7 +10,7 @@ Private research notebooks, raw traces, evaluated-system checkouts, API
 credentials, and publisher templates are maintained outside this public source
 distribution.
 
-Current status: **v0.2.1 SoftwareX submission candidate**. The public repository
+Current status: **v0.2.2 SoftwareX submission candidate**. The public repository
 contains the package, schemas, examples, tests, adapter documentation, CI, and a
 text-free analysis snapshot that regenerates the paper's reference-audit tables
 and figures. Restricted benchmark text, model responses, credentials, and

@@ -2,7 +2,7 @@
 
 This directory is the public, provider-free reproduction surface for the
 SoftwareX submission candidate. Its frozen software target is
-[`v0.2.1`](https://github.com/abaiar/MathHarnessAudit/tree/v0.2.1).
+[`v0.2.2`](https://github.com/abaiar/MathHarnessAudit/tree/v0.2.2).
 
 ## What can be reproduced
 

@@ -11,7 +11,7 @@ from pathlib import Path
 import build_submission_manifest
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.2.1"
+VERSION = "0.2.2"
 MANIFEST = ROOT / "paper" / "submission-source-manifest.json"
 PDF = ROOT / "paper" / f"MathHarnessAudit_SoftwareX_v{VERSION}.pdf"
 OUTPUT = ROOT / "paper" / "submission" / f"MathHarnessAudit-SoftwareX-v{VERSION}.zip"

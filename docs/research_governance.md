@@ -19,7 +19,7 @@ does not identify causal effects of an architecture or tool call.
 ## Evidence excluded from manuscript claims
 
 Private human-rating, calibration, identity-linkage, and independent-person
-reuse records are excluded from the v0.2.1 paper evidence base. Their current
+reuse records are excluded from the v0.2.2 paper evidence base. Their current
 local history contains unresolved provenance/governance questions, and no
 institutional applicability or ethics determination has been supplied. These
 materials may be preserved for later resolution, but automated structural
@@ -42,7 +42,7 @@ No repository script may manufacture these facts or convert `pending` into
 
 The following facts cannot be completed by software automation:
 
-- publish the final v0.2.1 GitHub tag/release from the accepted source commit;
+- publish the final v0.2.2 GitHub tag/release from the accepted source commit;
 - create and verify an archival DOI if the authors choose or the editor requests
   one;
 - confirm the corresponding author's email/affiliation combination;

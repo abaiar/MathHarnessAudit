@@ -1,6 +1,6 @@
 {
   "format": "mathaudit-qualification-figure-manifest-v0.1",
-  "tool_version": "0.2.1",
+  "tool_version": "0.2.2",
   "source_plan_sha256": "c246d426ca8b06e01546d9c3d276c29b1ae81de682bdf33cfaa7edb1573b1c18",
   "analysis_inputs": [
     {
@@ -12,5 +12,5 @@
   "command": "mathaudit qualification-publish --analysis ANALYSIS [--analysis ANALYSIS] --output-dir OUTPUT_DIR",
   "output_relative_path": "figures/repair_harm.svg",
   "output_sha256": "592d7eff281c0f6fc5b41e1fff79d1c9e42ac26bea4d7aef8e492f27b7331d53",
-  "manifest_sha256": "e80b84ccc031889f484d7ceae8ad9282c66f49f1406cea79586e1dbc2c0b71fc"
+  "manifest_sha256": "0e4bc7898a170f156ad91709dfd405f569874582424fa0eed968466b7f472706"
 }

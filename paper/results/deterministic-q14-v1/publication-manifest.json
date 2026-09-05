@@ -1,6 +1,6 @@
 {
   "format": "mathaudit-qualification-publication-manifest-v0.1",
-  "tool_version": "0.2.1",
+  "tool_version": "0.2.2",
   "source_plan_sha256": "c246d426ca8b06e01546d9c3d276c29b1ae81de682bdf33cfaa7edb1573b1c18",
   "analysis_config_raw_sha256": "bacb9aa4cc0d28311829bc9b8ed20a206b19ca6aca6eaef25907bb4f2b15a549",
   "label_variants": [
@@ -21,7 +21,7 @@
     },
     {
       "relative_path": "figures/availability.svg.manifest.json",
-      "sha256": "4ccc8137685c42c9635697f7e427b01c9baf0b66e9b46b947a0a24561d616731"
+      "sha256": "daf75b09951c0e20d7272db9515d18a3dda628319e060c6c1ae3d88744dcd0af"
     },
     {
       "relative_path": "figures/dependence.svg",
@@ -29,7 +29,7 @@
     },
     {
       "relative_path": "figures/dependence.svg.manifest.json",
-      "sha256": "8144e3ed02c2ca60f71c846d6c5246b46c2eac28c013343dc83120c00ac123f7"
+      "sha256": "00617e7cbf644a47ee9fb63c01b9a062a65bd0458fdf50abae077c50bc9bcb17"
     },
     {
       "relative_path": "figures/repair_harm.svg",
@@ -37,7 +37,7 @@
     },
     {
       "relative_path": "figures/repair_harm.svg.manifest.json",
-      "sha256": "6dde974c839e59d382dceb2f0cc6cec73c498d4f5f02a4c853adcfb7ddee4f58"
+      "sha256": "fee18c62f902cccd545f0aabe6e183ed0f1de8f3816b42c6d9775709998bd750"
     },
     {
       "relative_path": "figures/repetition.svg",
@@ -45,11 +45,11 @@
     },
     {
       "relative_path": "figures/repetition.svg.manifest.json",
-      "sha256": "ccc5f69352f7e21e48a6cfe420d008a47df72bf49810ddfc5153867864756d39"
+      "sha256": "e2d2cf2114a7cbb017786b9103b27966337c2845bb388ccf50d6da8ce77d25dc"
     },
     {
       "relative_path": "publication-data.json",
-      "sha256": "d8ba29cc93d79c11ccfbec082a700b89d8dd60f7d30c3fc93ca2e07ac2b7faeb"
+      "sha256": "e8d98448e93cceb87477c8faca4459813ce1e0a2c1ea5f9cc632a1340614d139"
     },
     {
       "relative_path": "tables/availability.csv",
@@ -93,5 +93,5 @@
     }
   ],
   "system_ranking_computed": false,
-  "manifest_sha256": "3177d14f4d289a4b7686016ab637753ecafbf25ffc044155ee66c11f08823925"
+  "manifest_sha256": "72000de9eb1763fbb36c7f1b402f9fe1c02ab7a09ee36a64d7a87fd7a4398895"
 }
