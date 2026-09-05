@@ -68,13 +68,21 @@ TEXT_SUFFIXES = {
     ".yaml",
     ".svg",
 }
+TEXT_NAMES = {".gitignore", "LICENSE", "Licence.txt", "MANIFEST.in", "uv.lock"}
+
+
+def canonical_bytes(path: Path) -> bytes:
+    """Read a source file using the submission's cross-platform byte contract."""
+    data = path.read_bytes()
+    if path.name in TEXT_NAMES or path.suffix.lower() in TEXT_SUFFIXES:
+        return data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return data
 
 
 def sha256(path: Path) -> str:
     """Hash canonical text bytes and raw bytes for binary artifacts."""
-    if path.suffix.lower() in TEXT_SUFFIXES:
-        data = path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
-        return hashlib.sha256(data).hexdigest()
+    if path.name in TEXT_NAMES or path.suffix.lower() in TEXT_SUFFIXES:
+        return hashlib.sha256(canonical_bytes(path)).hexdigest()
     digest = hashlib.sha256()
     with path.open("rb") as handle:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
@@ -84,8 +92,8 @@ def sha256(path: Path) -> str:
 
 def canonical_size(path: Path) -> int:
     """Return the byte size under the same text-normalization rule."""
-    if path.suffix.lower() in TEXT_SUFFIXES:
-        return len(path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n"))
+    if path.name in TEXT_NAMES or path.suffix.lower() in TEXT_SUFFIXES:
+        return len(canonical_bytes(path))
     return path.stat().st_size
 
 

@@ -9,6 +9,9 @@ All notable changes to MathHarnessAudit will be documented here.
   tests remain outside the public release and are not claimed as public tests.
 - Re-froze the SoftwareX candidate without rewriting the immutable v0.2.1 tag;
   v0.2.1 is retained as provenance history and superseded for submission use.
+- Unified source-manifest hashing and submission-archive bytes under one LF text
+  contract, including extensionless metadata files, so clean Windows and Linux
+  checkouts verify identically.
 
 ## 0.2.1 - 2026-09-05
 

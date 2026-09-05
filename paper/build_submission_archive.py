@@ -44,7 +44,7 @@ def main() -> int:
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(OUTPUT, "w") as archive:
         for relative, source in sorted(entries):
-            _write_entry(archive, relative, source.read_bytes())
+            _write_entry(archive, relative, build_submission_manifest.canonical_bytes(source))
 
     with zipfile.ZipFile(OUTPUT) as archive:
         corrupt = archive.testzip()
